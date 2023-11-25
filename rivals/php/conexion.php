@@ -3,9 +3,9 @@
 class DatabaseConnection {
     
     private $host = 'localhost';
-    private $username = 'u806919209_poyo'; // Reemplaza 'tu_usuario' con el nombre de usuario de tu base de datos
-    private $password = 'Poyo-Rivera99'; // Reemplaza 'tu_contraseña' con la contraseña de tu base de datos
-    private $dbname = 'u806919209_rivals'; // Reemplaza 'nombre_base_de_datos' con el nombre de tu base de datos
+    private $username = 'xx'; 
+    private $password = 'xx'; 
+    private $dbname = 'xx'; 
 
     private $connection;
 
