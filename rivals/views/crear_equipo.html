@@ -1,0 +1,253 @@
+<style>
+
+.drop-container {
+  position: relative;
+  display: flex;
+  gap: 10px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 200px;
+  padding: 20px;
+  border-radius: 10px;
+  border: 2px dashed #555;
+  color: #444;
+  cursor: pointer;
+  transition: background .2s ease-in-out, border .2s ease-in-out;
+}
+
+.drop-container:hover {
+  background: #eee;
+  border-color: #111;
+}
+
+.drop-container:hover .drop-title {
+  color: #222;
+}
+
+.drop-title {
+  color: #444;
+  font-size: 20px;
+  font-weight: bold;
+  text-align: center;
+  transition: color .2s ease-in-out;
+}
+
+</style>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+            <div class="content">
+                <div class="card " style="background: #28303f; color: #FFF;">
+                    <div class="card-header ">
+                        <div class="row">
+
+                            <div class="col-md-10">
+                                <h5 >Crear equipo</h5>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card-body">
+                        <div class="row p-2">
+                            
+
+                            <div class="input-group mb-3">
+                                <span style="background-color: #1c222b; border-color: #151b27;" class="input-group-text" id="nombre_equipo"><i class="fas fa-heart"></i></span>
+                                <input id="tvNombre" style="background-color: #1c222b; border-color: #151b27;" type="text" class="form-control" placeholder="Nombre del equipo" aria-describedby="nombre_equipo">
+                            </div>
+
+                            <div class="input-group mb-3">
+                                <span style="background-color: #1c222b; border-color: #151b27;" class="input-group-text" id="tw_equipo"><i class="fab fa-twitter"></i></span>
+                                <input id="tvTw" style="background-color: #1c222b; border-color: #151b27;" type="text" class="form-control" placeholder="Twitter del equipo" aria-describedby="tw_equipo">
+                            </div>
+
+                            <div class="input-group mb-3">
+                                <span style="background-color: #1c222b; border-color: #151b27;" class="input-group-text" id="fb_equipo"><i class="fab fa-facebook"></i></span>
+                                <input id="tvFb" style="background-color: #1c222b; border-color: #151b27;" type="text" class="form-control" placeholder="Facebook del equipo" aria-describedby="fb_equipo">
+                            </div>
+
+                            <div class="input-group mb-3">
+                                <span style="background-color: #1c222b; border-color: #151b27;" class="input-group-text" id="ig_equipo"><i class="fab fa-instagram"></i></span>
+                                <input id="tvIg" style="background-color: #1c222b; border-color: #151b27;" type="text" class="form-control" placeholder="Instagram del equipo" aria-describedby="ig_equipo">
+                            </div>
+
+                            <div class="input-group mb-3">
+                                <span style="background-color: #1c222b; border-color: #151b27;" class="input-group-text" id="tk_equipo"><i class="fas fa-heart"></i></span>
+                                <input id="tvTk" style="background-color: #1c222b; border-color: #151b27;" type="text" class="form-control" placeholder="TikTok del equipo" aria-describedby="tk_equipo">
+                            </div>
+
+                            <div class="input-group mb-3">
+                                <span style="background-color: #1c222b; border-color: #151b27;" class="input-group-text" id="ig_equipo"><i class="fab fa-discord"></i></span>
+                                <input id="tvDc" style="background-color: #1c222b; border-color: #151b27;" type="text" class="form-control" placeholder="Discord del equipo" aria-describedby="ig_equipo">
+                            </div>
+
+                            <div class="input-group mb-3">
+                                <select id="plataforma" style="width: 100%; padding: 7px; background-color: #1c222b; color: #6c757d; border-color: #151b27;" class="form-select" >
+                                    <option selected value="">Seleccione la plataforma del equipo</option>
+                                    <option value="pc">PC</option>
+                                    <option value="consola">Consola</option>
+                                    <option value="hibrido">Híbrido</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="row" style="height: 400px;">
+
+                                <div class="col-md-6">
+                                    <p style="font-family: 'Ow', sans-serif; color: #FFF; font-size: 20px;">Logo del equipo</p>
+                                    <label for="imgLogo" class="drop-container" id="dropcontainer">
+                                        <span class="drop-title">Logo del equipo</span>
+                                        <input type="file" id="imgLogo" accept="image/*" onchange="showPreview(event);" required>
+                                    </label>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="preview" style="height: 100%; text-align: center;">
+                                        <img style="display: none; vertical-align: middle; max-height: 300px;" id="file-ip-1-preview">
+                                    </div>
+                                </div>
+                                
+                            
+
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-md-12 text-center">
+                                <button id="btnCrearEquipo" type="button" class="btn btn-primary ">Crear equipo <i class="fab fa-steam-symbol"></i></button>
+                            </div>
+                            
+                        </div>
+                        
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+
+function showPreview(event){
+  if(event.target.files.length > 0){
+    var src = URL.createObjectURL(event.target.files[0]);
+    var preview = document.getElementById("file-ip-1-preview");
+    preview.src = src;
+    preview.style.display = "block";
+  }
+}
+
+
+$('#btnCrearEquipo').on('click', function(){
+
+    showCargandoDialog();
+    
+    var nomEquipo = $('#tvNombre').val();
+    var twEquipo = $('#tvTw').val();
+    var fbEquipo = $('#tvFb').val();
+    var igEquipo = $('#tvIg').val();
+    var tkEquipo = $('#tvTk').val();
+    var dcEquipo = $('#tvDc').val();
+    var plataformaEquipo = $('#plataforma').val();
+
+    var data = new FormData();
+    var file = $('#imgLogo')[0].files[0];
+    data.append("image", file);
+    data.append("nombre", nomEquipo);
+    data.append("tw", twEquipo);
+    data.append("fb", twEquipo);
+    data.append("ig", twEquipo);
+    data.append("tk", twEquipo);
+    data.append("dc", twEquipo);
+    data.append("plataforma", plataformaEquipo);
+    data.append("function", "registrarEquipo");
+
+    if(nomEquipo == "" && nomEquipo.length < 3){
+        Swal.fire({
+            html: `
+            <img src="../img/meierror.png" class="img-fluid" width="120" height="220" >
+            <h1  style="font-family: 'Ow', sans-serif;">El nombre del equipo debe contener al menos 3 caracteres</h1>
+            <br><br><br>
+            `,
+            width: "800px"
+        });
+        return;
+    }
+
+    if(plataformaEquipo == ""){
+        Swal.fire({
+            html: `
+            <img src="../img/meierror.png" class="img-fluid" width="120" height="220" >
+            <h1  style="font-family: 'Ow', sans-serif;">Selecciona la plataforma del equipo</h1>
+            <br><br><br>
+            `,
+            width: "800px"
+        });
+        return;
+    }
+
+    $.ajax({
+        url: 'models/funciones.php',
+        type: 'POST',
+        contentType: false,
+        data: data,
+        processData: false,
+        dataType: 'JSON',
+        success: function(resp) {
+
+            console.log(resp);
+            
+            if(resp.status == 1){
+
+                Swal.fire({
+                    html: `
+                    <h1  style="font-family: 'Ow', sans-serif;">${resp.msg}</h1>
+                    <img src="assets/images/rivals.png" class="img-fluid" width="150" height="150" >
+                    <br><br><br>
+                    `,
+                    width: "600px"
+                });
+
+            }else{
+
+                Swal.fire({
+                    html: `
+                    <img src="../img/meierror.png" class="img-fluid" width="120" height="220" >
+                    <h1  style="font-family: 'Ow', sans-serif;">${resp.msg}</h1>
+                    <br><br><br>
+                    `,
+                    width: "800px"
+                });
+
+            }
+        },
+        error:function(xhr, ajaxOptions, thrownError){
+            console.log(xhr);
+        }
+
+    });
+
+});
+
+
+function showCargandoDialog(){
+	Swal.fire({
+	    title: "Cargando",
+	    html: `
+        <div class="container text-center">
+            <div class="row">
+                <div class="col">
+                    <img src="../img/cargando.gif" class="img-responsive" width="250" height="250" >
+                </div>
+            </div>
+            </div>
+
+        `,
+	    showConfirmButton: false,
+	    allowOutsideClick: false
+  	});
+}
+
+</script>

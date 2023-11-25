@@ -1,0 +1,701 @@
+<style>
+    div:where(.swal2-container) div:where(.swal2-popup){
+        background-image: url('../img/fondo9.jpg'); background-repeat: no-repeat; background-size: cover;  background-position: center !important;   
+    }
+
+    tr td{
+        background-color: #28303f !important;    
+    }
+
+    .dt-buttons button{
+        background: #28303f !important;
+        color: #FFF;
+    }
+
+    .paginate_button{
+        background: #28303f !important;
+        color: #FFF !important;
+    }
+
+    .dataTables_wrapper .dataTables_paginate .paginate_button.current, .dataTables_wrapper .dataTables_paginate .paginate_button.current:hover{
+        color: #FFF !important;
+    }
+    .dataTables_wrapper .dataTables_length, .dataTables_wrapper .dataTables_filter, .dataTables_wrapper .dataTables_info, .dataTables_wrapper .dataTables_processing, .dataTables_wrapper .dataTables_paginate{
+        color: #FFF !important;
+    }
+
+    #tabla_torneos_filter input{
+        border: 0;
+        padding: 3px;
+        background: #151b27 !important;
+        color: #FFF;
+    }
+</style>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+            <div class="content">
+                <div class="card " style="background: #28303f; color: #FFF;">
+                    <div class="card-header ">
+                        <div class="row">
+
+                            <div class="col-md-10">
+                                <h5 >Panel de control</h5>
+                            </div>
+                            
+                        </div>
+                    </div>
+
+                    <div class="card-body">
+
+                        <ul class="nav nav-tabs">
+                            <li style="cursor: pointer;" class="nav-item">
+                              <a  id="btnTorneos" class="nav-link">Torneos</a>
+                            </li>
+                            <li style="cursor: pointer;" class="nav-item">
+                              <a id="btnJugadores" class="nav-link">Jugadores</a>
+                            </li>
+                            <li style="cursor: pointer;" class="nav-item">
+                              <a id="btnEquipos" class="nav-link" >Equipos</a>
+                            </li>
+                            <li style="cursor: pointer;" class="nav-item">
+                                <a id="btnJornadas" class="nav-link" >Jornadas</a>
+                            </li>
+                        </ul>
+
+                        <div class="row p-5" id="divJornadas" style="display: none;">
+
+                            <div class="table-responsive container-tablegral">
+
+                                <table id="tabla_jornadas" class="display data-tablegral">
+
+                                    <thead style="background-color: #28303f;">
+                                        <tr>
+                                        <th>Torneo</th>
+                                        <th>Fecha</th>
+                                        <th>Jornada</th>
+                                        <th>Acciones</th>
+                                        </tr>
+                                    </thead>
+
+                                </table>
+                            </div>
+
+                        </div>
+
+                        <div class="row p-5" id="divEncuentros" style="display: none;">
+
+                            <div class="table-responsive container-tablegral">
+
+                                <table id="tabla_encuentros" class="display data-tablegral">
+
+                                    <thead style="background-color: #28303f;">
+                                        <tr>
+                                        <th>Jornada</th>
+                                        <th>Equipo 1</th>
+                                        <th>Equipo 2</th>
+                                        <th>Mapa</th>
+                                        <th>Vencedor</th>
+                                        <th>Acciones</th>
+                                        </tr>
+                                    </thead>
+
+                                </table>
+                            </div>
+
+                        </div>
+
+
+                        <div class="row p-5" id="divTorneos" style="display: none;">
+
+                            <div class="table-responsive container-tablegral">
+
+                                <table id="tabla_torneos" class="display data-tablegral">
+
+                                    <thead style="background-color: #28303f;">
+                                        <tr>
+                                        <th>Fecha Inicio</th>
+                                        <th>Temporada</th>
+                                        <th>Nombre</th>
+                                        <th>Plataforma</th>
+                                        <th>Acciones</th>
+                                        </tr>
+                                    </thead>
+
+                                </table>
+                            </div>
+
+                        </div>
+
+                        <div class="row p-5" id="divJugadores" style="display: none;">
+
+                            <div class="table-responsive container-tablegral">
+
+                                <table id="tabla_jugadores" class="display data-tablegral">
+
+                                    <thead style="background-color: #28303f;">
+                                        <tr>
+                                        <th>Usuario</th>
+                                        <th>Battletag</th>
+                                        <th>Acciones</th>
+                                        </tr>
+                                    </thead>
+
+                                </table>
+                            </div>
+
+                        </div>
+
+                        <div class="row p-5" id="divEquipos" style="display: none;">
+
+                            <div class="table-responsive container-tablegral">
+
+                                <table id="tabla_equipos" class="display data-tablegral">
+
+                                    <thead style="background-color: #28303f;">
+                                        <tr>
+                                        <th>Nombre</th>
+                                        <th>Plataforma</th>
+                                        <th>Acciones</th>
+                                        </tr>
+                                    </thead>
+
+                                </table>
+                            </div>
+
+                        </div>
+                        
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<script>
+
+    $('#btnTorneos').on('click', function(){
+        getTorneos();
+
+        $(this).addClass("active");
+        $('#btnJugadores').removeClass("active");
+        $('#btnEquipos').removeClass("active");
+        $('#btnJornadas').removeClass("active");
+        $('#divTorneos').show(); 
+        $('#divJugadores').hide();
+        $('#divEquipos').hide(); 
+        $('#divJornadas').hide(); 
+        $('#divEncuentros').hide();
+    });
+
+    $('#btnJugadores').on('click', function(){
+        getJugadores();
+
+        $(this).addClass("active");
+        $('#btnTorneos').removeClass("active");
+        $('#btnEquipos').removeClass("active");
+        $('#btnJornadas').removeClass("active");
+        $('#divJugadores').show();
+        $('#divTorneos').hide(); 
+        $('#divEquipos').hide(); 
+        $('#divJornadas').hide(); 
+        $('#divEncuentros').hide();
+    });
+
+
+    $('#btnEquipos').on('click', function(){
+        getEquipos();
+
+        $(this).addClass("active");
+        $('#btnJugadores').removeClass("active");
+        $('#btnTorneos').removeClass("active");
+        $('#btnJornadas').removeClass("active");
+        $('#divJugadores').hide();
+        $('#divTorneos').hide(); 
+        $('#divEquipos').show(); 
+        $('#divJornadas').hide(); 
+        $('#divEncuentros').hide();
+    });
+
+    $('#btnJornadas').on('click', function(){
+        getJornadas();
+
+        $(this).addClass("active");
+        $('#btnJugadores').removeClass("active");
+        $('#btnTorneos').removeClass("active");
+        $('#btnEquipos').removeClass("active");
+        $('#divJugadores').hide();
+        $('#divTorneos').hide(); 
+        $('#divEquipos').hide(); 
+        $('#divJornadas').show(); 
+        $('#divEncuentros').hide();
+    });
+
+    function getTorneos(){
+
+        init_datatable('#tabla_torneos', {
+            responsive: true,
+            paging: true,
+            searching: true,
+            info: true,
+            order: [[ 0, "desc" ]]
+        });
+
+        let oTable = $('#tabla_torneos').DataTable();
+	    oTable.clear().draw();
+
+        let data = {
+            "function": "getTorneos"
+        };
+
+        $.ajax({
+            url: 'models/funciones.php',
+            type: 'POST',
+            dataType: 'JSON',
+            data: data,
+        }).done(resp => {
+
+            console.log(resp.data);
+
+            resp.data.forEach(function (element,index) {
+
+	    		let rowNode = oTable.row.add([ //se agrega registro a la tabla
+			        	element.fecha_inicio,
+			        	element.season,
+			        	element.nombre,
+			        	element.plataforma,
+			        	`
+						<button style="color: #FFF; background: #EF6C00; border-radius: 50%; margin: 3px;" id="btnEditar" data-equipo="${element.id}" type="button" class="btn btn-sm"><i class="fas fa-edit"></i></button>
+                        <button style="color: #FFF; background: #0277BD; border-radius: 50%; margin: 3px;" id="btnAdd" data-equipo="${element.id}" type="button" class="btn btn-sm"><i class="fas fa-wrench"></i></button>
+						`
+		    		]).node();
+	    	});
+
+            oTable.draw();
+
+        }).fail((err, text, thr) => {
+
+            Swal.fire("Error", 'Hubo un problema al conectar con el servidor', 'error');
+            console.log(err, text, thr);
+        });
+
+    }
+    
+    function getJornadas(){
+
+        init_datatable('#tabla_jornadas', {
+            responsive: true,
+            paging: true,
+            searching: true,
+            info: true,
+            order: [[ 0, "desc" ]]
+        });
+
+        let oTable = $('#tabla_jornadas').DataTable();
+        oTable.clear().draw();
+
+        let data = {
+            "function": "getJornadas"
+        };
+
+        $.ajax({
+            url: 'models/funciones.php',
+            type: 'POST',
+            dataType: 'JSON',
+            data: data,
+        }).done(resp => {
+
+            console.log(resp.data);
+
+            resp.data.forEach(function (element,index) {
+
+                let rowNode = oTable.row.add([ //se agrega registro a la tabla
+                        element.torneo,
+                        element.fecha,
+                        element.numero,
+                        `
+                        <button style="color: #FFF; background: #EF6C00; border-radius: 50%; margin: 3px;" data-jornada="${element.id}" type="button" class="btn btn-sm btnVerEncuentros"><i class="far fa-eye"></i></button>
+                        <button style="color: #FFF; background: #0277BD; border-radius: 50%; margin: 3px;" data-jornada="${element.id}" type="button" class="btn btn-sm btnReportar"><i class="fas fa-toggle-on"></i></button>
+                        `
+                    ]).node();
+            });
+
+            oTable.draw();
+
+        }).fail((err, text, thr) => {
+
+            Swal.fire("Error", 'Hubo un problema al conectar con el servidor', 'error');
+            console.log(err, text, thr);
+        });
+
+    }
+
+
+    $('body').off('click', '.btnReportar').on('click', '.btnReportar', function(){
+
+        let jornada = $(this).data("jornada");
+
+        Swal.fire({
+            html:`
+                <img width="120" height="120" src="../img/logo-rivals.png"></img>
+                <h1 style="margin-top: 20px; text-shadow: .1em .1em 0 hsl(200 50% 30%); color: hsl(200 50% 90%); font-size: 24px; font-weight: 900; line-height: 1.1;  font-family: 'Ow', cursive;">Activar/Desactivar reportar resultados de esta jornada</h1>
+
+                <button data-jornada="${jornada}" id="btnDesactivarJornada" style="font-size: 20px;" width="100" type="button" class="btn btn-outline-light mt-5 mr-3">Desactivar</button>
+                <button data-jornada="${jornada}" id="btnActivarjornada"  style="font-size: 20px;" width="100" type="button" class="btn btn-outline-light mt-5 ml-3 btnCloseMsg">Activar</button>
+                
+            `,
+            showCloseButton: false,
+            showCancelButton: false,
+            showConfirmButton: false,
+            focusConfirm: false
+           
+        });
+
+    });
+
+    $('body').off('click', '#btnDesactivarJornada').on('click', '#btnDesactivarJornada', function(){
+
+        let jornada = $(this).data("jornada");
+
+        let data = {
+            "tipo": 0,
+            "jornada": jornada,
+            "function": "switchJornada"
+        };
+
+        $.ajax({
+            url: 'models/funciones.php',
+            type: 'POST',
+            dataType: 'JSON',
+            data: data,
+        }).done(resp => {
+
+            showMessage(resp.msg);
+        }).fail((err, text, thr) => {
+
+            Swal.fire("Error", 'Hubo un problema al conectar con el servidor', 'error');
+            console.log(err, text, thr);
+        });
+
+    });
+
+     $('body').off('click', '.btnVerEncuentros').on('click', '.btnVerEncuentros', function(){
+
+        let jornada = $(this).data("jornada");
+
+        let data = {
+            "jornada": jornada,
+            "function": "getEncuentros"
+        };
+
+        $.ajax({
+            url: 'models/funciones.php',
+            type: 'POST',
+            dataType: 'JSON',
+            data: data,
+        }).done(resp => {
+
+
+            if (resp.status == 1) {
+
+                init_datatable('#tabla_encuentros', {
+                    responsive: true,
+                    paging: true,
+                    searching: true,
+                    info: true,
+                    order: [[ 0, "desc" ]]
+                });
+
+                let oTable = $('#tabla_encuentros').DataTable();
+                oTable.clear().draw();
+
+                $('#divJornadas').fadeOut();
+                $('#divEncuentros').fadeIn();
+
+                resp.data.forEach(function (element,index) {
+
+                let rowNode = oTable.row.add([ //se agrega registro a la tabla
+                        element.numero,
+                        element.equipo1,
+                        element.equipo2,
+                        element.mapa,
+                        element.vencedor,
+                        `
+                        <button style="color: #FFF; background: #EF6C00; border-radius: 50%; margin: 3px;" data-equipo1="${element.equipo1_id}" data-equipo1_nom="${element.equipo1}" data-equipo2_nom="${element.equipo2}" data-equipo2="${element.equipo2_id}" data-encuentro="${element.id}" type="button" class="btn btn-sm btnEditarVencedor"><i class="fas fa-edit"></i></button>
+                        `
+                    ]).node();
+                });
+
+                oTable.draw();
+
+            }else{
+                showMessage(resp.msg);
+            }
+            
+
+
+            
+        }).fail((err, text, thr) => {
+
+            Swal.fire("Error", 'Hubo un problema al conectar con el servidor', 'error');
+            console.log(err, text, thr);
+        });
+
+    });
+
+     $('body').off('click', '.btnEditarVencedor').on('click', '.btnEditarVencedor', function(){
+
+        let encuentro = $(this).data("encuentro");
+
+        let equipo1 = $(this).data("equipo1");
+        let equipo1nom = $(this).data("equipo1_nom");
+
+        let equipo2 = $(this).data("equipo2");
+        let equipo2nom = $(this).data("equipo2_nom");
+
+
+        Swal.fire({
+            html:`
+                <img width="120" height="120" src="../img/logo-rivals.png"></img>
+                <h1 style="margin-top: 20px; text-shadow: .1em .1em 0 hsl(200 50% 30%); color: hsl(200 50% 90%); font-size: 24px; font-weight: 900; line-height: 1.1;  font-family: 'Fugaz One', cursive;">Selecciona el vencedor del encuentro</h1>
+
+
+                <div class="col-md-12 mt-3">
+                    <select class="form-select" id="selectVencedor">
+                        <option value="${equipo1}">${equipo1nom}</option>
+                        <option value="${equipo2}">${equipo2nom}</option>
+                    </select>
+                </div>
+
+                <button data-encuentro="${encuentro}" id="btnAceptarVencedor" style="font-size: 20px;" width="100" type="button" class="btn btn-outline-light mt-5">Aceptar</button>
+                
+            `,
+            showCloseButton: false,
+            showCancelButton: false,
+            showConfirmButton: false,
+            focusConfirm: false
+           
+        });
+
+        
+
+        /*$.ajax({
+            url: 'models/funciones.php',
+            type: 'POST',
+            dataType: 'JSON',
+            data: data,
+        }).done(resp => {
+
+            showMessage(resp.msg);
+        }).fail((err, text, thr) => {
+
+            Swal.fire("Error", 'Hubo un problema al conectar con el servidor', 'error');
+            console.log(err, text, thr);
+        });*/
+
+    });
+
+    $('body').off('click', '#btnAceptarVencedor').on('click', '#btnAceptarVencedor', function(){
+
+        console.log("CLICK");
+
+        let encuentro = $(this).data("encuentro");
+
+        let vencedor = $('#selectVencedor').val();
+
+        let data = {
+            "vencedor": vencedor,
+            "encuentro": encuentro,
+            "function": "setVencedorEncuentroAdmin"
+        };
+
+        $.ajax({
+            url: 'models/funciones.php',
+            type: 'POST',
+            dataType: 'JSON',
+            data: data,
+        }).done(resp => {
+
+            showMessage(resp.msg);
+            
+            
+        }).fail((err, text, thr) => {
+
+            Swal.fire("Error", 'Hubo un problema al conectar con el servidor', 'error');
+            console.log(err, text, thr);
+        });
+
+    });
+
+
+    $('body').off('click', '#btnActivarjornada').on('click', '#btnActivarjornada', function(){
+
+        let jornada = $(this).data("jornada");
+
+        let data = {
+            "tipo": 1,
+            "jornada": jornada,
+            "function": "switchJornada"
+        };
+
+        $.ajax({
+            url: 'models/funciones.php',
+            type: 'POST',
+            dataType: 'JSON',
+            data: data,
+        }).done(resp => {
+
+            showMessage(resp.msg);
+        }).fail((err, text, thr) => {
+
+            Swal.fire("Error", 'Hubo un problema al conectar con el servidor', 'error');
+            console.log(err, text, thr);
+        });
+
+    });
+
+
+    function getJugadores(){
+
+        init_datatable('#tabla_jugadores', {
+            responsive: true,
+            paging: true,
+            searching: true,
+            info: true,
+            order: [[ 0, "desc" ]]
+        });
+
+        let oTable = $('#tabla_jugadores').DataTable();
+        oTable.clear().draw();
+
+        let data = {
+            "function": "getJugadores"
+        };
+
+        $.ajax({
+            url: 'models/funciones.php',
+            type: 'POST',
+            dataType: 'JSON',
+            data: data,
+        }).done(resp => {
+
+            console.log(resp.data);
+
+            resp.data.forEach(function (element,index) {
+
+                let rowNode = oTable.row.add([ //se agrega registro a la tabla
+                        element.usuario,
+                        element.battlenet,
+                        `
+                        <button style="color: #FFF; background: #EF6C00; border-radius: 50%; margin: 3px;" id="btnEditar" data-jugador="${element.id}" type="button" class="btn btn-sm"><i class="fas fa-edit"></i></button>
+                        <button style="color: #FFF; background: #0277BD; border-radius: 50%; margin: 3px;" id="btnAdd" data-jugador="${element.id}" type="button" class="btn btn-sm"><i class="fas fa-wrench"></i></button>
+                        `
+                    ]).node();
+            });
+
+            oTable.draw();
+
+        }).fail((err, text, thr) => {
+
+            Swal.fire("Error", 'Hubo un problema al conectar con el servidor', 'error');
+            console.log(err, text, thr);
+        });
+
+    }
+
+    function getEquipos(){
+
+        init_datatable('#tabla_equipos', {
+            responsive: true,
+            paging: true,
+            searching: true,
+            info: true,
+            order: [[ 0, "desc" ]]
+        });
+
+        let oTable = $('#tabla_equipos').DataTable();
+        oTable.clear().draw();
+
+        let data = {
+            "function": "getAllEquipos"
+        };
+
+        $.ajax({
+            url: 'models/funciones.php',
+            type: 'POST',
+            dataType: 'JSON',
+            data: data,
+        }).done(resp => {
+
+            console.log(resp.data);
+
+            resp.data.forEach(function (element,index) {
+
+                let rowNode = oTable.row.add([ //se agrega registro a la tabla
+                        element.nombre,
+                        element.plataforma,
+                        `
+                        <button style="color: #FFF; background: #EF6C00; border-radius: 50%; margin: 3px;" id="btnEditar" data-equipo="${element.id}" type="button" class="btn btn-sm"><i class="fas fa-edit"></i></button>
+                        <button style="color: #FFF; background: #0277BD; border-radius: 50%; margin: 3px;" id="btnAdd" data-equipo="${element.id}" type="button" class="btn btn-sm"><i class="fas fa-wrench"></i></button>
+                        `
+                    ]).node();
+            });
+
+            oTable.draw();
+
+        }).fail((err, text, thr) => {
+
+            Swal.fire("Error", 'Hubo un problema al conectar con el servidor', 'error');
+            console.log(err, text, thr);
+        });
+
+    }
+
+    function showMessage(msg){
+        Swal.fire({
+            html:`
+                <img width="120" height="120" src="../img/logo-rivals.png"></img>
+                <h1 style="margin-top: 20px; text-shadow: .1em .1em 0 hsl(200 50% 30%); color: hsl(200 50% 90%); font-size: 24px; font-weight: 900; line-height: 1.1;  font-family: 'Fugaz One', cursive;">${msg}</h1>
+
+                <button id="btnCloseMsg" style="font-size: 20px;" width="100" type="button" class="btn btn-outline-light mt-5">Aceptar</button>
+                
+            `,
+            showCloseButton: false,
+            showCancelButton: false,
+            showConfirmButton: false,
+            focusConfirm: false
+           
+        });
+    }
+
+    $('body').on('click', '#btnCloseMsg', function(){
+        Swal.close();
+    });
+
+
+
+    function init_datatable(nombre, options) {
+        if ( !$.fn.dataTable.isDataTable( `table${nombre}` ) ) {
+        //inicializo dataTables
+        options.language = {
+                "url": "//cdn.datatables.net/plug-ins/1.10.16/i18n/Spanish.json"
+        };
+        options.dom = 'Bfrtip';
+        //options.dom = '<Bfl<t>ip>';
+        options.buttons = [
+                'copyHtml5',
+                'excelHtml5',
+                'csvHtml5',
+                'pdfHtml5'
+            ];
+
+        $(`table${nombre}`).DataTable(options);
+        }
+        
+    }
+
+</script>

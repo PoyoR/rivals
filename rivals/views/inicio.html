@@ -1,0 +1,1141 @@
+<style>
+  @import url('https://fonts.googleapis.com/css?family=Delius&display=swap');
+  @import url('https://fonts.googleapis.com/css?family=Odibee+Sans&display=swap');
+  
+div:where(.swal2-container) div:where(.swal2-popup){
+  background-color: #021627;
+}
+
+  #tabla_posiciones_info{
+    display: none;
+  }
+.dt-buttons button{
+        background: #EF6C00 !important;
+        color: #FFF;
+    }
+
+    .paginate_button{
+        background: #EF6C00 !important;
+        color: #FFF !important;
+    }
+
+     .disabled{
+        background: #c4c4c4 !important;
+        color: #04061f !important;
+    }
+
+    .dataTables_wrapper .dataTables_paginate .paginate_button.current, .dataTables_wrapper .dataTables_paginate .paginate_button.current:hover{
+        color: #FFF !important;
+    }
+    .dataTables_wrapper .dataTables_length, .dataTables_wrapper .dataTables_filter, .dataTables_wrapper .dataTables_info, .dataTables_wrapper .dataTables_processing, .dataTables_wrapper .dataTables_paginate{
+        color: #FFF !important;
+    }  
+table.dataTable tbody tr{
+  background-color: rgba(255, 255, 255, 0) !important;
+}
+tr td{
+  background-color: rgba(255, 255, 255, 0) !important;       
+}
+
+.gallery {
+  --z: 22px;  /* control the zig-zag  */
+  --s: 240px; /* control the size */
+  --g: 8px;   /* control the gap */
+  display: grid;
+  gap: var(--g);
+  width: 50%;
+  grid-auto-flow: column;
+}
+.gallery > img {
+  
+  width: 0;
+  min-width: calc(100% + var(--z)/2);
+  height: var(--s);
+  object-fit: cover;
+  -webkit-mask: var(--mask);
+          mask: var(--mask);
+  cursor: pointer;
+  transition: .5s;
+}
+.gallery > img:hover {
+  width: calc(var(--s)/2);
+}
+.gallery > img:first-child {
+  place-self: start;
+  clip-path: polygon(calc(2*var(--z)) 0,100% 0,100% 100%,0 100%);
+  --mask: 
+    conic-gradient(from -135deg at right,#0000,#000 1deg 89deg,#0000 90deg) 
+      50%/100% calc(2*var(--z)) repeat-y;
+}
+.gallery > img:last-child {
+  place-self: end;
+  clip-path: polygon(0 0,100% 0,calc(100% - 2*var(--z)) 100%,0 100%);
+  --mask: 
+    conic-gradient(from   45deg at left ,#0000,#000 1deg 89deg,#0000 90deg) 
+      50% calc(50% - var(--z))/100% calc(2*var(--z)) repeat-y;
+}
+
+
+
+@media (max-width: 1250px) {
+  .gallery {
+    width: 80%;
+  }
+}
+
+.imgCalendario:hover{
+  cursor: pointer;
+  box-shadow: 0 20px 20px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.btnVerDetalle:hover{
+  box-shadow: 0 20px 20px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+
+.wrapper {    
+    height: 35px;
+    display: flex;
+    justify-content: center;
+}
+
+.cta {
+    height: 35px;
+    margin-top: 15px;
+    display: flex;
+    padding: 8px 6px;
+    text-decoration: none;
+    font-family: 'Ow', sans-serif;
+    color: white;
+    background: #0277BD;
+    transition: 1s;
+    box-shadow: 6px 6px 0 black;
+    transform: skewX(-15deg);
+}
+
+.cta:focus {
+   outline: none; 
+}
+
+.cta:hover {
+    color: #FFF;
+    transition: 0.5s;
+    box-shadow: 10px 10px 0 #FBC638;
+}
+
+.cta span:nth-child(2) {
+    transition: 0.5s;
+    margin-right: 0px;
+}
+
+.cta:hover  span:nth-child(2) {
+    transition: 0.5s;
+    margin-right: 12px;
+}
+
+  #spanInv {
+    height: 35px;
+    letter-spacing: 1px;
+    font-size: 18px;
+    padding-left: 10px;
+    transform: skewX(15deg) 
+  }
+
+  span:nth-child(2) {
+    height: 35px;
+    width: 20px;
+    margin-left: 20px;
+    position: relative;
+    top: 6%;
+  }
+  
+/**************SVG****************/
+
+path.one {
+    transition: 0.4s;
+    transform: translateX(-60%);
+}
+
+path.two {
+    transition: 0.5s;
+    transform: translateX(-30%);
+}
+
+.cta:hover path.three {
+    animation: color_anim 1s infinite 0.2s;
+}
+
+.cta:hover path.one {
+    transform: translateX(0%);
+    animation: color_anim 1s infinite 0.6s;
+}
+
+.cta:hover path.two {
+    transform: translateX(0%);
+    animation: color_anim 1s infinite 0.4s;
+}
+
+/* SVG animations */
+
+@keyframes color_anim {
+    0% {
+        fill: white;
+    }
+    50% {
+        fill: #FBC638;
+    }
+    100% {
+        fill: white;
+    }
+}
+
+svg {
+	height: 350px;
+	width: 350px;
+}
+
+.overwatch-loader {
+  width: 25%;
+  position: relative;
+  margin: 0px auto;
+}
+.overwatch-logo {
+  filter:
+    drop-shadow(0 0 120px rgba(255,255,255,0.15))
+    drop-shadow(0 0 16px rgba(255,255,255,0.05));
+  opacity: 0.8;
+}
+.circularCW,
+.circularCCW {
+  height: 100%;
+  transform-origin: center center;
+  width: 100%;
+  position: absolute;
+  top: 0; bottom: 0; left: 0; right: 0;
+  margin: auto;
+}
+.circularCW {
+  animation: rotate 2s linear infinite;
+}
+.circularCCW {
+  animation: rotate-reverse 4s linear infinite;
+}
+.path,
+.path2,
+.path3,
+.path4,
+.path5,
+.path6,
+.path7,
+.path8 {
+  stroke-linecap: square;
+  stroke-width: 33;
+  opacity: 0.8;
+}
+.path {
+  stroke-dasharray: 1400,2600;
+  stroke-dashoffset: 0;
+  animation: dash 3.7s ease-in-out infinite;
+  opacity: 0.3;
+}
+.path2 {
+  stroke-dasharray: 40,2600;
+  stroke-dashoffset: -500px;
+}
+.path3 {
+  stroke-dasharray: 200,2600;
+  stroke-dashoffset: -700px;
+}
+.path4 {
+  stroke-dasharray: 40,2600;
+  stroke-dashoffset: -2000px;
+  animation: dash2 2.5s ease-in-out infinite;
+}
+.path5 {
+  stroke-dasharray: 200,2600;
+  stroke-dashoffset: 0;
+}
+.path6 {
+  stroke-dasharray: 300,2600;
+  stroke-dashoffset: -1000px;
+}
+.path7 {
+  stroke-dasharray: 40,2600;
+  stroke-dashoffset: -1200px;
+}
+.path8 {
+  stroke-dasharray: 100,2600;
+  stroke-dashoffset: -300px;
+}
+
+@keyframes rotate{
+ 100%{
+  transform: rotate(360deg);
+ }
+}
+
+@keyframes rotate-reverse {
+ 100%{
+  transform: rotate(-360deg);
+ }
+}
+@keyframes dash{
+ 0%{
+  stroke-dasharray: 2000,2600;
+  stroke-dashoffset: 0;
+ }
+ 50%{
+  stroke-dasharray: 2400,2600;
+  stroke-dashoffset: -500px;
+ }
+ 100%{
+  stroke-dasharray: 2000,2600;
+  stroke-dashoffset: 0;
+ }
+}
+@keyframes dash2 {
+ 0%{
+  stroke-dasharray: 100,2600;
+  stroke-dashoffset: -2000px;
+ }
+ 50%{
+  stroke-dasharray: 500,2600;
+  stroke-dashoffset: -1000px;
+ }
+ 100%{
+  stroke-dasharray: 100,2600;
+  stroke-dashoffset: -1960px;
+ }
+}
+
+/* title styles */
+.home-title span{
+    position: relative;
+    overflow: hidden;
+    display: block;
+    line-height: 1.2;
+}
+
+.home-title span::after{
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    background: white;
+    animation: a-ltr-after 2s cubic-bezier(.77,0,.18,1) forwards;
+    transform: translateX(-101%);
+}
+
+.home-title span::before{
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--bg-color);
+    animation: a-ltr-before 2s cubic-bezier(.77,0,.18,1) forwards;
+    transform: translateX(0);
+}
+
+.home-title span:nth-of-type(1)::before,
+.home-title span:nth-of-type(1)::after{
+    animation-delay: 1s;
+}
+
+.home-title span:nth-of-type(2)::before,
+.home-title span:nth-of-type(2)::after{
+    animation-delay: 1.5s;
+}
+
+@keyframes a-ltr-after{
+    0% {transform: translateX(-100%)}
+    100% {transform: translateX(101%)}
+}
+
+@keyframes a-ltr-before{
+    0% {transform: translateX(0)}
+    100% {transform: translateX(200%)}
+}
+
+</style>
+    
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="content">
+                    <div class="card " style="background: #28303f; color: #FFF;">
+    
+                        <div class="card-body" style="padding: 0 !important;">
+
+                          <div id="divCargando" class="col-md-12 text-center p-5">
+                            <svg class="overwatch-logo" viewbox="0 0 1000 1000">
+                              <svg xmlns="http://www.w3.org/2000/svg" width="600" height="600" x="200" y="210">
+                                  <defs></defs>
+                                  <path d="M296.704.004c-66.766.428-132.772 24.23-184.63 66.083l56.662 65.786c47.82-37.74 112.256-53.118 172.018-41.237 32.844 6.318 64.096 20.74 90.464 41.237l56.66-65.786C434.242 22.804 365.77-1.03 296.705.004z" color="#000" fill="#fa9c1e" overflow="visible"/>
+                                  <path d="M93.628 82.253C33.924 138.343-1.082 219.877.026 302.123c.035 85.37 38.978 169.23 103.652 224.696 59.78 52.283 141.085 78.917 220.46 72.18 86.01-6.405 167.65-52.345 218.118-122.143 49.125-66.33 68.37-153.797 52.064-234.91-11.987-62.09-44.54-119.634-90.837-162.405l-56.662 65.786c45.657 43.034 70.586 106.557 65.886 169.224-2.056 31.05-11.074 61.69-26.314 88.96L370.92 291.974 312.66 166.39l-.088 190.18 116.695 112.926c-52.002 40.402-123.353 53.802-186.578 35.894-25.744-7.18-50.122-19.23-71.31-35.398L288.87 356.57c-.206-61.831.717-128.578 0-190.383L230.52 291.974 114.058 404.437c-35.53-62.024-36.38-142.21-2.182-204.927 10.69-20.092 24.84-38.428 41.257-54.182L96.47 79.542l-2.842 2.71z" color="#000" fill="#fff" overflow="visible"/>
+                            </svg>
+                            </svg>
+                            <svg class="circularCW" viewbox="0 0 1000 1000">
+                                <circle class="path" cx="500" cy="500" r="355" stroke="#fa9c1e"  fill="none" />
+                            </svg>
+                            <svg class="circularCCW" viewbox="0 0 1000 1000" style="animation-duration: 1.5s">
+                                <circle class="path2" cx="500" cy="500" r="355" stroke="#fa9c1e" fill="none" />
+                            </svg>
+                            <svg class="circularCW" viewbox="0 0 1000 1000">
+                                <circle class="path3" cx="500" cy="500" r="355" stroke="#fa9c1e" fill="none" />
+                            </svg>
+                              <svg class="circularCW" viewbox="0 0 1000 1000">
+                                <circle class="path4" cx="500" cy="500" r="355" stroke="#fa9c1e" fill="none" />
+                            </svg>
+                            <svg class="circularCW" viewbox="0 0 1000 1000">
+                                <circle class="path5" cx="500" cy="500" r="420" stroke="#fff" fill="none" />
+                            </svg>
+                              <svg class="circularCW" viewbox="0 0 1000 1000">
+                                <circle class="path6" cx="500" cy="500" r="420" stroke="#fff" fill="none" />
+                            </svg>
+                              <svg class="circularCCW" viewbox="0 0 1000 1000">
+                                <circle class="path7" cx="500" cy="500" r="420" stroke="#fff" fill="none" />
+                            </svg>
+                              <svg class="circularCCW" viewbox="0 0 1000 1000" style="animation-timing-function: ease-in-out">
+                                <circle class="path8" cx="500" cy="500" r="420" stroke="#fff" fill="none" />
+                            </svg>
+                          </div>
+
+                            <div id="divTorneos" style="padding: 15px; display: none; background-image: url('../img/fondo10.jpg'); background-repeat: no-repeat; background-size: cover;  background-position: center center;">
+                              
+                            </div>
+
+                            <div style="display: none;" id="divProximoEncuentro">
+                            </div>
+
+
+                            <div class="divCalendario" style="display: none; margin-top: 50px; padding: 20px; text-align: center; background-image: url('../img/back_calendario.jpg'); background-repeat: no-repeat; background-size: cover;  background-position: center center; display: none;">
+                              <h1 style="color: #090f25; font-weight: 1000; font-family: 'Ow'; letter-spacing: 3px;">Calendario de encuentros</h1>
+                            </div>
+
+                            <div class="divCalendario" style="display: none; padding: 20px; text-align: center; background-image: url('../img/fondo_calendar.jpg'); background-repeat: no-repeat; background-size: cover;  background-position: center center;">
+                              
+                              <div id="cuadro_tabla_torneo"  class="col-sm-12">
+                                <h1 class="text-light text-center" style="font-family: 'Ow', sans-serif;">Selecciona el botón "Detalles" para ver el calendario de partidas</h1>
+                                <div class="table-responsive">
+                                  <table id="tabla_posiciones" class="table text-center"  style="font-family: 'Odibee Sans'; font-size: 22px; color: #e2e2e2;">
+                                      <thead style="font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif !important;">
+                                        <tr>
+                                        <th >Posición</th>
+                                        <th >Logo</th>
+                                        <th >Equipo</th>
+                                        <th >Victorias</th>
+                                        <th >Empates</th>
+                                        <th >Derrotas</th>
+                                        <th >Puntos</th>
+                                        <th>Detalle</th>
+                                        </tr>
+                                      </thead>
+                              
+                                      <tbody>
+                                      </tbody>
+                                  </table>
+                                </div>
+                              </div>
+
+                            </div>
+                            
+
+                            </div>
+                        </div>
+    
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+
+      function getCalendario(torneo){
+
+        init_datatable('#tabla_posiciones', {
+            responsive: true,
+            paging: true,
+            searching: true,
+            info: true,
+        });
+
+        let oTable = $('#tabla_posiciones').DataTable();
+	      oTable.clear().draw();
+
+        let data = {
+            "torneo": torneo,
+            "function": "getCalendario"
+        };
+
+        $.ajax({
+            url: 'models/funciones.php',
+            type: 'POST',
+            dataType: 'JSON',
+            data: data,
+        }).done(resp => {
+
+            if (resp.status == 1) {
+
+              var data = resp.data;
+              data.sort(function(a, b) {
+                  return b.puntos - a.puntos;
+              });
+
+              data.forEach(function (element,index) {
+
+                let rowNode = oTable.row.add([ //se agrega registro a la tabla
+                      index+1,
+                      `<a class="equipoCalendario" data-equipo="${element.id}"><img class="imgCalendario"  style="border-radius: 50%; width: 60px; height: 60px;"  src='rivals/${element.logo}' /></a>`,
+                      element.nombre,
+                      element.victorias,
+                      element.empates,
+                      element.derrotas,
+                      element.puntos,
+                      `
+                      <button style="color: #FFF; background: #EF6C00;  margin: 3px;  font-family: 'Delius';" data-logo="${element.logo}" data-equipo="${element.id}" type="button" class="btn btn-sm btnVerDetalle">Ver detalle</button>
+                      `
+                  ]).node();
+  	    	    });
+
+              oTable.draw();
+
+              $('#divProximoEncuentro').fadeIn();
+              $('#divCargando').fadeOut();
+              $('.divCalendario').fadeIn();
+
+            }else{
+
+              showMessage(resp.msg);
+            }
+
+        }).fail((err, text, thr) => {
+
+            $('#divCargando').fadeOut();
+
+            Swal.fire("Error", 'Hubo un problema al conectar con el servidor', 'error');
+            console.log(err, text, thr);
+        });
+
+      }
+
+      function getTorneos(){
+
+        let data = {
+            "function": "getTorneosActivos"
+        };
+
+
+        $.ajax({
+            url: 'models/funciones.php',
+            type: 'POST',
+            dataType: 'JSON',
+            data: data,
+        }).done(resp => {
+
+            var torneos = `
+              <h1 class="home-title">
+                <span style="font-family:'Franklin Gothic Medium';">Torneos disponibles</span>
+              </h1>
+              <div class='row'>
+              `;
+            for(var i = 0; i < resp.data.length; i++){
+
+              var plataforma = "";
+              if(resp.data[i].plataforma == "pc"){
+                  plataforma = '<i style=" color: #607D8B; margin-right: 10px;" class="fab fa-steam fa-lg"></i>';
+              }else if(resp.data[i].plataforma == "consola"){
+                  plataforma = '<i style="color: #607D8B; margin-right: 10px;" class="fab fa-playstation fa-lg"></i><i  style=" color: #607D8B; margin-right: 10px;" class="fab fa-xbox fa-lg"></i> ';
+              }else{
+                  plataforma = '<i style=" color: #607D8B; margin-right: 10px;" class="fab fa-playstation fa-lg"></i><i  style=" color: #607D8B; margin-right: 10px;" class="fab fa-xbox fa-lg"></i><i  style=" color: #607D8B; margin-right: 10px;" class="fab fa-steam fa-lg"></i>';
+              }
+
+              torneos += `
+
+              <div class="col-md-6">
+                <center>
+                  <div class="card" style="box-shadow: 5px 5px 20px #242424; width: 18rem; padding: 0; border-radius: 10px; margin: 20px; background-color: #062643; color: #f7f7f7;">
+                    <img style="height: 150px;" src="../img/703853.jpg" class="card-img-top" alt="...">
+                    <p style=" margin: 0; background-color: #FFEA00; text-align: center; color: #062643; font-size: 15px;  font-family: 'Ow'; letter-spacing: 1px;">Temporada ${resp.data[i].season}</p>
+                    <div class="card-body">
+                        ${plataforma}
+                        <p id="tvNombretorneo" style="color: #f7f7f7; font-weight: 800; font-size: 22px; text-align: center;">${resp.data[i].nombre}</p>
+                        <p style="text-align: center; color: #f7f7f7; font-weight: 800; font-size: 16px;"><i style="color: #1e64a7; margin-right: 5px; " class="fas fa-users"></i> 5 <span style="margin: 0; color: #EF6C00; font-weight: 800; font-size: 12px;">VS</span> 5</p>
+                        <p style="text-align: center; margin-bottom: 5px; color: #a3a3a3; font-size: 12px;" id="tvFechaInicioTorneo"><i style="margin-right: 5px;" class="far fa-calendar"></i> ${resp.data[0].fecha_inicio}</p>
+                        <p id="tvDescripcionTorneo" style="color: #f7f7f7; font-family: 'Delius';" class="card-text">${resp.data[i].descripcion}</p>
+                        <button data-torneo="${resp.data[i].id}" style="width: 100%; margin-top: 20px;" type="button" class="btn btn-outline-light btnCalendario">Calendario</button>
+                    </div>
+                  </div>
+                </center>
+              </div>
+              `;
+
+
+                        //<button data-torneo="${resp.data[i].id}" style="width: 100%;" type="button" class="btn btn-outline-danger btnInscribirse">Inscribirse</button>
+
+            }
+            torneos += "</div>";
+
+
+            torneos+= `
+              <div class="col-md-12 text-center">
+                <button id="btnReglamento" type="button" class="btn btn-primary">Reglamento</button>
+              </div>
+            `;
+
+            $('#divTorneos').fadeIn();
+            $('#divTorneos').append(torneos);
+            $('#divCargando').fadeOut();
+
+           
+
+        }).fail((err, text, thr) => {
+
+          $('#divCargando').fadeOut();
+
+            Swal.fire("Error", 'Hubo un problema al conectar con el servidor', 'error');
+            console.log(err, text, thr);
+        });
+
+      }
+
+      function getSiguienteMatch(){
+
+        let data = {
+            "function": "getSiguienteMatch"
+        };
+
+
+        $.ajax({
+            url: 'models/funciones.php',
+            type: 'POST',
+            dataType: 'JSON',
+            data: data,
+        }).done(resp => {
+
+          
+          if(resp.status == 1){
+
+            //Por ahora lo limitamos a un equipo
+            if(resp.matches.length > 0){
+
+              let html = `
+                <div class="text-center" >
+                  <h1 style=" color: #FFF; padding: 10px; font-weight: 1000; font-family: 'Ow'; letter-spacing: 3px;">Proximo encuentro</h1>
+                  <center>
+                    <div class="gallery">
+                      <img data-equipo="${resp.matches[0].equipo_datos.id}" class="imgMatch" src="rivals/${resp.matches[0].equipo_datos.logo}">
+                      <img data-equipo="${resp.matches[0].rival_datos.id}" class="imgMatch" src="rivals/${resp.matches[0].rival_datos.logo}" >
+                    </div>
+                  </center>
+                </div>
+                `;
+
+              $('#divProximoEncuentro').html(html);
+              $('#divCargando').fadeOut();
+
+              
+
+            }
+          }else{
+            $('#divCargando').fadeOut();
+          }
+         
+
+        }).fail((err, text, thr) => {
+
+            Swal.fire("Error", 'Hubo un problema al conectar con el servidor', 'error');
+            console.log(err, text, thr);
+        });
+
+      }
+
+      $('body').off('click', '.imgMatch').on('click', '.imgMatch', function(){
+
+        let equipo = $(this).data("equipo");
+
+        localStorage.setItem("idEquipo", equipo);
+
+        let contentReplace = $('#content-replace'),
+            $localpage = "views/equipo.html",
+            pageRedir = $localpage;
+
+            loadContent(pageRedir, contentReplace);
+      });
+      
+
+      function generateSchedule(){
+
+        let data = {
+          "torneo": "1",
+            "function": "generateSchedule"
+        };
+
+
+        $.ajax({
+            url: 'models/funciones.php',
+            type: 'POST',
+            dataType: 'JSON',
+            data: data,
+        }).done(resp => {
+
+          console.log(resp);
+
+        }).fail((err, text, thr) => {
+
+            Swal.fire("Error", 'Hubo un problema al conectar con el servidor', 'error');
+            console.log(err, text, thr);
+        });
+
+      }
+      //generateSchedule();
+
+      getTorneos();
+      getSiguienteMatch();
+
+      $('body').on('click', '.equipoCalendario', function(){
+        
+
+        let equipo = $(this).data("equipo");
+        
+
+        localStorage.setItem("idEquipo", equipo);
+    
+        $(this).addClass("nuevoLink");
+        $(this).attr("href", "views/equipo.html");
+
+      });
+
+      $('body').off('click', '.btnVerDetalle').on('click', '.btnVerDetalle', function(){
+        
+        let equipo = $(this).data("equipo");
+        let logo = $(this).data("logo");
+        showCalendarioEquipo(equipo, logo);
+      });
+
+
+
+      function showCalendarioEquipo(equipo, logo){
+
+        var torneo = localStorage.getItem("idTorneo");
+
+        let data = {
+            "torneo": torneo, //Cambiar
+            "equipo": equipo,
+            "function": "showCalendarioEquipo"
+        };
+
+        $.ajax({
+            url: 'models/funciones.php',
+            type: 'POST',
+            dataType: 'JSON',
+            data: data,
+        }).done(resp => {
+
+          console.log(resp);
+
+          let jornadas= "";
+
+          for(var i = 0; i < resp.data.length; i++){
+
+              var jornada = resp.data[i];
+
+              jornadas += `
+                <div style="box-shadow: 0 10px 20px  rgba(0,0,0,0.3); margin: 20px 0; padding: 5px; background-color: #EF6C00;">
+                  <h5 style="font-weight: 1000; font-family: 'Delius'; font-size: 16px; color: #FFF;">Jornada ${jornada.jornada}</h5>
+                  
+                  <h5 style="font-weight: 1000; font-family: 'Delius'; font-size: 16px; color: #FFF;">${jornada.fecha} - ${jornada.hora}</h5>
+                </div>
+              `;
+              jornadas += '<div class="row">';          
+
+              if(jornada.matches.length > 0){
+
+                for(var j = 0; j < jornada.matches.length; j++){
+                  
+                  var encuentro = jornada.matches[j];
+
+                  var btnReportar = "";
+                  
+                  var casteo = "";
+                  
+
+                  if(encuentro.vencedor == null){
+
+                    if(encuentro.caster != 0){
+
+                      casteo = `
+                        <div class="card" style="background-color: #f3f3f3; box-shadow: 5px 5px 8px rgba(0, 0, 0, 0.2); padding: 8px; text-align: center; margin-bottom: 8px;">
+                          <center>
+                          <img style="width: 40px; height: 40px; border-radius: 50%;" src="${encuentro.caster_foto}"></img>
+                          <p>Este encuentro será casteado por: <span style="color: #ef6c00; font-weight: 800;">${encuentro.caster_nombre}</span></p>
+                          <p style="background-color: #0277BD; padding: 3px; color: #f7f7f7; font-weight: 800;"><a target="_blank" href="${encuentro.caster_twitch}">Visitar canal</a></p>
+                          </center>
+                        </div>
+                        
+                        `;
+                      
+                    }
+
+                    if(jornada.reporta == 1 && encuentro.reportar == 1){
+                      btnReportar += `
+                        <div id="btnReportarEncuentro${encuentro.id}">
+                          <p style="color: #f7f7f7; font-size: 14px; font-weight: 100;">Debes reportar el resultado de este encuentro</p>
+                          <button class="btn btn-primary btnReportar">Reportar <i class="fas fa-paper-plane"></i></button>
+                          
+                          <div style="display: none;">
+                            <p style="margin-top: 20px; color: #C62828; font-size: 14px; font-weight: 100;">Atención: Asegúrate de ingresar el resultado correcto del encuentro para evitar sanciones, una vez enviado el resultado, no podrás corregirlo</p>
+                            <select id="selectEncuentro${encuentro.id}" style="background-color: #FFF; padding: 5px 0; border-radius: 8px; border: 2px solid #0B3C64;">
+                              <option selected value= "">Selecciona el vencedor</option>
+                              <option value="0">Empate</option>
+                              <option value="${encuentro.equipo1_id}">${encuentro.equipo1}</option>
+                              <option value="${encuentro.equipo2_id}">${encuentro.equipo2}</option>
+                            </select>
+                            
+                            <div class="wrapper">
+                              <a data-encuentro="${encuentro.id}" class="cta btnSubmitEncuentro" style="cursor: pointer;">
+                                <span style="font-size: 18px;letter-spacing: 1px;">Enviar</span>
+                                <span>
+                                  <svg style="height: 20px !important; width: 38px !important;"  viewBox="0 0 66 43" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                    <g id="arrow" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                      <path class="one" d="M40.1543933,3.89485454 L43.9763149,0.139296592 C44.1708311,-0.0518420739 44.4826329,-0.0518571125 44.6771675,0.139262789 L65.6916134,20.7848311 C66.0855801,21.1718824 66.0911863,21.8050225 65.704135,22.1989893 C65.7000188,22.2031791 65.6958657,22.2073326 65.6916762,22.2114492 L44.677098,42.8607841 C44.4825957,43.0519059 44.1708242,43.0519358 43.9762853,42.8608513 L40.1545186,39.1069479 C39.9575152,38.9134427 39.9546793,38.5968729 40.1481845,38.3998695 C40.1502893,38.3977268 40.1524132,38.395603 40.1545562,38.3934985 L56.9937789,21.8567812 C57.1908028,21.6632968 57.193672,21.3467273 57.0001876,21.1497035 C56.9980647,21.1475418 56.9959223,21.1453995 56.9937605,21.1432767 L40.1545208,4.60825197 C39.9574869,4.41477773 39.9546013,4.09820839 40.1480756,3.90117456 C40.1501626,3.89904911 40.1522686,3.89694235 40.1543933,3.89485454 Z" fill="#FFFFFF"></path>
+                                      <path class="two" d="M20.1543933,3.89485454 L23.9763149,0.139296592 C24.1708311,-0.0518420739 24.4826329,-0.0518571125 24.6771675,0.139262789 L45.6916134,20.7848311 C46.0855801,21.1718824 46.0911863,21.8050225 45.704135,22.1989893 C45.7000188,22.2031791 45.6958657,22.2073326 45.6916762,22.2114492 L24.677098,42.8607841 C24.4825957,43.0519059 24.1708242,43.0519358 23.9762853,42.8608513 L20.1545186,39.1069479 C19.9575152,38.9134427 19.9546793,38.5968729 20.1481845,38.3998695 C20.1502893,38.3977268 20.1524132,38.395603 20.1545562,38.3934985 L36.9937789,21.8567812 C37.1908028,21.6632968 37.193672,21.3467273 37.0001876,21.1497035 C36.9980647,21.1475418 36.9959223,21.1453995 36.9937605,21.1432767 L20.1545208,4.60825197 C19.9574869,4.41477773 19.9546013,4.09820839 20.1480756,3.90117456 C20.1501626,3.89904911 20.1522686,3.89694235 20.1543933,3.89485454 Z" fill="#FFFFFF"></path>
+                                      <path class="three" d="M0.154393339,3.89485454 L3.97631488,0.139296592 C4.17083111,-0.0518420739 4.48263286,-0.0518571125 4.67716753,0.139262789 L25.6916134,20.7848311 C26.0855801,21.1718824 26.0911863,21.8050225 25.704135,22.1989893 C25.7000188,22.2031791 25.6958657,22.2073326 25.6916762,22.2114492 L4.67709797,42.8607841 C4.48259567,43.0519059 4.17082418,43.0519358 3.97628526,42.8608513 L0.154518591,39.1069479 C-0.0424848215,38.9134427 -0.0453206733,38.5968729 0.148184538,38.3998695 C0.150289256,38.3977268 0.152413239,38.395603 0.154556228,38.3934985 L16.9937789,21.8567812 C17.1908028,21.6632968 17.193672,21.3467273 17.0001876,21.1497035 C16.9980647,21.1475418 16.9959223,21.1453995 16.9937605,21.1432767 L0.15452076,4.60825197 C-0.0425130651,4.41477773 -0.0453986756,4.09820839 0.148075568,3.90117456 C0.150162624,3.89904911 0.152268631,3.89694235 0.154393339,3.89485454 Z" fill="#FFFFFF"></path>
+                                    </g>
+                                  </svg>
+                                </span> 
+                              </a>
+                            </div>
+
+                            <p id="msgVencedor${encuentro.id}" style="margin-top: 35px; display: none; background: #C62828; color: #FFF; font-weight: 800; padding: 3px;">Selecciona un vencedor</p>
+                          </div>
+                        </div>
+
+                      `;
+                    }
+                  }else{
+
+                    if(encuentro.caster != 0){
+
+                      casteo = `
+                        <div class="card" style="background-color: #f3f3f3; box-shadow: 5px 5px 8px rgba(0, 0, 0, 0.2); padding: 8px; text-align: center; margin-bottom: 8px;">
+                          <center>
+                          <img style="width: 40px; height: 40px; border-radius: 50%;" src="${encuentro.caster_foto}"></img>
+                          <p>Este encuentro fue casteado por: <span style="color: #ef6c00; font-weight: 800;">${encuentro.caster_nombre}</span></p>
+                          <p style="background-color: #0277BD; padding: 3px; color: #f7f7f7; font-weight: 800;"><a target="_blank" href="${encuentro.caster_twitch}">Visitar canal</a></p>
+                          </center>
+                        </div>
+                        
+                        `;
+                      }
+
+                    if(encuentro.vencedor == 0){
+                      btnReportar += `<p style="margin-top: 15px; background: #546E7A; color: #FFF; font-weight: 800; padding: 3px;">Empate</p>`;
+                    }else if(encuentro.vencedor == equipo){
+                      btnReportar += `<p style="margin-top: 15px; background: #2E7D32; color: #FFF; font-weight: 800; padding: 3px;">Victoria</p>`;
+                    }else{
+                      btnReportar += `<p style="margin-top: 15px; background: #C62828; color: #FFF; font-weight: 800; padding: 3px;">Derrota</p>`;
+                    }
+
+                    
+                  }
+
+                  /*jornadas += `
+
+                    <div class = "col-md-3">
+                      
+                      <div style="border-radius: 8px; box-shadow: 0 10px 20px  rgba(0,0,0,0.3); background-color: #fdfdfd;" class="card mb-3 p-2" style="width: 100%; ">
+                        <p style="font-size: 18px; font-weight: 100; font-family: 'Delius'; " class="card-text mt-2">${encuentro.mapa}</p>
+                        <img style="height: 130px;" src="/img/${encuentro.imagen_mapa}" class="card-img-top" alt="rivals">
+                        <div class="card-body">
+                          ${casteo}
+                          
+                          <p style="font-family: 'Ow'; letter-spacing: 2px; font-size: 18px;">${encuentro.equipo1} <br>  <span style="margin-left: 0 !important; font-size: 22px; color: #EF6C00;">vs</span> <br>${encuentro.equipo2}</p>
+                          ${btnReportar}
+                        </div>
+                      </div>
+
+                    </div>
+                  `;*/arguments
+
+                  jornadas += `
+                  
+                  <div class="col-md-3">
+                      <div class="card mb-3" style=" padding: 0; border-radius: 10px; background-color: #062643; color: #f7f7f7; width: 100%;">
+                        <img style="height: 150px;" src="/img/${encuentro.imagen_mapa}" class="card-img-top" alt="...">
+                        <p style=" margin: 0; background-color: #FFEA00; text-align: center; color: #062643; font-size: 15px;  font-family: 'Ow'; letter-spacing: 1px;">${encuentro.mapa}</p>
+                        <div class="card-body">
+                            <p id="tvNombretorneo" style="color: #f7f7f7; font-weight: 800; font-size: 16px; text-align: center;">${encuentro.equipo1}<span style="margin-left: 0 !important; font-size: 22px; color: #EF6C00;"> vs </span>${encuentro.equipo2}</p>
+                            ${casteo}
+                            ${btnReportar}
+                        </div>
+                      </div>
+                  </div>
+
+                  `;
+                }
+
+              }else{
+
+                jornadas+= `
+
+                    <div class = "col-md-3">
+                      
+                      <div style="border-radius: 8px; box-shadow: 0 10px 20px  rgba(0,0,0,0.3); background-color: #062643;" class="card mb-3 p-2" style="width: 100%; ">
+                        <p style="font-size: 18px; font-weight: 100; font-family: 'Delius'; " class="card-text mt-2"></p>
+                        <img style="height: 130px;" src="/img/descanso.gif" class="card-img-top" alt="rivals">
+                        <div class="card-body">
+                          <p style="font-weight: 800; font-size: 16px; color: #f7f7f7;">Descanso</p>
+                        </div>
+                      </div>
+
+                    </div>
+
+                    <div class = "col-md-3">
+                      
+                      <div style="border-radius: 8px; box-shadow: 0 10px 20px  rgba(0,0,0,0.3); background-color: #062643;" class="card mb-3 p-2" style="width: 100%; ">
+                        <p style="font-size: 18px; font-weight: 100; font-family: 'Delius'; " class="card-text mt-2"></p>
+                        <img style="height: 130px;" src="/img/descanso.gif" class="card-img-top" alt="rivals">
+                        <div class="card-body">
+                          <p style="font-weight: 800; font-size: 16px; color: #f7f7f7;">Descanso</p>
+                        </div>
+                      </div>
+
+                    </div>
+
+                    <div class = "col-md-3">
+                      
+                      <div style="border-radius: 8px; box-shadow: 0 10px 20px  rgba(0,0,0,0.3); background-color: #062643;" class="card mb-3 p-2" style="width: 100%; ">
+                        <p style="font-size: 18px; font-weight: 100; font-family: 'Delius'; " class="card-text mt-2"></p>
+                        <img style="height: 130px;" src="/img/descanso.gif" class="card-img-top" alt="rivals">
+                        <div class="card-body">
+                          <p style="font-weight: 800; font-size: 16px; color: #f7f7f7;">Descanso</p>
+                        </div>
+                      </div>
+
+                    </div>
+
+                    <div class = "col-md-3">
+                      
+                      <div style="border-radius: 8px; box-shadow: 0 10px 20px  rgba(0,0,0,0.3); background-color: #062643;" class="card mb-3 p-2" style="width: 100%; ">
+                        <p style="font-size: 18px; font-weight: 100; font-family: 'Delius'; " class="card-text mt-2"></p>
+                        <img style="height: 130px;" src="/img/descanso.gif" class="card-img-top" alt="rivals">
+                        <div class="card-body">
+                          <p style="font-weight: 800; font-size: 16px; color: #f7f7f7;">Descanso</p>
+                        </div>
+                      </div>
+
+                    </div>
+                `;
+              }
+              
+              jornadas += "</div>";
+          }
+
+          Swal.fire({
+            width: '100%',
+            html: `
+              <div class="col-md-12 text-center">
+                    <img src="rivals/${logo}" width="120" height="120" style="border-radius: 50%;">
+                      <p style="color: #FFF; font-size: 40px; font-family: 'Odibee Sans';">Calendario de encuentros<p>
+                    ${jornadas}
+              </div>
+
+
+            `,
+            showConfirmButton: false,
+            showCloseButton: true,
+          });
+
+        }).fail((err, text, thr) => {
+
+            Swal.fire("Error", 'Hubo un problema al conectar con el servidor', 'error');
+            console.log(err, text, thr);
+        });
+
+      }
+
+
+      $('body').off('click', '.btnReportar').on('click', '.btnReportar', function(){
+        
+        $(this).next().fadeIn("slow");
+      });
+
+      $('body').off('click', '.btnSubmitEncuentro').on('click', '.btnSubmitEncuentro', function(){
+        
+          let encuentro = $(this).data("encuentro");
+          let vencedor = $('#selectEncuentro'+encuentro).val();
+
+          let data = {
+            "encuentro": encuentro,
+            "vencedor": vencedor,
+            "function": "setVencedorEncuentro"
+          };
+          
+          if(vencedor != ""){
+
+              $.ajax({
+                url: 'models/funciones.php',
+                type: 'POST',
+                data: data,
+                dataType: 'JSON',
+              }).done(response => {
+
+                if(response.status == 1)
+                  $('#btnReportarEncuentro'+encuentro).fadeOut();
+
+              }).fail((err, text, thr) => {
+                  console.log(err, text, thr);
+              });
+
+          }else{
+              $('#msgVencedor'+encuentro).show();
+          }
+
+      });
+
+      $('body').off('click', '.btnInscribirse').on('click', '.btnInscribirse', function (){
+
+        let torneo = $(this).data("torneo");
+
+        localStorage.setItem("idTorneo", torneo);
+
+        let contentReplace = $('#content-replace'),
+            $localpage = "views/inscripcion_torneo.html",
+            pageRedir = $localpage;
+
+            loadContent(pageRedir, contentReplace);
+
+      });
+
+      $('body').off('click', '.btnCalendario').on('click', '.btnCalendario', function (){
+
+        let torneo = $(this).data("torneo");
+
+        localStorage.setItem("idTorneo", torneo);
+
+        getCalendario(torneo);
+
+      });
+
+      $('body').off('click', '#btnReglamento').on('click', '#btnReglamento', function(){
+
+        Swal.fire({
+            showCloseButton: true,
+            width: '100%',
+            html:`
+                <img width="120" height="120" src="../img/logo-rivals.png"></img>
+                <h1 style="margin-top: 20px; text-shadow: .1em .1em 0 hsl(200 50% 30%); color: hsl(200 50% 90%); font-size: 24px; font-weight: 900; line-height: 1.1;  font-family: 'Ow', cursive;">Reglamento Overwatch Rivals</h1>
+
+                <div class="row p-5">
+
+                    <div class="col-sm-12 align-self-center">
+                        <h3 class="text-center text-light">Estatus de cuentas y elegibilidad</h3>
+                        <p class="text-center text-light">Para poder participar en el torneo los jugadores deben contar con una cuenta de Overwatch que no se encuentre en estado de suspendida o baneada. Cualquier cuenta que se encuentre en uno de estos estados no será elegible para participar</p>
+                        <p class="text-center text-light">Todas las cuentas deben ser nivel 200 horas jugadas como mínimo, sin embargo, equipos que cuenten con una marca y posean cuentas nuevas, deberán justificar su rango directamente con el administrador</p>
+                        <p class="text-center text-light">Cada cuenta registrada deberá contar con un perfil público sin excepción, de no acatar esta regla  no se le permitirá participar</p>
+
+                        <h3 class="text-center text-light">Estructura de torneo</h3>
+                        <p class="text-center text-light">Los equipos deberán jugar de 1 a 2 jornadas por semana dependiendo el número de equipos inscritos, es decir, tendrán 1 o 2 enfrentamientos contra equipos diferentes, estas deberán jugarse en el calendario establecido en la plataforma</p>
+                        <p class="text-center text-light">En la primera fase del torneo todos los equipos deberán enfrentarse entre sí, con lo cual por cada victoria obtendrán 3 puntos, por cada empate 1 punto y por cada derrota 0 puntos. Una vez finalizada la primera fase, se llevará a cabo la segunda fase la cual  equivale a eliminación directa con los primeros lugares de cada torneo, siendo los encuentros al mejor de 5 mapas</p>
+                        <p class="text-center text-light">Cada jornada está compuesta por 4 enfrentamientos. Los equipos están obligados a jugar los 4 enfrentamientos ya que cada mapa cuenta para las estadísticas</p>
+                        <p class="text-center text-light">Los enfrentamientos en cada jornada deberán efectuarse en los mapas seleccionados para la misma, estos podrán ser identificados en el calendario de torneos</p>
+                        
+                        <h3 class="text-center text-light">División de rangos de equipos</h3>
+                        <p class="text-center text-light">Temporada 2: Los torneos en sus diferentes plataformas se dividirán en una única división. Esto quiere decir que cualquier rango es permitido</p>
+
+                        <h3 class="text-center text-light">Conducta</h3>
+                        <p class="text-center text-light">Todos los participantes deberán mostrar respeto hacia sus rivales, está completamente prohibido insultar a los mismos por cualquier medio durante el transcurso de un enfrentamiento</p>
+                        
+                        <h3 class="text-center text-light">Trampa</h3>
+                        <p>Torneos con premios económicos a los vencedores</p>
+                        <p class="text-center text-light">PS4 y XBOX: Estará considerado como ilegal el uso de un dispositivo externo a fin de poder jugar con mouse y teclado así como cualquier tipo de programa externo ilegal para mejorar el rendimiento dentro del juego</p>
+                        <p class="text-center text-light">PC: Está prohibido el uso de programas externos, con el fin de ayudar a mejorar su rendimiento dentro del juego</p>
+                        <p class="text-center text-light">Compartir una cuenta de un usuario registrado durante un enfrentamiento del mismo está completamente prohibido</p>
+                        <p class="text-center text-light">**Cualquier usuario que incumpla cualquiera de las reglas de esta sección sera baneado del torneo y su equipo en cuestión recibirá una sanción</p>
+
+                        <h3 class="text-center text-light">Equipos y registro</h3>
+                        <p class="text-center text-light">Todos los equipos deberán contar con un mínimo de 5 integrantes y hasta un máximo de 10. Una vez iniciado el torneo los equipos tendrán derecho a realizar hasta 5 modificaciones a su roster. Para poder registrarse a un torneo con un premio económico el capitán del equipo deberá contar con mayoría de edad</p>
+                        <p class="text-center text-light">Una vez llenada la solicitud de registro, se deberá cubrir la cuota de inscripción para poder participar (en caso de que aplique). Una vez iniciado el torneo no se proporcionará ningún reembolso a menos que este sea cancelado por falta de equipos</p>
+                        <p class="text-center text-light">Un equipo registrado deberá tener un nombre de manera obligatoria para poder ser identificado dentro de la plataforma</p>
+                        <p class="text-center text-light">El logo de un equipo registrado es de manera opcional</p>
+                        <p class="text-center text-light">Cualquier jugador registrado no podrá pertenecer a más de 1 equipo por plataforma</p>
+                        <p class="text-center text-light">Solo el roster regitrado de cada equipo podrá participar en el torneo</p>
+                        
+                        <h3 class="text-center text-light">Realización de partidas</h3>
+                        <p class="text-center text-light">La realización de partidas deberá ser realizada en el horario establecido en el calendario de partidas en la sección de torneos</p>
+                        <p class="text-center text-light">Cada equipo tiene como máximo 10 minutos de tolerancia para presentarse al encuentro correspondiente. Si un equipo no se presenta completo, se les dará como perdida la partida correspondiente al primer mapa, teniendo así 10 minutos extras para presentarse por cada mapa. Ejemplo: Si una partida se debe realizar a las 8pm los equipos tendrán hasta 8:10pm para presentarse, una vez transcurrido ese tiempo tendrán 10 minutos más antes de perder el primer mapa del encuentro, teniendo como máximo 30 minutos para presentarse, en caso contrario toda la partida será perdida por default</p>
+                        <p class="text-center text-light">No está permitido el uso de IA para rellenar espacios faltantes</p>
+                        <h3 class="text-center text-light">Cada equipo tiene derecho hasta un máximo de 10 minutos de pausa por encuentro por cualquier imprevisto durante la realización del mismo, tal como desconexiones, mal internet etc.</h3>
+                        <p class="text-center text-light">Los encuentros se deberán realizar en el servidor que a ambos equipos les convenga, si ambos equipos son de NA o SA se podrán jugar en cualquiera de ellos, si por el contrario un equipo de NA se enfrenta a uno de SA se deberán jugar 2 partidas en cada servidor</p>
+                        <p class="text-center text-light">Es responsabilidad de los equipos crear y gestionar el lobby para la realización de los encuentros a meenos que estos hayan sido seleccionados para ser casteados por un canal ofical de la plataforma o Vizius Gaming</p>
+                        <p class="text-center text-light">El capitán del equipo seleccionado en el calendario deberá reportar los resultados correspondientes a su encuentro, teniendo como máximo el día siguiente (Lunes) a las 12pm hora ciudad de México de cada inicio de semana de jornadas, en caso de no hacerlo se le otorgará la victoria a su rival sin excepción</p>
+                        <p class="text-center text-light">Es decisión de ambos equipos el permitir o no espectadores durante un encuentro</p>
+                        <p class="text-center text-light">Una sustitución de jugador podrá realizarse únicamente antes de iniciar la partida y no durante la misma, en caso de que su tiempo de pausa se haya agotado el encuentro deberá continuar con los jugadores presentes</p>
+                        <p class="text-center text-light">El formato de una partida deberá realizarse con formato competitivo, es decir, a fecha de hoy con un formato de 1-2-2 con kill cam desactivada </p>
+                        
+                        <h3 class="text-center text-light">Realización de transmisiones de encuentros</h3>
+                        <p class="text-center text-light">Las partidas podrán ser transmitidas por nuestros casters y canales oficiales y serán elegidas al azar por cada jornada</p>
+                        <p class="text-center text-light">Los equipos pueden realizar transmisiones de sus encuentros y será decisión de ellos si lo hacen de forma pública, únicamente si su encuentro no fue seleccionado para ser transmitido de manera oficial </p>
+
+                        <h4 class="text-center text-light">Cualquier incumplimiento a este reglamento deberá ser reportado en el servidor oficial de Discord con su prueba correspondiente (Imágenes o videos) al administrador. Una vez hecho será puesto a revisión para tomar la decisión correspondiente y será informada la decisión a los capitanes de los equipos implicados</h4>
+                    </div>
+                </div>
+
+                <button id="btnCloseMsg" style="font-size: 20px;" width="100" type="button" class="btn btn-outline-light mt-5 mb-5">Aceptar</button>
+                
+            `,
+            showCancelButton: false,
+            showConfirmButton: false,
+            focusConfirm: false
+          
+        });
+
+      });
+
+      function showMessage(msg){
+        Swal.fire({
+            html:`
+                <img width="120" height="120" src="../img/logo-rivals.png"></img>
+                <h1 style="margin-top: 20px; text-shadow: .1em .1em 0 hsl(200 50% 30%); color: hsl(200 50% 90%); font-size: 24px; font-weight: 900; line-height: 1.1;  font-family: 'Fugaz One', cursive;">${msg}</h1>
+
+                <button id="btnCloseMsg" style="font-size: 20px;" width="100" type="button" class="btn btn-outline-light mt-5">Aceptar</button>
+                
+            `,
+            showCloseButton: false,
+            showCancelButton: false,
+            showConfirmButton: false,
+            focusConfirm: false
+           
+        });
+    }
+
+
+      $('body').on('click', '#btnCloseMsg', function(){
+        Swal.close();
+      });
+
+
+      function init_datatable(nombre, options) {
+        if ( !$.fn.dataTable.isDataTable( `table${nombre}` ) ) {
+        //inicializo dataTables
+        options.language = {
+                "url": "//cdn.datatables.net/plug-ins/1.10.16/i18n/Spanish.json"
+        };
+
+        $(`table${nombre}`).DataTable(options);
+        }
+        
+    }
+
+    //TODO ()
+    //Panel de control
+    //Seccion ruleta (a definir)
+    //Agregar modulo de cambio de pass*****
+    //Modificar landing page
+    //Agregar secciones para patrocinios (maybe)
+    </script>

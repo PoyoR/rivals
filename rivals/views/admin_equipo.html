@@ -1,0 +1,1232 @@
+<style>
+
+    div:where(.swal2-container) div:where(.swal2-popup){
+        background-image: url('../img/fondo9.jpg'); background-repeat: no-repeat; background-size: cover;  background-position: center !important;   
+    }
+
+    a {
+        text-decoration: none;
+    }
+
+    @keyframes fadein {
+        from {
+            opacity:0;
+        }
+        to {
+            opacity:1;
+        }
+    }
+    @-moz-keyframes fadein { /* Firefox */
+        from {
+            opacity:0;
+        }
+        to {
+            opacity:1;
+        }
+    }
+    @-webkit-keyframes fadein { /* Safari and Chrome */
+        from {
+            opacity:0;
+        }
+        to {
+            opacity:1;
+        }
+    }
+    @-o-keyframes fadein { /* Opera */
+        from {
+            opacity:0;
+        }
+        to {
+            opacity: 1;
+        }
+    }
+
+    /* Card Styles */
+
+    .fadeAnim {
+        animation: fadein 2s;
+        -moz-animation: fadein 2s; /* Firefox */
+        -webkit-animation: fadein 2s; /* Safari and Chrome */
+        -o-animation: fadein 2s; /* Opera */
+        box-shadow: 0 20px 20px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    }
+
+    .card-sl {
+        margin-top: 25px;
+        font-size: 21px;
+        text-align: center;
+        animation: fadein 2s;
+        -moz-animation: fadein 2s; /* Firefox */
+        -webkit-animation: fadein 2s; /* Safari and Chrome */
+        -o-animation: fadein 2s; /* Opera */
+        margin-bottom: 20px;
+        border-radius: 8px;
+        box-shadow: 0 20px 20px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    }
+
+    .card-image img {
+        background-repeat: no-repeat; 
+        background-size: cover;  
+        background-position: center center;
+        max-height: 100%;
+        max-width: 100%;
+        border-radius: 8px 8px 0px 0;
+    }
+
+    .card-action {
+        position: relative;
+        float: right;
+        margin-top: -40px;
+        margin-right: 15px;
+        width: 80px;
+        height: 80px;
+        z-index: 2;
+        color: #E26D5C;
+        background: #fff;
+        border-radius: 100%;
+        font-size: 15px;
+        box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2), 0 1px 2px 0 rgba(0, 0, 0, 0.19);
+    }
+
+    .card-action:hover {
+        color: #fff;
+        background: #E26D5C;
+        -webkit-animation: pulse 1.5s infinite;
+    }
+
+    .card-heading {
+        font-size: 18px;
+        font-weight: bold;
+        background: #fff;
+        padding: 10px 15px;
+    }
+
+    .card-text {
+        padding: 10px 15px;
+        background: #fff;
+        font-size: 14px;
+        color: #636262;
+    }
+
+    .card-button {
+        display: flex;
+        justify-content: center;
+        padding: 10px 0;
+        width: 100%;
+        background-color: #1F487E;
+        color: #fff;
+        font-size: 16px;
+        border-radius: 0 0 8px 8px;
+    }
+
+    .card-button:hover {
+        text-decoration: none;
+        background-color: #1D3461;
+        color: #fff;
+
+    }
+
+
+    @-webkit-keyframes pulse {
+        0% {
+            -moz-transform: scale(0.9);
+            -ms-transform: scale(0.9);
+            -webkit-transform: scale(0.9);
+            transform: scale(0.9);
+        }
+
+        70% {
+            -moz-transform: scale(1);
+            -ms-transform: scale(1);
+            -webkit-transform: scale(1);
+            transform: scale(1);
+            box-shadow: 0 0 0 50px rgba(90, 153, 212, 0);
+        }
+
+        100% {
+            -moz-transform: scale(0.9);
+            -ms-transform: scale(0.9);
+            -webkit-transform: scale(0.9);
+            transform: scale(0.9);
+            box-shadow: 0 0 0 0 rgba(90, 153, 212, 0);
+        }
+    }
+
+
+    @import url('https://fonts.googleapis.com/css?family=Poppins:900i');
+
+
+
+.wrapper {    
+    display: flex;
+    justify-content: right;
+}
+
+.cta {
+    display: flex;
+    padding: 10px 8px;
+    text-decoration: none;
+    font-family: 'Poppins', sans-serif;
+    font-size: 18px;
+    color: white;
+    background: #0277BD;
+    transition: 1s;
+    box-shadow: 6px 6px 0 black;
+    transform: skewX(-15deg);
+}
+
+.cta:focus {
+   outline: none; 
+}
+
+.cta:hover {
+    transition: 0.5s;
+    box-shadow: 10px 10px 0 #FBC638;
+}
+
+.cta span:nth-child(2) {
+    transition: 0.5s;
+    margin-right: 0px;
+}
+
+.cta:hover  span:nth-child(2) {
+    transition: 0.5s;
+    margin-right: 15px;
+}
+
+  #spanInv {
+    transform: skewX(15deg) 
+  }
+
+  span:nth-child(2) {
+    width: 20px;
+    margin-left: 30px;
+    position: relative;
+    top: 12%;
+  }
+  
+/**************SVG****************/
+
+path.one {
+    transition: 0.4s;
+    transform: translateX(-60%);
+}
+
+path.two {
+    transition: 0.5s;
+    transform: translateX(-30%);
+}
+
+.cta:hover path.three {
+    animation: color_anim 1s infinite 0.2s;
+}
+
+.cta:hover path.one {
+    transform: translateX(0%);
+    animation: color_anim 1s infinite 0.6s;
+}
+
+.cta:hover path.two {
+    transform: translateX(0%);
+    animation: color_anim 1s infinite 0.4s;
+}
+
+/* SVG animations */
+
+@keyframes color_anim {
+    0% {
+        fill: white;
+    }
+    50% {
+        fill: #FBC638;
+    }
+    100% {
+        fill: white;
+    }
+}
+
+
+
+body {
+	display: grid;
+	grid-template:
+		"search" minmax(300px, 50vh)
+		"results" minmax(20%, auto)
+		/ 1fr;
+	margin: 0;	
+}
+
+
+#search {
+	display: grid;
+	grid-area: search;
+	grid-template:
+		"search" 60px
+		/ 420px;
+	justify-content: center;
+	align-content: center;
+	justify-items: stretch;
+	align-items: stretch;
+	
+}
+
+#search input {
+	display: block;
+	grid-area: search;
+	-webkit-appearance: none;
+	appearance: none;
+	width: 100%;
+	height: 100%;
+	background: none;
+	padding: 0 30px 0 60px;
+	border: none;
+	border-radius: 100px;
+	font: 24px/1 system-ui, sans-serif;
+	outline-offset: -8px;
+}
+
+
+#search svg {
+	grid-area: search;
+	overflow: visible;
+	color: #FFF;
+	fill: none;
+	stroke: currentColor;
+}
+
+.spark {
+	fill: currentColor;
+	stroke: none;
+	r: 15;
+}
+
+.spark:nth-child(1) {
+	animation:
+		spark-radius 2.03s 1s both,
+		spark-one-motion 2s 1s both;
+}
+
+@keyframes spark-radius {
+	0% { r: 0; animation-timing-function: cubic-bezier(0, 0.3, 0, 1.57) }
+	30% { r: 15; animation-timing-function: cubic-bezier(1, -0.39, 0.68, 1.04) }
+	95% { r: 8 }
+	99% { r: 10 }
+	99.99% { r: 7 }
+	100% { r: 0 }
+}
+
+@keyframes spark-one-motion {
+	0% { transform: translate(-20%, 50%); animation-timing-function: cubic-bezier(0.63, 0.88, 0, 1.25) }
+	20% { transform: rotate(-0deg) translate(0%, -50%); animation-timing-function: ease-in }
+	80% { transform: rotate(-230deg) translateX(-20%) rotate(-100deg) translateX(15%); animation-timing-function: linear }
+	100% { transform: rotate(-360deg) translate(30px, 100%); animation-timing-function: cubic-bezier(.64,.66,0,.51) }
+}
+
+.spark:nth-child(2) {
+	animation:
+		spark-radius 2.03s 1s both,
+		spark-two-motion 2.03s 1s both;
+}
+
+@keyframes spark-two-motion {
+	0% { transform: translate(120%, 50%) rotate(-70deg) translateY(0%); animation-timing-function: cubic-bezier(0.36, 0.18, 0.94, 0.55) }
+	20% { transform: translate(90%, -80%) rotate(60deg) translateY(-80%); animation-timing-function: cubic-bezier(0.16, 0.77, 1, 0.4) }
+	40% { transform: translate(110%, -50%) rotate(-30deg) translateY(-120%); animation-timing-function: linear }
+	70% { transform: translate(100%, -50%) rotate(120deg) translateY(-100%); animation-timing-function: linear }
+	80% { transform: translate(95%, 50%) rotate(80deg) translateY(-150%); animation-timing-function: cubic-bezier(.64,.66,0,.51) }
+	100% { transform: translate(100%, 50%) rotate(120deg) translateY(0%) }
+}
+
+.spark:nth-child(3) {
+	animation:
+		spark-radius 2.05s 1s both,
+		spark-three-motion 2.03s 1s both;
+}
+
+@keyframes spark-three-motion {
+	0% { transform: translate(50%, 100%) rotate(-40deg) translateX(0%); animation-timing-function: cubic-bezier(0.62, 0.56, 1, 0.54) }
+	30% { transform: translate(40%, 70%) rotate(20deg) translateX(20%); animation-timing-function: cubic-bezier(0, 0.21, 0.88, 0.46) }
+	40% { transform: translate(65%, 20%) rotate(-50deg) translateX(15%); animation-timing-function: cubic-bezier(0, 0.24, 1, 0.62) }
+	60% { transform: translate(60%, -40%) rotate(-50deg) translateX(20%); animation-timing-function: cubic-bezier(0, 0.24, 1, 0.62) }
+	70% { transform: translate(70%, -0%) rotate(-180deg) translateX(20%); animation-timing-function: cubic-bezier(0.15, 0.48, 0.76, 0.26) }
+	100% { transform: translate(70%, -0%) rotate(-360deg) translateX(0%) rotate(180deg) translateX(20%); }
+}
+
+
+
+
+.burst {
+	stroke-width: 1;
+}
+
+.burst :nth-child(2n) { color: #ff783e }
+.burst :nth-child(3n) { color: #ffab00 }
+.burst :nth-child(4n) { color: #55e214 }
+.burst :nth-child(5n) { color: #82d9f5 }
+
+.circle {
+	r: 6;
+}
+
+.rect {
+	width: 10px;
+	height: 10px;
+}
+
+.triangle {
+	d: path("M0,-6 L7,6 L-7,6 Z");
+	stroke-linejoin: round;
+}
+
+.plus {
+	d: path("M0,-5 L0,5 M-5,0L 5,0");
+	stroke-linecap: round;
+}
+
+
+
+
+.burst:nth-child(4) {
+	transform: translate(30px, 100%) rotate(150deg);
+}
+
+.burst:nth-child(5) {
+	transform: translate(50%, 0%) rotate(-20deg);
+}
+
+.burst:nth-child(6) {
+	transform: translate(100%, 50%) rotate(75deg);
+}
+
+.burst * {}
+
+@keyframes particle-fade {
+	0%, 100% { opacity: 0 }
+	5%, 80% { opacity: 1 }
+}
+
+.burst :nth-child(1) { animation: particle-fade 600ms 2.95s both, particle-one-move 600ms 2.95s both; }
+.burst :nth-child(2) { animation: particle-fade 600ms 2.95s both, particle-two-move 600ms 2.95s both; }
+.burst :nth-child(3) { animation: particle-fade 600ms 2.95s both, particle-three-move 600ms 2.95s both; }
+.burst :nth-child(4) { animation: particle-fade 600ms 2.95s both, particle-four-move 600ms 2.95s both; }
+.burst :nth-child(5) { animation: particle-fade 600ms 2.95s both, particle-five-move 600ms 2.95s both; }
+.burst :nth-child(6) { animation: particle-fade 600ms 2.95s both, particle-six-move 600ms 2.95s both; }
+
+@keyframes particle-one-move { 0% { transform: rotate(0deg) translate(-5%) scale(0.0001, 0.0001) } 100% { transform: rotate(-20deg) translateX(8%) scale(0.5, 0.5) } }
+@keyframes particle-two-move { 0% { transform: rotate(0deg) translate(-5%) scale(0.0001, 0.0001) } 100% { transform: rotate(0deg) translateX(8%) scale(0.5, 0.5) } }
+@keyframes particle-three-move { 0% { transform: rotate(0deg) translate(-5%) scale(0.0001, 0.0001) } 100% { transform: rotate(20deg) translateX(8%) scale(0.5, 0.5) } }
+@keyframes particle-four-move { 0% { transform: rotate(0deg) translate(-5%) scale(0.0001, 0.0001) } 100% { transform: rotate(-35deg) translateX(12%) } }
+@keyframes particle-five-move { 0% { transform: rotate(0deg) translate(-5%) scale(0.0001, 0.0001) } 100% { transform: rotate(0deg) translateX(12%) } }
+@keyframes particle-six-move { 0% { transform: rotate(0deg) translate(-5%) scale(0.0001, 0.0001) } 100% { transform: rotate(35deg) translateX(12%) } }
+
+
+
+.bar {
+	width: 100%;
+	height: 100%;
+	ry: 50%;
+	stroke-width: 3;
+	animation: bar-in 900ms 3s both;
+}
+
+@keyframes bar-in {
+	0% { stroke-dasharray: 0 180 0 226 0 405 0 0 }
+	100% { stroke-dasharray: 0 0 181 0 227 0 405 0 }
+}
+
+.magnifier {
+	animation: magnifier-in 600ms 3.6s both;
+	transform-box: fill-box;
+}
+
+@keyframes magnifier-in {
+	0% { transform: translate(20px, 8px) rotate(-45deg) scale(0.01, 0.01); }
+	50% { transform: translate(-4px, 8px) rotate(-45deg); }
+	100% { transform: translate(0px, 0px) rotate(0deg); }
+}
+
+.magnifier .glass {
+	cx: 27;
+	cy: 27;
+	r: 8;
+	stroke-width: 3;
+}
+.magnifier .handle {
+	x1: 32;
+	y1: 32;
+	x2: 44;
+	y2: 44;
+	stroke-width: 3;
+}
+
+
+#btnBuscarJugador {
+  width: 200px !important;
+  position: relative;
+  background: #128dca;
+  color: #fff;
+  text-decoration: none;
+  text-transform: uppercase;
+  border: none;
+  letter-spacing: 0.1rem;
+  font-size: 1rem;
+  padding: 10px;
+  transition: 0.2s;
+  margin-top: 15px;
+}
+
+#btnBuscarJugador:hover {
+  letter-spacing: 0.2rem;
+  padding: 12px;
+  background: var(--clr);
+  color: var(--clr);
+  /* box-shadow: 0 0 35px var(--clr); */
+  animation: box 3s infinite;
+}
+
+#btnBuscarJugador::before {
+  content: "";
+  position: absolute;
+  inset: 2px;
+  background: #28303f;
+}
+
+#btnBuscarJugador span {
+  position: relative;
+  z-index: 1;
+}
+#btnBuscarJugador i {
+  position: absolute;
+  inset: 0;
+  display: block;
+}
+
+#btnBuscarJugador i::before {
+  content: "";
+  position: absolute;
+  width: 10px;
+  height: 2px;
+  left: 80%;
+  top: -2px;
+  border: 2px solid var(--clr);
+  background: #28303f;
+  transition: 0.2s;
+}
+
+#btnBuscarJugador:hover i::before {
+  width: 15px;
+  left: 20%;
+  animation: move 3s infinite;
+}
+
+#btnBuscarJugador i::after {
+  content: "";
+  position: absolute;
+  width: 10px;
+  height: 2px;
+  left: 20%;
+  bottom: -2px;
+  border: 2px solid var(--clr);
+  background: #28303f;
+  transition: 0.2s;
+}
+
+#btnBuscarJugador:hover i::after {
+  width: 15px;
+  left: 80%;
+  animation: move 3s infinite;
+}
+
+@keyframes move {
+  0% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(5px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+@keyframes box {
+  0% {
+    box-shadow: #27272c;
+  }
+  50% {
+    box-shadow: 0 0 25px var(--clr);
+  }
+  100% {
+    box-shadow: #27272c;
+  }
+}
+
+
+#divCargando svg {
+	height: 350px;
+	width: 350px;
+}
+
+.overwatch-loader {
+  width: 25%;
+  position: relative;
+  margin: 0px auto;
+}
+.overwatch-logo {
+  filter:
+    drop-shadow(0 0 120px rgba(255,255,255,0.15))
+    drop-shadow(0 0 16px rgba(255,255,255,0.05));
+  opacity: 0.8;
+}
+.circularCW,
+.circularCCW {
+  height: 100%;
+  transform-origin: center center;
+  width: 100%;
+  position: absolute;
+  top: 0; bottom: 0; left: 0; right: 0;
+  margin: auto;
+}
+.circularCW {
+  animation: rotate 2s linear infinite;
+}
+.circularCCW {
+  animation: rotate-reverse 4s linear infinite;
+}
+.path,
+.path2,
+.path3,
+.path4,
+.path5,
+.path6,
+.path7,
+.path8 {
+  stroke-linecap: square;
+  stroke-width: 33;
+  opacity: 0.8;
+}
+.path {
+  stroke-dasharray: 1400,2600;
+  stroke-dashoffset: 0;
+  animation: dash 3.7s ease-in-out infinite;
+  opacity: 0.3;
+}
+.path2 {
+  stroke-dasharray: 40,2600;
+  stroke-dashoffset: -500px;
+}
+.path3 {
+  stroke-dasharray: 200,2600;
+  stroke-dashoffset: -700px;
+}
+.path4 {
+  stroke-dasharray: 40,2600;
+  stroke-dashoffset: -2000px;
+  animation: dash2 2.5s ease-in-out infinite;
+}
+.path5 {
+  stroke-dasharray: 200,2600;
+  stroke-dashoffset: 0;
+}
+.path6 {
+  stroke-dasharray: 300,2600;
+  stroke-dashoffset: -1000px;
+}
+.path7 {
+  stroke-dasharray: 40,2600;
+  stroke-dashoffset: -1200px;
+}
+.path8 {
+  stroke-dasharray: 100,2600;
+  stroke-dashoffset: -300px;
+}
+
+@keyframes rotate{
+ 100%{
+  transform: rotate(360deg);
+ }
+}
+
+@keyframes rotate-reverse {
+ 100%{
+  transform: rotate(-360deg);
+ }
+}
+@keyframes dash{
+ 0%{
+  stroke-dasharray: 2000,2600;
+  stroke-dashoffset: 0;
+ }
+ 50%{
+  stroke-dasharray: 2400,2600;
+  stroke-dashoffset: -500px;
+ }
+ 100%{
+  stroke-dasharray: 2000,2600;
+  stroke-dashoffset: 0;
+ }
+}
+@keyframes dash2 {
+ 0%{
+  stroke-dasharray: 100,2600;
+  stroke-dashoffset: -2000px;
+ }
+ 50%{
+  stroke-dasharray: 500,2600;
+  stroke-dashoffset: -1000px;
+ }
+ 100%{
+  stroke-dasharray: 100,2600;
+  stroke-dashoffset: -1960px;
+ }
+}
+
+
+.btnVerPerfil:hover{
+    cursor: pointer;
+}
+
+</style>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+            <div class="content">
+                <div class="card " style="background: #28303f; color: #FFF; margin: 0px;">
+                    <!--<div class="card-header ">
+                        <div class="row">
+                        
+                        </div>
+                    </div>-->
+
+                    <div class="card-body p-0">
+
+                        <div id="divPortada" style="padding: 20px; background-image: url('assets/images/fondo_equipo.jpg'); background-repeat: no-repeat; background-size: cover;  background-position: center center;">
+
+                            <div class="wrapper">
+                                <a class="cta" id="btnInvitar" style="cursor: pointer;">
+                                  <span id="spanInv">Enviar invitación</span>
+                                  <span>
+                                    <svg width="38px" height="20px" viewBox="0 0 66 43" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                      <g id="arrow" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                        <path class="one" d="M40.1543933,3.89485454 L43.9763149,0.139296592 C44.1708311,-0.0518420739 44.4826329,-0.0518571125 44.6771675,0.139262789 L65.6916134,20.7848311 C66.0855801,21.1718824 66.0911863,21.8050225 65.704135,22.1989893 C65.7000188,22.2031791 65.6958657,22.2073326 65.6916762,22.2114492 L44.677098,42.8607841 C44.4825957,43.0519059 44.1708242,43.0519358 43.9762853,42.8608513 L40.1545186,39.1069479 C39.9575152,38.9134427 39.9546793,38.5968729 40.1481845,38.3998695 C40.1502893,38.3977268 40.1524132,38.395603 40.1545562,38.3934985 L56.9937789,21.8567812 C57.1908028,21.6632968 57.193672,21.3467273 57.0001876,21.1497035 C56.9980647,21.1475418 56.9959223,21.1453995 56.9937605,21.1432767 L40.1545208,4.60825197 C39.9574869,4.41477773 39.9546013,4.09820839 40.1480756,3.90117456 C40.1501626,3.89904911 40.1522686,3.89694235 40.1543933,3.89485454 Z" fill="#FFFFFF"></path>
+                                        <path class="two" d="M20.1543933,3.89485454 L23.9763149,0.139296592 C24.1708311,-0.0518420739 24.4826329,-0.0518571125 24.6771675,0.139262789 L45.6916134,20.7848311 C46.0855801,21.1718824 46.0911863,21.8050225 45.704135,22.1989893 C45.7000188,22.2031791 45.6958657,22.2073326 45.6916762,22.2114492 L24.677098,42.8607841 C24.4825957,43.0519059 24.1708242,43.0519358 23.9762853,42.8608513 L20.1545186,39.1069479 C19.9575152,38.9134427 19.9546793,38.5968729 20.1481845,38.3998695 C20.1502893,38.3977268 20.1524132,38.395603 20.1545562,38.3934985 L36.9937789,21.8567812 C37.1908028,21.6632968 37.193672,21.3467273 37.0001876,21.1497035 C36.9980647,21.1475418 36.9959223,21.1453995 36.9937605,21.1432767 L20.1545208,4.60825197 C19.9574869,4.41477773 19.9546013,4.09820839 20.1480756,3.90117456 C20.1501626,3.89904911 20.1522686,3.89694235 20.1543933,3.89485454 Z" fill="#FFFFFF"></path>
+                                        <path class="three" d="M0.154393339,3.89485454 L3.97631488,0.139296592 C4.17083111,-0.0518420739 4.48263286,-0.0518571125 4.67716753,0.139262789 L25.6916134,20.7848311 C26.0855801,21.1718824 26.0911863,21.8050225 25.704135,22.1989893 C25.7000188,22.2031791 25.6958657,22.2073326 25.6916762,22.2114492 L4.67709797,42.8607841 C4.48259567,43.0519059 4.17082418,43.0519358 3.97628526,42.8608513 L0.154518591,39.1069479 C-0.0424848215,38.9134427 -0.0453206733,38.5968729 0.148184538,38.3998695 C0.150289256,38.3977268 0.152413239,38.395603 0.154556228,38.3934985 L16.9937789,21.8567812 C17.1908028,21.6632968 17.193672,21.3467273 17.0001876,21.1497035 C16.9980647,21.1475418 16.9959223,21.1453995 16.9937605,21.1432767 L0.15452076,4.60825197 C-0.0425130651,4.41477773 -0.0453986756,4.09820839 0.148075568,3.90117456 C0.150162624,3.89904911 0.152268631,3.89694235 0.154393339,3.89485454 Z" fill="#FFFFFF"></path>
+                                      </g>
+                                    </svg>
+                                  </span> 
+                                </a>
+                            </div>
+
+                            <div class="row">
+
+                                <div class="col-md-12 text-center">
+                                    <h5 style="font-size: 25px;" id="tvBt"></h5>
+                                </div>
+
+                                <div style="margin-top: -10px;" id="divLogoEquipo" class="col-md-12 text-center">
+                                    
+                                </div>
+
+                                <div class="col-md-12 text-center">
+                                    <h5 style="font-family: 'Ow', sans-serif; font-size: 35px;" id="tvNomEquipo"></h5>
+                                </div>
+
+                                <div id="divRedesEquipo" class="col-md-12 text-center">
+
+                                </div>
+
+                            </div>
+                        
+                        </div>
+
+                        <div id="divInvitar" style="padding: 20px; display: none;">
+
+                            <div id="search">
+                                <svg viewBox="0 0 420 60" xmlns="http://www.w3.org/2000/svg">
+                                    <rect class="bar"/>
+                                    
+                                    <g class="magnifier">
+                                        <circle class="glass"/>
+                                        <line class="handle" x1="32" y1="32" x2="44" y2="44"></line>
+                                    </g>
+                            
+                                    <g class="sparks">
+                                        <circle class="spark"/>
+                                        <circle class="spark"/>
+                                        <circle class="spark"/>
+                                    </g>
+                            
+                                    <g class="burst pattern-one">
+                                        <circle class="particle circle"/>
+                                        <path class="particle triangle"/>
+                                        <circle class="particle circle"/>
+                                        <path class="particle plus"/>
+                                        <rect class="particle rect"/>
+                                        <path class="particle triangle"/>
+                                    </g>
+                                    <g class="burst pattern-two">
+                                        <path class="particle plus"/>
+                                        <circle class="particle circle"/>
+                                        <path class="particle triangle"/>
+                                        <rect class="particle rect"/>
+                                        <circle class="particle circle"/>
+                                        <path class="particle plus"/>
+                                    </g>
+                                    <g class="burst pattern-three">
+                                        <circle class="particle circle"/>
+                                        <rect class="particle rect"/>
+                                        <path class="particle plus"/>
+                                        <path class="particle triangle"/>
+                                        <rect class="particle rect"/>
+                                        <path class="particle plus"/>
+                                    </g>
+                                </svg>
+                                <input id="busquedaJugador" style="color: #FFF; outline: none;"  type="text" aria-label="rivals" />
+                                <div class="text-center">
+                                    <button id="btnBuscarJugador" style="--clr:#39FF14; display: none;"><span>Buscar</span><i></i></button>
+                                </div>
+                                
+                            </div>
+                            
+                        </div>
+
+
+                        <div class="row p-5" id="divJugadoresEncontrados"></div>
+
+
+                        <div style="display: none;" id="divCargando" class="col-md-12 text-center p-5">
+                            <svg class="overwatch-logo" viewbox="0 0 1000 1000">
+                              <svg xmlns="http://www.w3.org/2000/svg" width="600" height="600" x="200" y="210">
+                                  <defs></defs>
+                                  <path d="M296.704.004c-66.766.428-132.772 24.23-184.63 66.083l56.662 65.786c47.82-37.74 112.256-53.118 172.018-41.237 32.844 6.318 64.096 20.74 90.464 41.237l56.66-65.786C434.242 22.804 365.77-1.03 296.705.004z" color="#000" fill="#fa9c1e" overflow="visible"/>
+                                  <path d="M93.628 82.253C33.924 138.343-1.082 219.877.026 302.123c.035 85.37 38.978 169.23 103.652 224.696 59.78 52.283 141.085 78.917 220.46 72.18 86.01-6.405 167.65-52.345 218.118-122.143 49.125-66.33 68.37-153.797 52.064-234.91-11.987-62.09-44.54-119.634-90.837-162.405l-56.662 65.786c45.657 43.034 70.586 106.557 65.886 169.224-2.056 31.05-11.074 61.69-26.314 88.96L370.92 291.974 312.66 166.39l-.088 190.18 116.695 112.926c-52.002 40.402-123.353 53.802-186.578 35.894-25.744-7.18-50.122-19.23-71.31-35.398L288.87 356.57c-.206-61.831.717-128.578 0-190.383L230.52 291.974 114.058 404.437c-35.53-62.024-36.38-142.21-2.182-204.927 10.69-20.092 24.84-38.428 41.257-54.182L96.47 79.542l-2.842 2.71z" color="#000" fill="#fff" overflow="visible"/>
+                            </svg>
+                          </svg>
+                          <svg class="circularCW" viewbox="0 0 1000 1000">
+                              <circle class="path" cx="500" cy="500" r="355" stroke="#fa9c1e"  fill="none" />
+                          </svg>
+                          <svg class="circularCCW" viewbox="0 0 1000 1000" style="animation-duration: 1.5s">
+                              <circle class="path2" cx="500" cy="500" r="355" stroke="#fa9c1e" fill="none" />
+                          </svg>
+                          <svg class="circularCW" viewbox="0 0 1000 1000">
+                              <circle class="path3" cx="500" cy="500" r="355" stroke="#fa9c1e" fill="none" />
+                          </svg>
+                            <svg class="circularCW" viewbox="0 0 1000 1000">
+                              <circle class="path4" cx="500" cy="500" r="355" stroke="#fa9c1e" fill="none" />
+                          </svg>
+                          <svg class="circularCW" viewbox="0 0 1000 1000">
+                              <circle class="path5" cx="500" cy="500" r="420" stroke="#fff" fill="none" />
+                          </svg>
+                            <svg class="circularCW" viewbox="0 0 1000 1000">
+                              <circle class="path6" cx="500" cy="500" r="420" stroke="#fff" fill="none" />
+                          </svg>
+                            <svg class="circularCCW" viewbox="0 0 1000 1000">
+                              <circle class="path7" cx="500" cy="500" r="420" stroke="#fff" fill="none" />
+                          </svg>
+                            <svg class="circularCCW" viewbox="0 0 1000 1000" style="animation-timing-function: ease-in-out">
+                              <circle class="path8" cx="500" cy="500" r="420" stroke="#fff" fill="none" />
+                          </svg>
+                          </div>
+
+                          <div style=" padding: 0px 15px; display: none;" id="divPerfilOw" class="col-md-12 text-center">
+                            
+                            <div style="padding: 20px; background-color: rgba(255, 88, 0, 0.85);">
+                              <h5 style="font-family: 'Ow', sans-serif; font-size: 45px;">Rangos</h5>
+                            </div>
+
+                          </div>
+
+                          <div style=" padding: 0px 15px; display: none;" id="divPerfilOw2" class="col-md-12 text-center ">
+
+                            <div style="padding: 20px; background-color: rgba(255, 88, 0, 0.85);">
+                              <h5 style="font-family: 'Ow', sans-serif; font-size: 45px;">Heroes mas usados</h5>
+                            </div>
+                          </div>
+
+                        <div id="divMiembrosEquipo" class="row p-5">
+
+                        </div>
+
+                        
+
+
+                    </div>
+                    
+                    <div class="card-footer ">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+
+
+    function getDatosEquipo(){
+
+        var id = localStorage.getItem("idEquipo");
+
+        let data = {
+            "idEquipo": id,
+            "function": "getDatosEquipo"
+        };
+
+        showCargandoDialog
+
+        $.ajax({
+            url: 'models/funciones.php',
+            type: 'POST',
+            data: data,
+            dataType: 'JSON',
+            success: function(resp) {
+
+                var tw = "";
+                var fb = "";
+                var ig = "";
+                var tk = "";
+                var dc = "";
+
+                $('#divLogoEquipo').html(`<img class="fadeAnim" style="border-radius: 50%; " width="150" height="150" src="/rivals//${resp.data[0].logo}" alt="rivals">`);
+                $('#tvNomEquipo').html(resp.data[0].nombre.toUpperCase());
+
+                let team = resp.data[0];
+
+                if(team.twitter != "" && team.twitter.length > 0){
+                    tw = `<button width="80" type="button" class="btn btn-outline-light m-1 btnRedSocial"><i class="fab fa-twitter"></i><a target="_blank" href="${team.twitter}"> Twitter</a></button>`;
+                }
+                    
+
+                if(team.facebook != "" && team.facebook.length > 0){
+                    fb = `<button width="80" type="button" class="btn btn-outline-light m-1 btnRedSocial"><i class="fab fa-facebook"></i><a target="_blank" href="${team.facebook}"> Facebook</a></button>`;
+                }
+
+                if(team.instagram != "" && team.instagram.length > 0){
+                    ig = `<button width="80" type="button" class="btn btn-outline-light m-1 btnRedSocial"><i class="fab fa-instagram"></i><a target="_blank" href="${team.instagram}"> Instagram</a></button>`;
+                }
+
+                if(team.titkok != "" && team.tiktok.length > 0){
+                    tk = `<button width="80" type="button" class="btn btn-outline-light m-1 btnRedSocial"><i class="fab fa-tiktok"></i><a target="_blank" href="${team.tiktok}"> TikTok</a></button>`;
+                }
+
+                if(team.discord != "" && team.discord.length > 0){
+                    dc = `<button width="80" type="button" class="btn btn-outline-light m-1 btnRedSocial"><i class="fab fa-discord"></i><a target="_blank" href="${team.discord}"> Discord</a></button>`;
+                }
+
+                var redes = `
+                    ${tw}
+                    ${fb}
+                    ${ig}
+                    ${tk}
+                    ${dc}
+                `;
+
+
+                $('#divRedesEquipo').html(redes);
+
+                $('.btnRedSocial').animate({width: '150px' }, 800);
+
+                let miembros = "";
+                if(resp.miembros.length > 0){
+                    
+                    
+                    for(var i = 0; i < resp.miembros.length ; i++){
+
+                        let jugador = resp.miembros[i];
+                        
+                        var fotoPerfil = "assets/images/perfil/soldado.jpg";
+                        if(jugador.perfil != ""){
+                            fotoPerfil = jugador.perfil;
+                        }
+
+                        var btnEliminar = "";
+                        if(team.creador != jugador.usuario){
+                            btnEliminar = `<button data-nomjugador="${jugador.usuario}" data-jugador="${jugador.id}" style="font-size: 12px;" width="50" type="button" class="btn btn-outline-light m-1 btnEliminar">Eliminar <i class="fas fa-user-times"></i></button>`;
+                        }
+
+                        miembros += `
+                            
+                            <div class="col-md-3">
+                                <div class="card-sl">
+                                    
+                                    <div class="card-image" style="text-align: right; height: 125px; padding: 5px; background-image: url('../img/fondo8.jpg'); background-repeat: no-repeat; background-size: cover;  background-position: center center;">
+                                        ${btnEliminar}
+                                    </div>
+
+                                    <a class="card-action" href="#"><img style="width: 100%; height: 100%; border-radius: 50%;" src="${fotoPerfil}" alt="rivals"></a>
+                                    <div class="card-heading">
+                                        Audi Q8
+                                    </div>
+
+                                    <div class="card-text text-center">
+                                        <h5 style="font-family: 'Ow', sans-serif; font-size: 35px;" >${jugador.usuario}</h5>
+                                        <p style="color: #0091EA; font-weight: bold;">${jugador.battlenet}<p>
+                                    </div>
+
+                                    <a data-jugador="${jugador.id}" class="card-button btnVerPerfil">Ver perfil</a>
+                                </div>
+                            </div>
+                            
+                        `;
+                    }
+
+                }else{
+                    console.log("no jugadiores");
+                }
+                
+                $('#divMiembrosEquipo').html(miembros);
+                
+               
+            },
+            error:function(xhr, ajaxOptions, thrownError){
+                console.log(xhr);
+            }
+
+        });
+        
+    }
+    getDatosEquipo();
+
+    function showCargandoDialog(){
+        Swal.fire({
+            title: "Cargando",
+            html: `
+            <div class="container text-center">
+                <div class="row">
+                    <div class="col">
+                        <img src="../img/cargando.gif" class="img-responsive" width="250" height="250" >
+                    </div>
+                </div>
+                </div>
+
+            `,
+            showConfirmButton: false,
+            allowOutsideClick: false
+        });
+    }
+
+
+    $('#btnInvitar').on('click', function(){
+
+        $("#busquedaJugador").attr("placeholder", "");
+        $('#divInvitar').show();
+        $('#divMiembrosEquipo').hide();
+        setTimeout(function(){
+            $("#busquedaJugador").attr("placeholder", "Usuario o BT");
+        }, 3500);
+
+        setTimeout(function(){
+            $("#btnBuscarJugador").show();
+            $("#btnBuscarJugador").addClass("fadeAnim");
+        }, 3300);
+        
+    });
+
+    $('#btnBuscarJugador').on('click', function(){
+
+        let dato = $('#busquedaJugador').val();
+        if(dato.length < 3){
+            Swal.fire("Error","Ingrese un dato de busqueda", 'error');
+            return;
+        }
+        $('#divCargando').show();
+        
+
+        let data = {
+
+            "busqueda": dato,
+            "function": "buscarJugador"
+
+        };
+
+        $.ajax({
+            url: 'models/funciones.php',
+            type: 'POST',
+            dataType: 'JSON',
+            data: data,
+        }).done(resp => {
+            $('#divCargando').hide();
+            
+            if(resp.status == 1){
+
+                var miembros = "";
+
+                for(var i = 0; i < resp.data.length ; i++){
+
+                    let jugador = resp.data[i];
+
+                    var fotoPerfil = "assets/images/torb.jpg";
+                    if(jugador.perfil != ""){
+                        fotoPerfil = jugador.perfil;
+                    }
+
+                    miembros += `
+                        
+                    <div class="col-md-3">
+                            <div class="card-sl">
+                                
+                                <div class="card-image" style="text-align: right; height: 125px; padding: 5px; background-image: url('../img/fondo8.jpg'); background-repeat: no-repeat; background-size: cover;  background-position: center center;">
+                                    <button data-jugador="${jugador.id}" style="font-size: 12px;" width="50" type="button" class="btn btn-outline-light m-1 btnInvitar">Invitar <i class="fas fa-paper-plane"></i></button>
+                                </div>
+
+                                <a class="card-action" href="#"><img style="width: 100%; height: 100%; border-radius: 50%;" src="${fotoPerfil}" alt="rivals"></a>
+                                <div class="card-heading">
+                                    Audi Q8
+                                </div>
+
+                                <div class="card-text text-center">
+                                    <h5 style="font-family: 'Ow', sans-serif; font-size: 35px;" >${jugador.usuario}</h5>
+                                    <p style="color: #0091EA; font-weight: bold;">${jugador.battlenet}<p>
+                                </div>
+
+                                <a data-jugador="${jugador.id}" class="card-button btnVerPerfil">Ver perfil</a>
+                            </div>
+                        </div>
+                        
+                    `;
+                }
+
+                $('#divJugadoresEncontrados').html(miembros);
+            }else{
+
+            }
+
+        }).fail((err, text, thr) => {
+            
+            Swal.fire("Error", 'Hubo un problema al conectar con el servidor', 'error');
+            console.log(err, text, thr);
+        });
+    });
+
+
+    $('body').off('click', '.btnInvitar').on('click', '.btnInvitar', function(){
+        
+        let jugador = $(this).data('jugador');
+        let equipo = localStorage.getItem("idEquipo");
+        let data = {
+            'jugador': jugador,
+            'equipo': equipo,
+            'function': "invitarJugador" 
+        };
+
+        $.ajax({
+            url: 'models/funciones.php',
+            type: 'POST',
+            dataType: 'JSON',
+            data: data,
+        }).done(resp => {
+            
+            if(resp.status == 1){
+
+                showMessage("Invitación enviada correctamente");
+            }else{
+                showMessage(resp.msg);
+            }
+
+        }).fail((err, text, thr) => {
+            
+            Swal.fire("Error", 'Hubo un problema al conectar con el servidor', 'error');
+            console.log(err, text, thr);
+        });
+
+    });
+
+    $('body').off('click', '.btnVerPerfil').on('click', '.btnVerPerfil', function(){
+
+        let jugador = $(this).data('jugador');
+
+        console.log("JUGADOR: "+jugador);
+
+        localStorage.setItem("idJugador", jugador);
+
+        $(this).addClass("nuevoLink");
+        $(this).attr("href", "views/perfil_jugador.html");
+
+    });
+
+    $('body').off('click', '.btnEliminar').on('click', '.btnEliminar', function(){
+
+        let jugador = $(this).data('jugador');
+        let nomjugador = $(this).data('nomjugador');
+
+        Swal.fire({
+            html:`
+                <img width="120" height="120" src="../img/logo-rivals.png"></img>
+                <h1 style="margin-top: 20px; text-shadow: .1em .1em 0 hsl(200 50% 30%); color: hsl(200 50% 90%); font-size: 24px; font-weight: 900; line-height: 1.1;  font-family: 'Fugaz One', cursive;">¿Estás seguro que deseas eliminar a ${nomjugador}?</h1>
+
+                <button style="font-size: 20px;" width="100" type="button" class="btn btn-outline-light mt-5 mr-3 btnCloseMsg">Cancelar</button>
+                <button data-jugador="${jugador}" id="btnEliminarJugador" style="font-size: 20px;" width="100" type="button" class="btn btn-outline-light mt-5 ml-3 btnCloseMsg">Eliminar</button>
+                
+            `,
+            showCloseButton: false,
+            showCancelButton: false,
+            showConfirmButton: false,
+            focusConfirm: false
+           
+        });
+
+    });
+
+    $('body').off('click', '#btnEliminarJugador').on('click', '#btnEliminarJugador', function(){
+
+        let jugador = $(this).data('jugador');
+        let equipo = localStorage.getItem("idEquipo");
+
+        let data = {
+            'equipo': equipo,
+            'jugador': jugador,
+            'function': "eliminarJugador" 
+        };
+
+        $.ajax({
+            url: 'models/funciones.php',
+            type: 'POST',
+            dataType: 'JSON',
+            data: data,
+        }).done(resp => {
+            
+            if(resp.status == 1){
+
+                showMessage(resp.msg);
+                getDatosEquipo();
+
+
+            }else{
+                showMessage(resp.msg);
+            }
+
+        }).fail((err, text, thr) => {
+            
+            Swal.fire("Error", 'Hubo un problema al conectar con el servidor', 'error');
+            console.log(err, text, thr);
+        });
+
+
+    });
+
+
+
+
+    function showMessage(msg){
+        Swal.fire({
+            html:`
+                <img width="120" height="120" src="../img/logo-rivals.png"></img>
+                <h1 style="margin-top: 20px; text-shadow: .1em .1em 0 hsl(200 50% 30%); color: hsl(200 50% 90%); font-size: 24px; font-weight: 900; line-height: 1.1;  font-family: 'Ow', cursive;">${msg}</h1>
+
+                <button style="font-size: 20px;" width="100" type="button" class="btn btn-outline-light mt-5 btnCloseMsg">Aceptar</button>
+                
+            `,
+            showCloseButton: false,
+            showCancelButton: false,
+            showConfirmButton: false,
+            focusConfirm: false
+           
+        });
+    }
+
+    $('body').on('click', '.btnCloseMsg', function(){
+        Swal.close();
+    });
+</script>;

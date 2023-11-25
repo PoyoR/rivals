@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet">
+<title>Registro OW Rivals</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" type="text/css" href="css/estilo.css">
+<style>
+    div:where(.swal2-container) div:where(.swal2-popup){
+        background-image: url('../img/fondo9.jpg')  !important; background-repeat: no-repeat; background-size: cover;  background-position: center !important;   
+    }
+	body {
+		color: #fff;
+		background: #15171e;
+		font-family: 'Roboto', sans-serif;
+	}
+	.form-control, .form-control:focus, .input-group-addon {
+		border-color: #e1e1e1;
+	}
+    .form-control, .btn {        
+        border-radius: 3px;
+    }
+	.signup-form {
+		width: 50%;
+		margin: 0 auto;
+		padding: 30px 0;
+	}
+    .signup-form form {
+		color: #999;
+		border-radius: 3px;
+    	margin-bottom: 15px;
+        background: #fff;
+        box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+        padding: 30px;
+    }
+	.signup-form h2 {
+		color: #333;
+		font-weight: bold;
+        margin-top: 0;
+    }
+    .signup-form hr {
+        margin: 0 -30px 20px;
+    }
+	.signup-form .form-group {
+		margin-bottom: 20px;
+	}
+	.signup-form label {
+		font-weight: normal;
+		font-size: 13px;
+	}
+	.signup-form .form-control {
+		min-height: 38px;
+		box-shadow: none !important;
+	}	
+	.signup-form .input-group-addon {
+		max-width: 42px;
+		text-align: center;
+	}
+	.signup-form input[type="checkbox"] {
+		margin-top: 2px;
+	}   
+    .signup-form .btn{        
+        font-size: 16px;
+        font-weight: bold;
+		background: #19aa8d;
+		border: none;
+		min-width: 140px;
+    }
+	.signup-form .btn:hover, .signup-form .btn:focus {
+		background: #179b81;
+        outline: none;
+	}
+	.signup-form a {
+		color: #fff;	
+		text-decoration: underline;
+	}
+	.signup-form a:hover {
+		text-decoration: none;
+	}
+	.signup-form form a {
+		color: #19aa8d;
+		text-decoration: none;
+	}	
+	.signup-form form a:hover {
+		text-decoration: underline;
+	}
+	.signup-form .fa {
+		font-size: 21px;
+	}
+	.signup-form .fa-paper-plane {
+		font-size: 18px;
+	}
+	.signup-form .fa-check {
+		color: #fff;
+		left: 17px;
+		top: 18px;
+		font-size: 7px;
+		position: absolute;
+	}
+</style>
+</head>
+<body>
+
+    
+    <div class="col mx-auto text-center" style="margin-top: 30px;">
+        <a href="index.html"><img src="img/rivals2.png" class="img-fluid" width="280"></a>
+    </div>
+
+
+<div class="signup-form">
+
+    <form>
+		<h2>Crear cuenta de usuario</h2>
+
+		<hr>
+        <div class="form-group">
+			<div class="input-group">
+				<span class="input-group-addon"><i class="fa fa-user"></i></span>
+				<input type="text" class="form-control" id="usuario" placeholder="Nombre de usuario" required="required">
+			</div>
+        </div>
+		<div class="form-group">
+			<div class="input-group">
+				<span class="input-group-addon"><i class="fa fa-lock"></i></span>
+				<input type="password" class="form-control" id="password" placeholder="Contraseña" required="required">
+			</div>
+        </div>
+		<div class="form-group">
+			<div class="input-group">
+				<span class="input-group-addon">
+					<i class="fa fa-lock"></i>
+					<i class="fa fa-check"></i>
+				</span>
+				<input type="password" class="form-control" id="confirm_password" placeholder="Confirma tu contraseña" required="required">
+			</div>
+        </div>
+        <div class="form-group">
+			<div class="input-group">
+				<span class="input-group-addon"><i class="fa fa-qq"></i></span>
+				<input type="text" class="form-control" id="battlenet" placeholder="Battletag (case sensitive)" required="required">
+			</div>
+        </div>
+		<div class="form-group">
+            <button id="btnRegistrarse" type="button" class="btn btn-primary btn-lg">Registrarse</button>
+        </div>
+    </form>
+	<div class="text-center">¿Ya tienes una cuenta? <a href="/rivals">Loguearse</a></div>
+</div>
+</body>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> 
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+
+<script src="js/funciones.js?version=9"></script>
+
+
+<script>
+
+    function validateString(str) {
+        return str.includes('#');
+    }
+
+    $('#btnRegistrarse').on('click', function(){
+
+        let usuario = $('#usuario').val();
+        let pass = $('#password').val();
+        let pass2 = $('#confirm_password').val();
+        let bt = $('#battlenet').val();
+
+
+        if (!validateString(bt)) {
+           showMessage("El formato del Battletag no es válido");
+            return;
+        }
+
+        if(pass != pass2){
+            showMessage("Las contraseñas no coinciden");
+            return;
+        }
+
+
+        var datos = {
+            "usuario": usuario,
+            "pass": pass,
+            "bt": bt,
+            "function": "registro"
+        }
+
+        showCargandoDialog();
+
+        $.ajax({
+            url: 'registro.php',
+            type: 'POST',
+            dataType: 'JSON',
+            data: datos,
+        }).done(response => {
+            let timerInterval;
+            if (response.status == 1) {
+                Swal.fire({
+                    html: `
+                    <h1 style="margin-top: 20px; text-shadow: .1em .1em 0 hsl(200 50% 30%); color: hsl(200 50% 90%); font-size: 24px; font-weight: 900; line-height: 1.1;  font-family: 'Fugaz One', cursive;">Bienvenido a Overwatch Rivals</h1>
+                    <img src="img/genji.gif" class="img-fluid" width="150" height="150" >
+                    <br><br><br>
+                    <button type="button" class="btn btn-primary btn-lg">Acceder</button>
+                    `,
+                    showConfirmButton: false,
+                    allowOutsideClick: false,
+                    width: "800px"
+                });
+
+                setInterval(function () {
+                    document.location.href = "/rivals";
+                }, 2500);
+
+            } else {
+
+               showMessage(response.msg);
+
+            }
+        }).fail((err, text, thr) => {
+            
+            showMessage("Hubo un problema al conectar con el servidor");
+            console.log(err, text, thr);
+        });
+
+
+    });
+
+    function showMessage(msg){
+        Swal.fire({
+            html:`
+                <img width="120" height="120" src="../img/logo-rivals.png"></img>
+                <h1 style="margin-top: 20px; text-shadow: .1em .1em 0 hsl(200 50% 30%); color: hsl(200 50% 90%); font-size: 24px; font-weight: 900; line-height: 1.1;  font-family: 'Fugaz One', cursive;">${msg}</h1>
+
+                <button id="btnCloseMsg" style="font-size: 20px;" width="100" type="button" class="btn btn-outline-light mt-5">Aceptar</button>
+                
+            `,
+            showCloseButton: false,
+            showCancelButton: false,
+            showConfirmButton: false,
+            focusConfirm: false
+           
+        });
+    }
+
+    $('body').on('click', '#btnCloseMsg', function(){
+        Swal.close();
+    });
+
+    function showCargandoDialog(){
+        Swal.fire({
+            title: "Cargando",
+            html: `
+            <div class="container text-center">
+                <div class="row">
+                    <div class="col">
+                        <img src="img/cargando.gif" class="img-responsive" width="250" height="250" >
+                    </div>
+                </div>
+                </div>
+
+            `,
+            showConfirmButton: false,
+            allowOutsideClick: false
+        });
+    }
+
+</script>
+
+</html>

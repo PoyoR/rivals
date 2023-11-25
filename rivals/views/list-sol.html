@@ -1,0 +1,114 @@
+
+<div class="row m-0">
+  <div class="col-12 ">
+    <div class="card">
+      <div class="card-body text-center">
+        <h5 class="card-title card-title--yellow">Lista de solicitudes.</h5>
+        	<p class="card-description">Seleccione el rango de la fecha para obtener el reporte.</p>
+				<div class="row justify-content-center">
+					<div class="col-10 grid-margin stretch-card">
+						<div class="card mb-3">
+							<div class="card-body bg--lgblue">
+								<div class="row">
+
+									<br>
+									<div class="col-5">
+										<label for="">Fecha Inicial:</label>
+										<div id="datepickerfi" class="input-group">
+											<input id="fechaInicial" type="text" class="form-control datepicinput" data-language="es" autocomplete="off">
+											<span class="input-group-addon input-group-append border-left">
+												<span class="far fa-calendar-alt input-group-text"></span>
+											</span>
+										</div>
+									</div>
+									<div class="col-5">
+										<label for="">Fecha fin:</label>
+										<div id="datepickerff" class="input-group">
+											<input id="fechaFinal" type="text" class="form-control datepicinput" data-language="es" autocomplete="off">
+											<span class="input-group-addon input-group-append border-left">
+												<span class="far fa-calendar-alt input-group-text"></span>
+											</span>
+										</div>
+									</div>
+									<div class="col-2">
+										<label for="">&nbsp</label>
+										<br>
+										<button id="btnFiltroFechaGeneral" type="button" class="btn btn-primary">Aceptar</button>
+									</div>
+									
+								</div>
+								
+							</div>
+
+							<div class="form-group center-block">
+								<div class="col-6" style="float:none;margin:auto;">
+								<label for="buscador">Buscador de solicitudes: </label>	<br>
+								<input type="text" class="form-control" id="buscador" placeholder="Ingresa folio o CURP" name="buscador" maxlength="18">
+								<br>
+								<input type="text" class="form-control" id="buscadorname" placeholder="Buscar por nombre de cliente" name="buscador_name" maxlength="50">
+								<br>
+								<button id="searcheable" class="btn btn-primary btn-sm">Buscar <i class="fa fa-search" aria-hidden="true"></i>
+								</button>
+							</div>
+							</div>
+							
+						</div>
+					</div>
+				</div>
+          <div class="table-responsive container-tablegral">
+            <table id="tabla_sols" class="display data-tablegral">
+            </table>
+          </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="controllers/solicitudes.js"></script>
+<script>
+  $('.datepicinput').datepicker({
+		autoClose: true
+	});
+
+	var d = new Date();
+	var curr_date = d.getDate();
+	if (curr_date < 10)
+		curr_date = "0" + curr_date;
+
+	var curr_month = d.getMonth() + 1;
+	if (curr_month < 10)
+		curr_month = "0" + curr_month;
+	var curr_year = d.getFullYear();
+	$('#fechaFinal').val(curr_year + "-" + curr_month + '-' + curr_date);
+
+	$('#fechaInicial').val(curr_year + "-" + curr_month + ('-' + curr_date));
+    var fechainicial =$('#fechaInicial').val(); 
+    var fechafinal = $('#fechaFinal').val();  
+    
+    $('#btnFiltroFechaGeneral').on('click', function () {
+        var fechainicial =$('#fechaInicial').val(); 
+        var fechafinal = $('#fechaFinal').val();  
+        console.log(fechainicial+''+fechafinal);
+        getSolicitudes(fechainicial, fechafinal);
+		}); 
+//$('#fechaInicial').val(curr_year + "-" + curr_month + ('-01');
+if(fechainicial!='' && fechafinal !=''){
+	getSolicitudes(fechainicial, fechafinal);
+}else{
+	getSolicitudes();
+}
+
+
+ 
+$('#searcheable').on('click', function () {
+	var varBuscador =$('#buscador').val(); 
+	var varBuscadorname =$('#buscadorname').val();
+	// Comprobar si las variables están vacías
+	if(varBuscador === "" && varBuscadorname === ""){
+		// Mostrar mensaje de advertencia
+		Swal.fire("Atención", "Por favor ingrese un dato válido", "warning");
+        return;
+	}
+	// Llamar a la función getSolicitudes con los parámetros adecuados
+    getSolicitudes('','', varBuscador, varBuscadorname);
+}); 
+</script>

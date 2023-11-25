@@ -1,0 +1,296 @@
+<style>
+
+    div:where(.swal2-container) div:where(.swal2-popup){
+        background-image: url('../img/fondo9.jpg'); background-repeat: no-repeat; background-size: cover;  background-position: center !important;   
+    }
+
+    .drop-container {
+      position: relative;
+      display: flex;
+      gap: 10px;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 200px;
+      padding: 20px;
+      border-radius: 10px;
+      border: 2px dashed #555;
+      color: #444;
+      cursor: pointer;
+      transition: background .2s ease-in-out, border .2s ease-in-out;
+    }
+    
+    .drop-container:hover {
+      background: #eee;
+      border-color: #111;
+    }
+    
+    .drop-container:hover .drop-title {
+      color: #222;
+    }
+    
+    .drop-title {
+      color: #444;
+      font-size: 20px;
+      font-weight: bold;
+      text-align: center;
+      transition: color .2s ease-in-out;
+    }
+    
+    </style>
+    
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="content">
+                    <div class="card " style="background: #28303f; color: #FFF;">
+                        <div class="card-header ">
+                            <div class="row">
+    
+                                <div class="col-md-10">
+                                    <h5>Editar información del equipo</h5>
+                                </div>
+                            </div>
+                        </div>
+    
+                        <div class="card-body">
+                            <div class="row p-2">
+                                
+    
+                                <div class="input-group mb-3">
+                                    <span style="background-color: #1c222b; border-color: #151b27;" class="input-group-text" id="nombre_equipo"><i class="fas fa-heart"></i></span>
+                                    <input id="tvNombreEdit" style="background-color: #1c222b; border-color: #151b27;" type="text" class="form-control" placeholder="Nombre del equipo" aria-describedby="nombre_equipo">
+                                </div>
+    
+                                <div class="input-group mb-3">
+                                    <span style="background-color: #1c222b; border-color: #151b27;" class="input-group-text" id="tw_equipo"><i class="fab fa-twitter"></i></span>
+                                    <input id="tvTwEdit" style="background-color: #1c222b; border-color: #151b27;" type="text" class="form-control" placeholder="Twitter del equipo" aria-describedby="tw_equipo">
+                                </div>
+    
+                                <div class="input-group mb-3">
+                                    <span style="background-color: #1c222b; border-color: #151b27;" class="input-group-text" id="fb_equipo"><i class="fab fa-facebook"></i></span>
+                                    <input id="tvFbEdit" style="background-color: #1c222b; border-color: #151b27;" type="text" class="form-control" placeholder="Facebook del equipo" aria-describedby="fb_equipo">
+                                </div>
+    
+                                <div class="input-group mb-3">
+                                    <span style="background-color: #1c222b; border-color: #151b27;" class="input-group-text" id="ig_equipo"><i class="fab fa-instagram"></i></span>
+                                    <input id="tvIgEdit" style="background-color: #1c222b; border-color: #151b27;" type="text" class="form-control" placeholder="Instagram del equipo" aria-describedby="ig_equipo">
+                                </div>
+    
+                                <div class="input-group mb-3">
+                                    <span style="background-color: #1c222b; border-color: #151b27;" class="input-group-text" id="tk_equipo"><i class="fas fa-heart"></i></span>
+                                    <input id="tvTkEdit" style="background-color: #1c222b; border-color: #151b27;" type="text" class="form-control" placeholder="TikTok del equipo" aria-describedby="tk_equipo">
+                                </div>
+    
+                                <div class="input-group mb-3">
+                                    <span style="background-color: #1c222b; border-color: #151b27;" class="input-group-text" id="ig_equipo"><i class="fab fa-discord"></i></span>
+                                    <input id="tvDcEdit" style="background-color: #1c222b; border-color: #151b27;" type="text" class="form-control" placeholder="Discord del equipo" aria-describedby="ig_equipo">
+                                </div>
+    
+                                <div class="input-group mb-3">
+                                    <select id="plataformaEdit" style="width: 100%; padding: 7px; background-color: #1c222b; color: #6c757d; border-color: #151b27;" class="form-select" >
+                                        <option selected value="">Seleccione la plataforma del equipo</option>
+                                        <option value="pc">PC</option>
+                                        <option value="consola">Consola</option>
+                                        <option value="hibrido">Híbrido</option>
+                                    </select>
+                                </div>
+                            </div>
+    
+                            <div class="row" style="height: 400px;">
+    
+                                    <div class="col-md-6">
+                                        <p style="font-family: 'Ow', sans-serif; color: #FFF; font-size: 20px;">Logo del equipo</p>
+                                        <label for="imgLogo" class="drop-container" id="dropcontainer">
+                                            <span class="drop-title">Logo del equipo</span>
+                                            <input type="file" id="imgLogo" accept="image/*" onchange="showPreview(event);" required>
+                                        </label>
+                                    </div>
+    
+                                    <div class="col-md-6">
+                                        <div class="preview" style="height: 100%; text-align: center;">
+                                            <img style="display: none; vertical-align: middle; max-height: 300px;" id="file-ip-1-preview">
+                                        </div>
+                                    </div>
+                                    
+                                
+    
+                            </div>
+                            
+                            <div class="row">
+                                <div class="col-md-12 text-center">
+                                    <button id="btnEditEquipo" type="button" class="btn btn-primary ">Actualizar <i class="fab fa-steam-symbol"></i></button>
+                                </div>
+                                
+                            </div>
+                            
+                        </div>
+    
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+    
+    function showPreview(event){
+      if(event.target.files.length > 0){
+        var src = URL.createObjectURL(event.target.files[0]);
+        var preview = document.getElementById("file-ip-1-preview");
+        preview.src = src;
+        preview.style.display = "block";
+      }
+    }
+
+    function getInfoEquipo(){
+
+        var id = localStorage.getItem("idEquipo");
+
+        let data = {
+            "idEquipo": id,
+            "function": "getDatosEquipo"
+        };
+
+        $.ajax({
+            url: 'models/funciones.php',
+            type: 'POST',
+            data: data,
+            dataType: 'JSON',
+            success: function(resp) {
+
+                console.log(resp);
+                
+                if(resp.status == 1){
+
+                    $('#tvNombreEdit').val(resp.data[0].nombre);
+                    $('#tvTwEdit').val(resp.data[0].twitter);
+                    $('#tvFbEdit').val(resp.data[0].facebook);
+                    $('#tvIgEdit').val(resp.data[0].instagram);
+                    $('#tvTkEdit').val(resp.data[0].tiktok);
+                    $('#tvDcEdit').val(resp.data[0].discord);
+
+                    $('#file-ip-1-preview').attr("src", "rivals/"+resp.data[0].logo);
+                    $('#file-ip-1-preview').show();
+                    $('#plataformaEdit').val(resp.data[0].plataforma);
+
+    
+                }else{
+    
+                    showMessage(resp.msg);
+                }
+            },
+            error:function(xhr, ajaxOptions, thrownError){
+                console.log(xhr);
+            }
+    
+        });
+
+    }
+    getInfoEquipo();
+    
+    
+    $('#btnEditEquipo').on('click', function(){
+    
+        var id = localStorage.getItem("idEquipo");
+
+        showCargandoDialog();
+        
+        var nomEquipo = $('#tvNombreEdit').val();
+        var twEquipo = $('#tvTwEdit').val();
+        var fbEquipo = $('#tvFbEdit').val();
+        var igEquipo = $('#tvIgEdit').val();
+        var tkEquipo = $('#tvTkEdit').val();
+        var dcEquipo = $('#tvDcEdit').val();
+        var plataformaEquipo = $('#plataformaEdit').val();
+    
+        var data = new FormData();
+        var file = $('#imgLogo')[0].files[0];
+        data.append("image", file);
+        data.append("nombre", nomEquipo);
+        data.append("tw", twEquipo);
+        data.append("fb", fbEquipo);
+        data.append("ig", igEquipo);
+        data.append("tk", tkEquipo);
+        data.append("dc", dcEquipo);
+        data.append("plataforma", plataformaEquipo);
+        data.append("idEquipo", id);
+        data.append("function", "editarEquipo");
+    
+        if(nomEquipo == "" && nomEquipo.length < 3){
+            showMessage("El nombre del equipo debe contener al menos 3 caracteres");
+            return;
+        }
+    
+        if(plataformaEquipo == ""){
+            showMessage("Selecciona la plataforma del equipo");
+            return;
+        }
+    
+        $.ajax({
+            url: 'models/funciones.php',
+            type: 'POST',
+            contentType: false,
+            data: data,
+            processData: false,
+            dataType: 'JSON',
+            success: function(resp) {
+    
+                console.log(resp);
+                
+                if(resp.status == 1){
+    
+                    showMessage(resp.msg);
+    
+                }else{
+
+                    showMessage(resp.msg);
+                }
+            },
+            error:function(xhr, ajaxOptions, thrownError){
+                console.log(xhr);
+            }
+    
+        });
+    
+    });
+    
+    
+    function showCargandoDialog(){
+
+        Swal.fire({
+            html:`
+                <img src="../img/cargando.gif" class="img-responsive" width="250" height="250" >
+                <h1 style="margin-top: 20px; text-shadow: .1em .1em 0 hsl(200 50% 30%); color: hsl(200 50% 90%); font-size: 24px; font-weight: 900; line-height: 1.1;  font-family: 'Ow', cursive;">Cargando...</h1>
+            `,
+            showCloseButton: false,
+            showCancelButton: false,
+            showConfirmButton: false,
+            focusConfirm: false,
+            allowOutsideClick: false
+        
+        });
+    }
+
+    function showMessage(msg){
+        Swal.fire({
+            html:`
+                <img width="120" height="120" src="../img/logo-rivals.png"></img>
+                <h1 style="margin-top: 20px; text-shadow: .1em .1em 0 hsl(200 50% 30%); color: hsl(200 50% 90%); font-size: 24px; font-weight: 900; line-height: 1.1;  font-family: 'Ow', cursive;">${msg}</h1>
+
+                <button style="font-size: 20px;" width="100" type="button" class="btn btn-outline-light mt-5 btnCloseMsg">Aceptar</button>
+                
+            `,
+            showCloseButton: false,
+            showCancelButton: false,
+            showConfirmButton: false,
+            focusConfirm: false
+           
+        });
+    }
+
+    $('body').on('click', '.btnCloseMsg', function(){
+        Swal.close();
+    });
+    
+    </script>

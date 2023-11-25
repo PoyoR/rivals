@@ -1,0 +1,870 @@
+<style type="text/css">
+
+div:where(.swal2-container) div:where(.swal2-popup){
+    background-image: url('../img/fondo9.jpg'); background-repeat: no-repeat; background-size: cover;  background-position: center !important;   
+}
+      
+.containerPatro {
+    width: 100%;
+  backdrop-filter: blur(16px) saturate(180%);
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
+  background-color: rgba(17, 25, 40, 0.25);
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.125);  
+  padding: 38px;  
+  filter: drop-shadow(0 30px 10px rgba(0,0,0,0.125));
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content:center;
+  text-align: center;
+  
+}
+
+.wrapperPatro {
+  width: 100%;
+  height: 100%;
+  
+}
+
+.h1Patro{
+  font-family: 'Righteous', sans-serif;
+  color: rgba(255,255,255,0.98);
+  text-transform: uppercase;
+  font-size: 2.4rem;
+}
+
+.pPatro {
+  color: #fff;
+  font-family: 'Lato', sans-serif;
+  text-align: center;
+  font-size: 0.8rem;
+  line-height: 150%;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.button-wrapper{
+  margin-top: 18px;
+}
+
+.btnPatro {
+  border: none;
+  padding: 12px 24px;
+  border-radius: 24px;
+  font-size: 12px;
+  font-size: 0.8rem;  
+  letter-spacing: 2px;  
+  cursor: pointer;
+}
+
+.btnPatro + .btnPatro {
+  margin-left: 10px;
+}
+
+.outlinePatro {
+  background: transparent;
+  color: rgba(0, 212, 255, 0.9);
+  border: 1px solid rgba(0, 212, 255, 0.6);
+  transition: all .3s ease;
+  
+}
+
+.outlinePatro:hover{
+  transform: scale(1.125);
+  color: rgba(255, 255, 255, 0.9);
+  border-color: rgba(255, 255, 255, 0.9);
+  transition: all .3s ease;  
+}
+
+.fillPatro {
+  background: rgba(0, 212, 255, 0.9);
+  color: rgba(255,255,255,0.95);
+  filter: drop-shadow(0);
+  font-weight: bold;
+  transition: all .3s ease; 
+}
+
+.fillPatro:hover{
+  transform: scale(1.125);  
+  border-color: rgba(255, 255, 255, 0.9);
+  filter: drop-shadow(0 10px 5px rgba(0,0,0,0.125));
+  transition: all .3s ease;    
+}
+
+
+
+svg {
+    height: 350px;
+    width: 350px;
+}
+
+.overwatch-loader {
+  width: 25%;
+  position: relative;
+  margin: 0px auto;
+}
+.overwatch-logo {
+  filter:
+    drop-shadow(0 0 120px rgba(255,255,255,0.15))
+    drop-shadow(0 0 16px rgba(255,255,255,0.05));
+  opacity: 0.8;
+}
+.circularCW,
+.circularCCW {
+  height: 100%;
+  transform-origin: center center;
+  width: 100%;
+  position: absolute;
+  top: 0; bottom: 0; left: 0; right: 0;
+  margin: auto;
+}
+.circularCW {
+  animation: rotate 2s linear infinite;
+}
+.circularCCW {
+  animation: rotate-reverse 4s linear infinite;
+}
+.path,
+.path2,
+.path3,
+.path4,
+.path5,
+.path6,
+.path7,
+.path8 {
+  stroke-linecap: square;
+  stroke-width: 33;
+  opacity: 0.8;
+}
+.path {
+  stroke-dasharray: 1400,2600;
+  stroke-dashoffset: 0;
+  animation: dash 3.7s ease-in-out infinite;
+  opacity: 0.3;
+}
+.path2 {
+  stroke-dasharray: 40,2600;
+  stroke-dashoffset: -500px;
+}
+.path3 {
+  stroke-dasharray: 200,2600;
+  stroke-dashoffset: -700px;
+}
+.path4 {
+  stroke-dasharray: 40,2600;
+  stroke-dashoffset: -2000px;
+  animation: dash2 2.5s ease-in-out infinite;
+}
+.path5 {
+  stroke-dasharray: 200,2600;
+  stroke-dashoffset: 0;
+}
+.path6 {
+  stroke-dasharray: 300,2600;
+  stroke-dashoffset: -1000px;
+}
+.path7 {
+  stroke-dasharray: 40,2600;
+  stroke-dashoffset: -1200px;
+}
+.path8 {
+  stroke-dasharray: 100,2600;
+  stroke-dashoffset: -300px;
+}
+
+@keyframes rotate{
+ 100%{
+  transform: rotate(360deg);
+ }
+}
+
+@keyframes rotate-reverse {
+ 100%{
+  transform: rotate(-360deg);
+ }
+}
+@keyframes dash{
+ 0%{
+  stroke-dasharray: 2000,2600;
+  stroke-dashoffset: 0;
+ }
+ 50%{
+  stroke-dasharray: 2400,2600;
+  stroke-dashoffset: -500px;
+ }
+ 100%{
+  stroke-dasharray: 2000,2600;
+  stroke-dashoffset: 0;
+ }
+}
+@keyframes dash2 {
+ 0%{
+  stroke-dasharray: 100,2600;
+  stroke-dashoffset: -2000px;
+ }
+ 50%{
+  stroke-dasharray: 500,2600;
+  stroke-dashoffset: -1000px;
+ }
+ 100%{
+  stroke-dasharray: 100,2600;
+  stroke-dashoffset: -1960px;
+ }
+}
+
+@keyframes fadein {
+        from {
+            opacity:0;
+        }
+        to {
+            opacity:1;
+        }
+    }
+    @-moz-keyframes fadein { /* Firefox */
+        from {
+            opacity:0;
+        }
+        to {
+            opacity:1;
+        }
+    }
+    @-webkit-keyframes fadein { /* Safari and Chrome */
+        from {
+            opacity:0;
+        }
+        to {
+            opacity:1;
+        }
+    }
+    @-o-keyframes fadein { /* Opera */
+        from {
+            opacity:0;
+        }
+        to {
+            opacity: 1;
+        }
+    }
+
+.fadeAnim {
+    animation: fadein 2s;
+    -moz-animation: fadein 2s; /* Firefox */
+    -webkit-animation: fadein 2s; /* Safari and Chrome */
+    -o-animation: fadein 2s; /* Opera */
+    box-shadow: 0 20px 20px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+    
+.btnAdminEquipo:hover{
+    cursor: pointer;
+}
+
+.btn-circle {
+  width: 30px;
+  height: 30px;
+  text-align: center;
+  padding: 6px 0;
+  font-size: 12px;
+  line-height: 1.428571429;
+  border-radius: 15px;
+}
+.btn-circle.btn-lg {
+  width: 50px;
+  height: 50px;
+  padding: 10px 16px;
+  font-size: 18px;
+  line-height: 1.33;
+  border-radius: 25px;
+}
+.btn-circle.btn-xl {
+  width: 70px;
+  height: 70px;
+  padding: 10px 16px;
+  font-size: 24px;
+  line-height: 1.33;
+  border-radius: 35px;
+}
+
+
+
+.container .cardTeam .icon {
+
+position: absolute;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+}
+
+.container .cardTeam .imgLogo {
+    margin-top: -20px;
+font-size: 80px;
+color: #fff;
+box-shadow: 0 0 50px rgba(255, 255, 255, 0.3);
+}
+
+.container .cardTeam .slide {
+width: 300px;
+height: 200px;
+transition: 0.5s;
+}
+
+.container .cardTeam .slide.slide1 {
+
+position: relative;
+justify-content: center;
+align-items: center;
+z-index: 1;
+transition: .7s;
+transform: translateY(100px);
+}
+
+.container .cardTeam:hover .slide.slide1{
+
+transform: translateY(0px);
+
+}
+
+.container .cardTeam .slide.slide2 {
+
+position: relative;
+display: flex;
+justify-content: center;
+align-items: center;
+padding: 20px;
+box-sizing: border-box;
+transition: .8s;
+transform: translateY(-100px);
+box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+background-color: #FFF;
+
+}
+
+.container .cardTeam:hover .slide.slide2{
+
+transform: translateY(0);
+
+}
+
+.container .cardTeam .slide.slide2::after{
+
+content: "";
+
+position: absolute;
+
+width: 30px;
+
+height: 4px;
+
+bottom: 15px;
+
+left: 50%;
+
+left: 50%;
+
+transform: translateX(-50%);
+
+}
+
+.container .cardTeam .slide.slide2 .content p {
+
+margin: 0;
+
+padding: 0;
+
+text-align: center;
+
+color: #414141;
+
+}
+
+.container .cardTeam .slide.slide2 .content h3 {
+
+margin: 0 0 10px 0;
+
+padding: 0;
+
+font-size: 24px;
+
+text-align: center;
+
+color: #414141;
+
+} 
+
+.btnTtv:hover{
+
+    color: #FFF !important;
+    background: #944cff;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
+
+}
+
+.btnYt:hover{
+
+    color: #FFF !important;
+    background: #ff0808;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
+
+}
+
+.btnTw:hover{
+
+    color: #FFF !important;
+    background: #179cf0;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
+
+}
+
+.btnFb:hover{
+
+color: #FFF !important;
+background: #4073b8;
+box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
+
+}
+
+.btnIg:hover{
+
+color: #FFF !important;
+background: #e00846;
+box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
+
+}
+
+.btnDc:hover{
+
+color: #FFF !important;
+background: #5865f2;
+box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
+
+}
+
+.btnTk:hover{
+
+background-image: url('/img/tiktoklogo.png');
+box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
+
+}
+
+
+.cardStat {
+    background-color: #fff;
+    border-radius: 10px;
+    border: none;
+    position: relative;
+    margin-bottom: 30px;
+    box-shadow: 0 0.46875rem 2.1875rem rgba(90,97,105,0.1), 0 0.9375rem 1.40625rem rgba(90,97,105,0.1), 0 0.25rem 0.53125rem rgba(90,97,105,0.12), 0 0.125rem 0.1875rem rgba(90,97,105,0.1);
+}
+.l-bg-cherry {
+    background: linear-gradient(to right, #493240, #f09) !important;
+    color: #fff;
+}
+
+.l-bg-blue-dark {
+    background: linear-gradient(to right, #373b44, #4286f4) !important;
+    color: #fff;
+}
+
+.l-bg-green-dark {
+    background: linear-gradient(to right, #0a504a, #38ef7d) !important;
+    color: #fff;
+}
+
+.l-bg-orange-dark {
+    background: linear-gradient(to right, #a86008, #ffba56) !important;
+    color: #fff;
+}
+
+.cardStat .card-statistic-3 .card-icon-large .fas, .card .card-statistic-3 .card-icon-large .far, .card .card-statistic-3 .card-icon-large .fab, .card .card-statistic-3 .card-icon-large .fal {
+    font-size: 110px;
+}
+
+.cardStat .card-statistic-3 .card-icon {
+    text-align: center;
+    line-height: 50px;
+    margin-left: 15px;
+    color: #000;
+    position: absolute;
+    right: -5px;
+    top: 20px;
+    opacity: 0.1;
+}
+
+.l-bg-cyan {
+    background: linear-gradient(135deg, #289cf5, #84c0ec) !important;
+    color: #fff;
+}
+
+.l-bg-green {
+    background: linear-gradient(135deg, #23bdb8 0%, #43e794 100%) !important;
+    color: #fff;
+}
+
+.l-bg-orange {
+    background: linear-gradient(to right, #f9900e, #ffba56) !important;
+    color: #fff;
+}
+
+.l-bg-cyan {
+    background: linear-gradient(135deg, #289cf5, #84c0ec) !important;
+    color: #fff;
+}
+
+</style>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+            <div class="content">
+                <div class="card " style="background: #28303f; color: #FFF;">
+                    <div class="card-header ">
+                        <div class="row">
+
+                            <div class="col-md-12">
+                                <h5 >Bienvenido a Overwatch Rivals</h5>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card-body">
+                        <div class="row">
+
+                            <div class="col-md-12 text-center">
+
+                                <h3 style="color: #f7f7f7; font-family: 'Ow';">Overwatch Rivals es posible gracias a la colaboración de la comunidad</h3>
+
+                            </div>
+
+                            <div class="col-md-12">
+                                <center>
+                                    
+                                    <div class="containerPatro">
+                                        <div class="wrapperPatro">
+                                            <div class="banner-image" style=" border-radius: 12px; border: 1px solid rgba(255,255,255, 0.255);"> 
+                                                <img style="width: 250px; height: 250px;" src="/img/vizius.jpg" />
+                                            </div>
+                                            <h1 class="h1Patro">Vizius Gaming</h1>
+                                            <p class="pPatro">Organización de esports y entretenimiento con base en monterrey</p>
+                                        </div>
+                                        <div class="button-wrapper"> 
+                                            <button class="btnPatro outlinePatro"><a href="https://twitter.com/ViziusGG" target="_blank">Más información</a></button>
+                                        </div>
+                                    </div>
+                                </center>
+
+                            </div>
+
+                            <div class="col-md-12 text-center mt-5">
+
+                                <h3 style="color: #f7f7f7; font-family: 'Ow'; ">Nuestros casters</h3>
+
+                            </div>
+
+                            <div class="col-md-12 container">
+
+                                <div class="row">
+
+                                    <div class="cardTeam m-3">
+                                        <div class="slide slide1">
+                                            <div class="content">
+                                                <div class="icon text-center" style=" background-image: url('/img/back4.jpg'); background-repeat: no-repeat; background-size: cover;  background-position: center center;">
+                                                    <img style="border-radius: 50%;" width="120" height="120" src="/rivals/assets/images/casters/inptun.jpeg" class="imgLogo" alt="rivals">
+                                                    <h5 style="font-family: 'Ow', sans-serif; font-size: 30px; margin-bottom: 20px; position: absolute; width: 100%; text-align: center; ">iNptun</h5>
+                                                </div>
+                                            </div>
+                                        </div>
+                    
+                                        <div class="slide slide2">
+                                            <div class="content">
+
+                                                <p style="font-family: 'Ow', sans-serif; font-size: 22px; color: #b3b3b3; text-align: center;">Redes Sociales:</p>
+                                        
+                                                <button style="color: #179cf0; border-radius: 50%; width: 40px; height: 40px;" type="button" class="btn btn-outline m-1 btnTw"><a target="_blank" href="https://twitter.com/iNptun_V"><i class="fab fa-twitter"></i></a></button>
+                                        
+                                                <button style="color: #f80d15; border-radius: 50%; width: 40px; height: 40px;" type="button" class="btn btn-outline m-1 btnIg"><a target="_blank" href="https://www.instagram.com/villasana_1/"><i class="fab fa-instagram"></i></a></button>
+
+                                                <button  style="border-radius: 50%; width: 40px; height: 40px;" type="button" class="btn btn-outline m-1 btnTk"><a target="_blank" href="https://www.tiktok.com/@inptun"><img width="15" height="15" src="/img/tklogo.png" alt="rivals"></a></button>
+
+                                                <div style="width: 300px; background-color: #0b3c64; padding: 8px; text-align: center; position: absolute; bottom: 0; left: 0;">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="cardTeam m-3">
+                                        <div class="slide slide1">
+                                            <div class="content">
+                                                <div class="icon text-center" style=" background-image: url('/img/back4.jpg'); background-repeat: no-repeat; background-size: cover;  background-position: center center;">
+                                                    <img style="border-radius: 50%;" width="120" height="120" src="/rivals/assets/images/casters/oreganitou.jpeg" class="imgLogo" alt="rivals">
+                                                    <h5 style="font-family: 'Ow', sans-serif; font-size: 30px; margin-bottom: 20px; position: absolute; width: 100%; text-align: center; ">Oreganitou</h5>
+                                                </div>
+                                            </div>
+                                        </div>
+                    
+                                        <div class="slide slide2">
+                                            <div class="content">
+
+                                                <p style="font-family: 'Ow', sans-serif; font-size: 22px; color: #b3b3b3; text-align: center;">Redes Sociales:</p>
+                                        
+                                                <button style="color: #179cf0; border-radius: 50%; width: 40px; height: 40px;" type="button" class="btn btn-outline m-1 btnTw"><a target="_blank" href="https://twitter.com/oreganitou"><i class="fab fa-twitter"></i></a></button>
+                                        
+                                                <button style="color: #f80d15; border-radius: 50%; width: 40px; height: 40px;" type="button" class="btn btn-outline m-1 btnIg"><a target="_blank" href="https://www.instagram.com/oreganitou/"><i class="fab fa-instagram"></i></a></button>
+
+                                                <button  style="border-radius: 50%; width: 40px; height: 40px;" type="button" class="btn btn-outline m-1 btnTk"><a target="_blank" href="https://www.tiktok.com/@oreganitou"><img width="15" height="15" src="/img/tklogo.png" alt="rivals"></a></button>
+
+                                                <div style="width: 300px; background-color: #0b3c64; padding: 8px; text-align: center; position: absolute; bottom: 0; left: 0;">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="cardTeam m-3">
+                                        <div class="slide slide1">
+                                            <div class="content">
+                                                <div class="icon text-center" style=" background-image: url('/img/back4.jpg'); background-repeat: no-repeat; background-size: cover;  background-position: center center;">
+                                                    <img style="border-radius: 50%;" width="120" height="120" src="/rivals/assets/images/casters/galaxy.jpeg" class="imgLogo" alt="rivals">
+                                                    <h5 style="font-family: 'Ow', sans-serif; font-size: 30px; margin-bottom: 20px; position: absolute; width: 100%; text-align: center; ">Galaxy</h5>
+                                                </div>
+                                            </div>
+                                        </div>
+                    
+                                        <div class="slide slide2">
+                                            <div class="content">
+
+                                                <p style="font-family: 'Ow', sans-serif; font-size: 22px; color: #b3b3b3; text-align: center;">Redes Sociales:</p>
+                                        
+                                                <button style="color: #179cf0; border-radius: 50%; width: 40px; height: 40px;" type="button" class="btn btn-outline m-1 btnTw"><a target="_blank" href="https://twitter.com/GalaxyDST"><i class="fab fa-twitter"></i></a></button>
+                                        
+                                                <button style="color: #f80d15; border-radius: 50%; width: 40px; height: 40px;" type="button" class="btn btn-outline m-1 btnIg"><a target="_blank" href="https://www.instagram.com/juanito_alcachofitas/"><i class="fab fa-instagram"></i></a></button>
+
+                                                <button  style="border-radius: 50%; width: 40px; height: 40px;" type="button" class="btn btn-outline m-1 btnTk"><a target="_blank" href="https://www.tiktok.com/@galaxito._.dst"><img width="15" height="15" src="/img/tklogo.png" alt="rivals"></a></button>
+
+                                                <div style="width: 300px; background-color: #0b3c64; padding: 8px; text-align: center; position: absolute; bottom: 0; left: 0;">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="cardTeam m-3">
+                                        <div class="slide slide1">
+                                            <div class="content">
+                                                <div class="icon text-center" style=" background-image: url('/img/back4.jpg'); background-repeat: no-repeat; background-size: cover;  background-position: center center;">
+                                                    <img style="border-radius: 50%;" width="120" height="120" src="/rivals/assets/images/casters/ihans.jpeg" class="imgLogo" alt="rivals">
+                                                    <h5 style="font-family: 'Ow', sans-serif; font-size: 30px; margin-bottom: 20px; position: absolute; width: 100%; text-align: center; ">IHannns</h5>
+                                                </div>
+                                            </div>
+                                        </div>
+                    
+                                        <div class="slide slide2">
+                                            <div class="content">
+
+                                                <p style="font-family: 'Ow', sans-serif; font-size: 22px; color: #b3b3b3; text-align: center;">Redes Sociales:</p>
+                                        
+                                                <button style="color: #179cf0; border-radius: 50%; width: 40px; height: 40px;" type="button" class="btn btn-outline m-1 btnTw"><a target="_blank" href="https://twitter.com/imhxns"><i class="fab fa-twitter"></i></a></button>
+                                        
+                                                <button style="color: #f80d15; border-radius: 50%; width: 40px; height: 40px;" type="button" class="btn btn-outline m-1 btnIg"><a target="_blank" href="https://www.instagram.com/hans_yonko/"><i class="fab fa-instagram"></i></a></button>
+
+                                                <button  style="border-radius: 50%; width: 40px; height: 40px;" type="button" class="btn btn-outline m-1 btnTk"><a target="_blank" href="https://www.tiktok.com/@ihxnsi"><img width="15" height="15" src="/img/tklogo.png" alt="rivals"></a></button>
+
+                                                <div style="width: 300px; background-color: #0b3c64; padding: 8px; text-align: center; position: absolute; bottom: 0; left: 0;">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="cardTeam m-3">
+                                        <div class="slide slide1">
+                                            <div class="content">
+                                                <div class="icon text-center" style=" background-image: url('/img/back4.jpg'); background-repeat: no-repeat; background-size: cover;  background-position: center center;">
+                                                    <img style="border-radius: 50%;" width="120" height="120" src="/rivals/assets/images/casters/scuty.jpg" class="imgLogo" alt="rivals">
+                                                    <h5 style="font-family: 'Ow', sans-serif; font-size: 30px; margin-bottom: 20px; position: absolute; width: 100%; text-align: center; ">Scuty</h5>
+                                                </div>
+                                            </div>
+                                        </div>
+                    
+                                        <div class="slide slide2">
+                                            <div class="content">
+
+                                                <p style="font-family: 'Ow', sans-serif; font-size: 22px; color: #b3b3b3; text-align: center;">Redes Sociales:</p>
+                                        
+                                                <button style="color: #179cf0; border-radius: 50%; width: 40px; height: 40px;" type="button" class="btn btn-outline m-1 btnTw"><a target="_blank" href="https://twitter.com/iscutyGG"><i class="fab fa-twitter"></i></a></button>
+
+                                                <div style="width: 300px; background-color: #0b3c64; padding: 8px; text-align: center; position: absolute; bottom: 0; left: 0;">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="cardTeam m-3">
+                                        <div class="slide slide1">
+                                            <div class="content">
+                                                <div class="icon text-center" style=" background-image: url('/img/back4.jpg'); background-repeat: no-repeat; background-size: cover;  background-position: center center;">
+                                                    <img style="border-radius: 50%;" width="120" height="120" src="/rivals/assets/images/casters/facu.jpg" class="imgLogo" alt="rivals">
+                                                    <h5 style="font-family: 'Ow', sans-serif; font-size: 30px; margin-bottom: 20px; position: absolute; width: 100%; text-align: center; ">CUFA</h5>
+                                                </div>
+                                            </div>
+                                        </div>
+                    
+                                        <div class="slide slide2">
+                                            <div class="content">
+
+                                                <p style="font-family: 'Ow', sans-serif; font-size: 22px; color: #b3b3b3; text-align: center;">Redes Sociales:</p>
+                                        
+                                                <button style="color: #179cf0; border-radius: 50%; width: 40px; height: 40px;" type="button" class="btn btn-outline m-1 btnTw"><a target="_blank" href="https://twitter.com/Me55irv3"><i class="fab fa-twitter"></i></a></button>
+                                        
+                                                <button style="color: #f80d15; border-radius: 50%; width: 40px; height: 40px;" type="button" class="btn btn-outline m-1 btnIg"><a target="_blank" href="https://www.instagram.com/facudacosta_/"><i class="fab fa-instagram"></i></a></button>
+
+                                                <div style="width: 300px; background-color: #0b3c64; padding: 8px; text-align: center; position: absolute; bottom: 0; left: 0;">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                
+                            </div>
+
+
+                            <div class="container">
+                                <div class="row">
+                                    
+                                    <div class="col-xl-6 col-lg-6">
+                                        <div class="cardStat l-bg-blue-dark">
+                                            <div class="card-statistic-3 p-4">
+                                                <div class="card-icon card-icon-large"><i class="fas fa-users"></i></div>
+                                                <div class="mb-4">
+                                                    <h5 style="border-bottom: 0 !important;" class="card-title mb-0">Jugadores registrados</h5>
+                                                </div>
+                                                <div class="row align-items-center mb-2 d-flex">
+                                                    <div class="col-8">
+                                                        <h2 id="tvJugadoresRegistrados" class="d-flex align-items-center mb-0">
+                                                            
+                                                        </h2>
+                                                    </div>
+                                                    <div class="col-4 text-right">
+                                                        
+                                                    </div>
+                                                </div>
+                                                <div class="progress mt-1 " data-height="8" style="height: 8px;">
+                                                    <div class="progress-bar l-bg-blue" role="progressbar" data-width="100%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" style="width: 100%;"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-xl-6 col-lg-6">
+                                        <div class="cardStat l-bg-green-dark">
+                                            <div class="card-statistic-3 p-4">
+                                                <div class="card-icon card-icon-large"><i class="fas fa-flag"></i></div>
+                                                <div class="mb-4">
+                                                    <h5 style="border-bottom: 0 !important;" class="card-title mb-0">Equipos registrados</h5>
+                                                </div>
+                                                <div class="row align-items-center mb-2 d-flex">
+                                                    <div class="col-8">
+                                                        <h2 id="tvEquiposRegistrados" class="d-flex align-items-center mb-0">
+                                                            
+                                                        </h2>
+                                                    </div>
+                                                    <div class="col-4 text-right">
+                                                        
+                                                    </div>
+                                                </div>
+                                                <div class="progress mt-1 " data-height="8" style="height: 8px;">
+                                                    <div class="progress-bar l-bg-green" role="progressbar" data-width="100%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" style="width: 100%;"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!--<div class="col-xl-6 col-lg-6">
+                                        <div class="cardStat l-bg-orange-dark">
+                                            <div class="card-statistic-3 p-4">
+                                                <div class="card-icon card-icon-large"><i class="fas fa-trophy"></i></div>
+                                                <div class="mb-4">
+                                                    <h5 style="border-bottom: 0 !important;" class="card-title mb-0">Partidas jugadas</h5>
+                                                </div>
+                                                <div class="row align-items-center mb-2 d-flex">
+                                                    <div class="col-8">
+                                                        <h2 id="tvPartidasJugadas" class="d-flex align-items-center mb-0">
+                                                            
+                                                        </h2>
+                                                    </div>
+                                                    <div class="col-4 text-right">
+                                                        
+                                                    </div>
+                                                </div>
+                                                <div class="progress mt-1 " data-height="8" style="height: 8px;">
+                                                    <div class="progress-bar l-bg-orange" role="progressbar" data-width="100%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" style="width: 100%;"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>-->
+
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    
+                    <div class="card-footer ">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<script>
+
+    $('body').on('click', '#btnCloseMsg', function(){
+        Swal.close();
+    });
+
+    function showMessage(msg){
+        Swal.fire({
+            html:`
+                <img width="120" height="120" src="../img/logo-rivals.png"></img>
+                <h1 style="margin-top: 20px; text-shadow: .1em .1em 0 hsl(200 50% 30%); color: hsl(200 50% 90%); font-size: 24px; font-weight: 900; line-height: 1.1;  ">${msg}</h1>
+
+                <button id="btnCloseMsg" style="font-size: 20px;" width="100" type="button" class="btn btn-outline-light mt-5">Aceptar</button>
+                
+            `,
+            showCloseButton: false,
+            showCancelButton: false,
+            showConfirmButton: false,
+            focusConfirm: false
+           
+        });
+    }
+    //showMessage("La plataforma se encuentra aún en desarrollo, si tienes problemas para registrarte, contáctanos para ayudarte");
+    
+    function getStats(){
+
+        let data = {
+            "function": "getStats"
+        };
+
+         $.ajax({
+            url: 'models/funciones.php',
+            type: 'POST',
+            data: data,
+            dataType: 'JSON',
+          }).done(response => {
+
+            $('#tvEquiposRegistrados').html(response.equipos);
+            $('#tvJugadoresRegistrados').html(response.jugadores);
+            $('#tvPartidasJugadas').html("0");
+            
+
+          }).fail((err, text, thr) => {
+              console.log(err, text, thr);
+          });
+
+    }
+
+    getStats();
+
+</script>

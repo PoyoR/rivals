@@ -1,0 +1,2885 @@
+<style>
+
+div:where(.swal2-container) div:where(.swal2-popup){
+  background-image: url('../img/fondo9.jpg'); background-repeat: no-repeat; background-size: cover;  background-position: center !important;   
+}
+
+.card-character {
+  width: 120px;;
+  height: 280px;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  padding: 0 36px;
+  perspective: 2500px;
+  margin: 0 50px;
+}
+
+.cover-image {
+  width: 120px;
+  height: 230px;
+  object-fit: cover;
+}
+
+.cardwrapper {
+  transition: all 0.5s;
+  position: absolute;
+  width: 134px;
+  height: 245px;
+  z-index: -1;
+  border-radius: 8px;
+}
+
+.card-character:hover .cardwrapper {
+  transform: perspective(900px) translateY(-5%) rotateX(25deg) translateZ(0);
+  box-shadow: 2px 35px 32px -8px rgba(0, 0, 0, 0.75);
+  -webkit-box-shadow: 2px 35px 32px -8px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 2px 35px 32px -8px rgba(0, 0, 0, 0.75);
+}
+
+.cardwrapper::before,
+.cardwrapper::after {
+  content: "";
+  opacity: 0;
+  width: 120px;
+  height: 80px;
+  transition: all 0.5s;
+  position: absolute;
+  left: 0;
+}
+.cardwrapper::before {
+  top: 0;
+  height: 00px;
+  background-image: linear-gradient(
+    to top,
+    transparent 46%,
+    rgba(12, 13, 19, 0.5) 68%,
+    rgba(12, 13, 19) 97%
+  );
+}
+.cardwrapper::after {
+  bottom: 0;
+  opacity: 1;
+  background-image: linear-gradient(
+    to bottom,
+    transparent 46%,
+    rgba(12, 13, 19, 0.5) 68%,
+    rgba(12, 13, 19) 97%
+  );
+}
+
+.card-character:hover .cardwrapper::before,
+.cardwrapper::after {
+  opacity: 1;
+}
+
+.card-character:hover .cardwrapper::after {
+  height: 120px;
+}
+
+/*.title {
+  width: 100%;
+  transition: transform 0.5s;
+}*/
+.card-character:hover .title {
+  transform: translate3d(0%, -50px, 100px);
+}
+
+.character {
+  width: 120px;
+  margin-left: 10px;
+  opacity: 0;
+  transition: all 0.5s;
+  position: absolute;
+  z-index: -1;
+}
+
+.card-character:hover .character {
+  opacity: 1;
+  transform: translate3d(0%, -30%, 100px);
+}
+
+
+
+
+/* GLOBAL VARIABLES */
+:root {
+  --font: "Roboto", sans-serif;
+  --fontOrigin: 1rem;     /* 16px */
+  --fontSmall: 0.625em;   /* 10px */
+  --fontMedium: 0.875em;  /* 14px */
+  --fontNormal: 1em;      /* 16px */
+  --fontLarge:  1.375em;  /* 22px */
+  --fontLight: 100;
+  --fontRegular: 400;
+  --speed: 0.65s;
+}
+
+@keyframes zoom {
+  from {
+    object-position: 0 50%;
+  }
+  to {
+    object-position: 100% 50%;
+  }
+}
+
+@keyframes blur {
+  from {
+    -webkit-transform: scale(1, 1);
+    transform: scale(1, 1);
+  }
+  to {
+    -webkit-transform: scale(1.5, 1.5);
+    transform: scale(2, 2);
+  }
+}
+
+* {
+  border: 0;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font);
+  font-weight: var(--fontOrigin);
+  font-size: 1rem;
+  line-height: 1.2;
+  letter-spacing: 0.005rem;
+  -webkit-font-smoothing: subpixel-antialiased;
+  font-smoothing: subpixel-antialiased;
+}
+
+.wrapper {
+  display: grid;
+  grid-template-columns: repeat( auto-fit, 1fr );
+  grid-template-rows: auto;
+  grid-template-areas:
+    "menu menu menu"
+    ". card .";
+  width: 100vw;
+  min-height: 100vh;
+  padding-top: 40px;
+  padding-bottom: 40px;
+}
+
+
+.cardRango {
+  margin: 20px;
+  border: 2px solid #FFF;
+  position: relative;
+  grid-area: card;
+  align-self: center;
+  justify-self: center;
+  overflow: hidden;
+  display: block;
+  width: 140px;
+  height: 280px;
+  font-size: var(--fontOrigin);
+  border-radius: 8px;
+  box-shadow: 0 16px 60px rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+  -webkit-transition: all var(--speed) ease;
+  transition: all var(--speed) ease;
+}
+
+.cardRango:hover {
+  box-shadow: 0 40px 130px rgba(0, 0, 0, 0.6);
+  -webkit-transform: scale(1.1, 1.1);
+  transform: scale(1.1, 1.1);
+}
+
+
+
+.cardRango:hover .card__save {
+  opacity: 0.6;
+}
+
+.card__image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+  display: block;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0.5));
+}
+
+.card__image img {
+  -webkit-transform: scale(1.3, 1.3);
+  transform: scale(1.3, 1.3);
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 1;
+  -webkit-transition: all var(--speed) ease;
+  transition: all var(--speed) ease;
+  animation-name: zoom;
+  animation-duration: 30s;
+  animation-direction: alternate;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+.cardRango:hover .card__image img {
+  -webkit-transform: scale(1, 1);
+  transform: scale(1, 1);
+  opacity: 0.5;
+}
+
+.card__header {
+  display: grid;
+  width: 100%;
+  height: 100%;
+}
+
+.card__profile {
+  align-self: center;
+  justify-self: center;
+  display: block;
+  overflow: hidden;
+  width: 90px;
+  height: 80px;
+  z-index: 10;
+}
+
+.card__profile img {
+
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-position: 50% 50%;
+  -webkit-transition: all var(--speed) ease;
+  transition: all var(--speed) ease;
+  mix-blend-mode: normal;
+  
+}
+
+.card__name {
+  z-index: 10;
+  margin-bottom: 2px;
+  color: white;
+  font-size: var(--fontLarge);
+  font-weight: var(--fontLight);
+  letter-spacing: 0.1rem;
+  text-align: center;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.35);
+  background: -webkit-linear-gradient(white, #a1a1a1);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  -webkit-transition: all var(--speed) ease;
+  transition: all var(--speed) ease;
+}
+
+.cardRango:hover .card__name {
+  background: -webkit-linear-gradient(white, #c1c1c1);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.card__job {
+  align-self: center;
+  justify-self: center;
+  display: inline-block;
+  font-size: var(--fontSmall);
+  font-weight: var(--fontLight);
+  text-align: center;
+  letter-spacing: 0.35rem;
+  color: rgba(100, 130, 200, 0.45);
+  -webkit-transition: all var(--speed) ease;
+  transition: all var(--speed) ease;
+}
+
+.cardRango:hover .card__job {
+  color: rgba(100, 130, 200, 1);
+}
+
+.card__bio {
+  position: relative;
+  -webkit-transform: translateY(30%);
+  transform: translateY(30%);
+  display: block;
+  
+  font-size: var(--fontMedium);
+  font-weight: var(--fontLight);
+  /*text-shadow: 0 0.5px 1px rgba(0, 0, 0, 0.35);*/
+  color: rgba(255, 255, 255, 0.65);
+  opacity: 0;
+  -webkit-transition: all var(--speed) ease;
+  transition: all var(--speed) ease;
+}
+
+.cardRango:hover .card__bio {
+  -webkit-transform: translateY(0);
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.card__footer {
+  position: relative;
+  -webkit-transform: translateY(60%);
+  transform: translateY(60%);
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-areas: "date category";
+  padding: 10px 20px;
+  opacity: 0;
+  -webkit-transition: all var(--speed) ease;
+  transition: all var(--speed) ease;
+}
+
+.cardRango:hover .card__footer {
+  -webkit-transform: translateY(0);
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.card__date {
+  grid-area: date;
+  display: inline-block;
+  align-self: left;
+  justify-self: left;
+  font-size: var(--fontSmall);
+  font-weight: var(--fontLight);
+  text-transform: uppercase;
+  text-shadow: 0 0.5px 1px rgba(0, 0, 0, 0.45);
+  color: rgba(250, 250, 250, 0.4);
+}
+
+
+svg {
+	height: 350px;
+	width: 350px;
+}
+
+.overwatch-loader {
+  width: 25%;
+  position: relative;
+  margin: 0px auto;
+}
+.overwatch-logo {
+  filter:
+    drop-shadow(0 0 120px rgba(255,255,255,0.15))
+    drop-shadow(0 0 16px rgba(255,255,255,0.05));
+  opacity: 0.8;
+}
+.circularCW,
+.circularCCW {
+  height: 100%;
+  transform-origin: center center;
+  width: 100%;
+  position: absolute;
+  top: 0; bottom: 0; left: 0; right: 0;
+  margin: auto;
+}
+.circularCW {
+  animation: rotate 2s linear infinite;
+}
+.circularCCW {
+  animation: rotate-reverse 4s linear infinite;
+}
+.path,
+.path2,
+.path3,
+.path4,
+.path5,
+.path6,
+.path7,
+.path8 {
+  stroke-linecap: square;
+  stroke-width: 33;
+  opacity: 0.8;
+}
+.path {
+  stroke-dasharray: 1400,2600;
+  stroke-dashoffset: 0;
+  animation: dash 3.7s ease-in-out infinite;
+  opacity: 0.3;
+}
+.path2 {
+  stroke-dasharray: 40,2600;
+  stroke-dashoffset: -500px;
+}
+.path3 {
+  stroke-dasharray: 200,2600;
+  stroke-dashoffset: -700px;
+}
+.path4 {
+  stroke-dasharray: 40,2600;
+  stroke-dashoffset: -2000px;
+  animation: dash2 2.5s ease-in-out infinite;
+}
+.path5 {
+  stroke-dasharray: 200,2600;
+  stroke-dashoffset: 0;
+}
+.path6 {
+  stroke-dasharray: 300,2600;
+  stroke-dashoffset: -1000px;
+}
+.path7 {
+  stroke-dasharray: 40,2600;
+  stroke-dashoffset: -1200px;
+}
+.path8 {
+  stroke-dasharray: 100,2600;
+  stroke-dashoffset: -300px;
+}
+
+@keyframes rotate{
+ 100%{
+  transform: rotate(360deg);
+ }
+}
+
+@keyframes rotate-reverse {
+ 100%{
+  transform: rotate(-360deg);
+ }
+}
+@keyframes dash{
+ 0%{
+  stroke-dasharray: 2000,2600;
+  stroke-dashoffset: 0;
+ }
+ 50%{
+  stroke-dasharray: 2400,2600;
+  stroke-dashoffset: -500px;
+ }
+ 100%{
+  stroke-dasharray: 2000,2600;
+  stroke-dashoffset: 0;
+ }
+}
+@keyframes dash2 {
+ 0%{
+  stroke-dasharray: 100,2600;
+  stroke-dashoffset: -2000px;
+ }
+ 50%{
+  stroke-dasharray: 500,2600;
+  stroke-dashoffset: -1000px;
+ }
+ 100%{
+  stroke-dasharray: 100,2600;
+  stroke-dashoffset: -1960px;
+ }
+}
+body {
+  background: #333;
+}
+
+
+h1{
+    font-size: 2em;
+    font-weight: normal;
+}
+
+/* title styles */
+.home-title span{
+    position: relative;
+    overflow: hidden;
+    display: block;
+    line-height: 1.2;
+}
+
+.home-title span::after{
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    background: white;
+    animation: a-ltr-after 2s cubic-bezier(.77,0,.18,1) forwards;
+    transform: translateX(-101%);
+}
+
+.home-title span::before{
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--bg-color);
+    animation: a-ltr-before 2s cubic-bezier(.77,0,.18,1) forwards;
+    transform: translateX(0);
+}
+
+.home-title span:nth-of-type(1)::before,
+.home-title span:nth-of-type(1)::after{
+    animation-delay: 1s;
+}
+
+.home-title span:nth-of-type(2)::before,
+.home-title span:nth-of-type(2)::after{
+    animation-delay: 1.5s;
+}
+
+@keyframes a-ltr-after{
+    0% {transform: translateX(-100%)}
+    100% {transform: translateX(101%)}
+}
+
+@keyframes a-ltr-before{
+    0% {transform: translateX(0)}
+    100% {transform: translateX(200%)}
+}
+
+:root{
+    --bg-color: #28303f;
+}
+
+.containerInvs {
+  position : relative;
+  
+  display : flex;
+  align-items : center;
+  justify-content : center;
+  flex-warp : warp;
+  padding : 30px;  
+}
+
+.containerInvs .card {
+  position: relative;
+  max-width : 210px;
+  height : 160px;  
+  background-color : #fff;
+  margin : 30px 10px;
+  padding : 20px 15px;
+  
+  display : flex;
+  flex-direction : column;
+  box-shadow : 0 5px 20px rgba(0,0,0,0.5);
+  transition : 0.3s ease-in-out;
+  border-radius : 15px;
+}
+.containerInvs .card:hover {
+  height : 210px;    
+}
+
+
+.containerInvs .card .image {
+  position : relative;
+  width : 160px;
+  height : 160px;
+  top : -50%;
+  left: 8px;
+  background-color: #FFF;
+  border-radius: 5px;
+  box-shadow : 0 5px 20px rgba(0,0,0,0.2);
+  z-index : 1;
+}
+
+.containerInvs .card .image:hover {
+  cursor: pointer;
+}
+
+.containerInvs .card .image img {
+  max-width : 100%;
+  border-radius : 15px;
+}
+
+.containerInvs .card .content {
+  position : relative;
+  top : -140px;
+  
+  color : #111;
+  text-align : center;
+  
+  visibility : hidden;
+  opacity : 0;
+  transition : 0.3s ease-in-out;
+    
+}
+
+.containerInvs .card:hover .content {
+   margin-top : 70px;
+   visibility : visible;
+   opacity : 1;
+   transition-delay: 0.2s;
+}
+
+@keyframes fadein {
+        from {
+            opacity:0;
+        }
+        to {
+            opacity:1;
+        }
+    }
+    @-moz-keyframes fadein { /* Firefox */
+        from {
+            opacity:0;
+        }
+        to {
+            opacity:1;
+        }
+    }
+    @-webkit-keyframes fadein { /* Safari and Chrome */
+        from {
+            opacity:0;
+        }
+        to {
+            opacity:1;
+        }
+    }
+    @-o-keyframes fadein { /* Opera */
+        from {
+            opacity:0;
+        }
+        to {
+            opacity: 1;
+        }
+    }
+
+    /* Card Styles */
+
+    .fadeAnim {
+      animation: fadein 4s ease-in;
+    }
+
+
+    .words {
+        font-family: 'Ow', 'sans-serif';
+  color: #d3d3d3;
+  font-size: 0;
+  line-height: 1.5;
+}
+
+.words span {
+  font-size: 5rem;
+  display: inline-block;
+  animation: move 3s ease-in-out infinite;
+}
+
+@keyframes move {
+  0% {
+    transform: translate(-30%, 0);
+  }
+  50% {
+    text-shadow: 0 25px 50px rgba(0, 0, 0, 0.75);
+  }
+  100% {
+    transform: translate(30%, 0);
+  }
+}
+
+.words span:nth-child(2) {
+  animation-delay: 0.5s;
+}
+
+.words span:nth-child(3) {
+  animation-delay: 1s;
+}
+
+.words span:nth-child(4) {
+  animation-delay: 1.5s;
+}
+
+.words span:nth-child(5) {
+  animation-delay: 2s;
+}
+
+.words span:nth-child(6) {
+  animation-delay: 2.5s;
+}
+
+.words span:nth-child(7) {
+  animation-delay: 3s;
+}
+
+.words span:nth-child(8) {
+  animation-delay: 3.5s;
+}
+
+.words span:nth-child(9) {
+  animation-delay: 4s;
+}
+
+.words span:nth-child(10) {
+  animation-delay: 4.5s;
+}
+
+
+.divPerfilInvalido{
+    font-family: "Archivo Black", sans-serif;
+    background-color: #f4d03f !important;
+}
+</style>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+            <div class="content">
+                <div class="card " style="background: #28303f; color: #FFF; margin: 0px;">
+                    <!--<div class="card-header ">
+                        <div class="row">
+                        
+                        </div>
+                    </div>-->
+
+                    <div class="card-body p-0" style="background-image: url('../img/fondo9.jpg'); background-repeat: no-repeat;  background-size: cover;">
+
+                        <div id="divPortada" style="padding: 20px;">
+
+                            <div class="row">
+
+                              <div class="col-md-12 text-right">
+                                <button type="button" class="btn btn-outline-light m-1"><i class="fas fa-user-edit"></i><a href="views/editar_perfil.html" class="nuevoLink"> Editar información</a></button>
+                              </div>
+
+                                <div class="col-md-12 text-center">
+                                    <h5 style="font-size: 25px;" id="tvBt"></h5>
+                                </div>
+
+                                <div class="col-md-12 text-center">
+                                    <img id="imgPerfil" style="border-radius: 50%;" width="150" height="150" alt="rivals">
+                                </div>
+
+                                <div class="col-md-12 text-center">
+                                    <h5 style="font-family: 'Ow', sans-serif; font-size: 35px;" id="tvUsuario"></h5>
+                                </div>
+
+                                <div class="col-md-12 text-center">
+
+                                    <div class="row">
+
+                                        <div style="text-align: right;" id="divTwitter" class="col-md-6">
+                                            
+                                        </div>
+
+                                        <div style="text-align: left;" id="divTwitch" class="col-md-6">
+                                            
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        
+                        </div>
+
+
+                        <div id="divInvitaciones" style="background-color: #28303f; padding: 20px; display: none;">
+                          
+                          <h1 class="home-title">
+                            <span>Invitaciones pendientes</span>
+                          </h1>
+
+                          <div class="containerInvs row fadeAnim">
+                            
+                          </div>
+
+
+                        </div>
+
+                        <div class="row" >
+
+                            <div id="divCargando" class="col-md-12 text-center p-5">
+                              <svg class="overwatch-logo" viewbox="0 0 1000 1000">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="600" height="600" x="200" y="210">
+                                    <defs></defs>
+                                    <path d="M296.704.004c-66.766.428-132.772 24.23-184.63 66.083l56.662 65.786c47.82-37.74 112.256-53.118 172.018-41.237 32.844 6.318 64.096 20.74 90.464 41.237l56.66-65.786C434.242 22.804 365.77-1.03 296.705.004z" color="#000" fill="#fa9c1e" overflow="visible"/>
+                                    <path d="M93.628 82.253C33.924 138.343-1.082 219.877.026 302.123c.035 85.37 38.978 169.23 103.652 224.696 59.78 52.283 141.085 78.917 220.46 72.18 86.01-6.405 167.65-52.345 218.118-122.143 49.125-66.33 68.37-153.797 52.064-234.91-11.987-62.09-44.54-119.634-90.837-162.405l-56.662 65.786c45.657 43.034 70.586 106.557 65.886 169.224-2.056 31.05-11.074 61.69-26.314 88.96L370.92 291.974 312.66 166.39l-.088 190.18 116.695 112.926c-52.002 40.402-123.353 53.802-186.578 35.894-25.744-7.18-50.122-19.23-71.31-35.398L288.87 356.57c-.206-61.831.717-128.578 0-190.383L230.52 291.974 114.058 404.437c-35.53-62.024-36.38-142.21-2.182-204.927 10.69-20.092 24.84-38.428 41.257-54.182L96.47 79.542l-2.842 2.71z" color="#000" fill="#fff" overflow="visible"/>
+                              </svg>
+                              </svg>
+                              <svg class="circularCW" viewbox="0 0 1000 1000">
+                                  <circle class="path" cx="500" cy="500" r="355" stroke="#fa9c1e"  fill="none" />
+                              </svg>
+                              <svg class="circularCCW" viewbox="0 0 1000 1000" style="animation-duration: 1.5s">
+                                  <circle class="path2" cx="500" cy="500" r="355" stroke="#fa9c1e" fill="none" />
+                              </svg>
+                              <svg class="circularCW" viewbox="0 0 1000 1000">
+                                  <circle class="path3" cx="500" cy="500" r="355" stroke="#fa9c1e" fill="none" />
+                              </svg>
+                                <svg class="circularCW" viewbox="0 0 1000 1000">
+                                  <circle class="path4" cx="500" cy="500" r="355" stroke="#fa9c1e" fill="none" />
+                              </svg>
+                              <svg class="circularCW" viewbox="0 0 1000 1000">
+                                  <circle class="path5" cx="500" cy="500" r="420" stroke="#fff" fill="none" />
+                              </svg>
+                                <svg class="circularCW" viewbox="0 0 1000 1000">
+                                  <circle class="path6" cx="500" cy="500" r="420" stroke="#fff" fill="none" />
+                              </svg>
+                                <svg class="circularCCW" viewbox="0 0 1000 1000">
+                                  <circle class="path7" cx="500" cy="500" r="420" stroke="#fff" fill="none" />
+                              </svg>
+                                <svg class="circularCCW" viewbox="0 0 1000 1000" style="animation-timing-function: ease-in-out">
+                                  <circle class="path8" cx="500" cy="500" r="420" stroke="#fff" fill="none" />
+                              </svg>
+                            </div>
+
+
+
+                            <div style=" padding: 0px 15px; display: none;" id="divPerfilOw" class="col-md-12 text-center">
+                              
+                              <div style="padding: 20px; background-color: rgba(255, 88, 0, 0.85);">
+                                <h5 style="font-family: 'Ow', sans-serif; font-size: 45px;">Rangos</h5>
+                              </div>
+
+                            </div>
+
+                            <div style=" padding: 0px 15px; display: none;" id="divPerfilOw2" class="col-md-12 text-center ">
+
+                              
+                            </div>
+
+                            <div style=" padding: 0px 15px; display: none; " id="divPerfilInvalido" class="col-md-12 text-center ">
+                                    
+    
+                              <div class="words word-1">
+                                  <span>B</span>
+                                  <span>A</span>
+                                  <span>T</span>
+                                  <span>T</span>
+                                  <span>L</span>
+                                  <span>E</span>
+                                  <span>T</span>
+                                  <span>A</span>
+                                  <span>G</span>
+                                </div>
+                                
+                                <div class="words word-2">
+                                  <span>I</span>
+                                  <span>N</span>
+                                  <span>V</span>
+                                  <span>A</span>
+                                  <span>L</span>
+                                  <span>I</span>
+                                  <span>D</span>
+                                  <span>O</span>
+                                </div>
+
+                            </div>
+
+                            <div style=" padding: 0px 15px; display: none; " id="divPerfilPrivado" class="col-md-12 text-center ">
+                                    
+    
+                              <div class="words word-1">
+                                  <span>P</span>
+                                  <span>E</span>
+                                  <span>R</span>
+                                  <span>F</span>
+                                  <span>I</span>
+                                  <span>L</span>
+                                </div>
+                                
+                                <div class="words word-2">
+                                  <span>P</span>
+                                  <span>R</span>
+                                  <span>I</span>
+                                  <span>V</span>
+                                  <span>A</span>
+                                  <span>D</span>
+                                  <span>O</span>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+                    
+                    <!--<div class="card-footer ">
+
+                        
+                            <div class="card-character" >
+                              <div class="cardwrapper" style="border: 7px solid #FFF; ">
+                                <img width="120px" src="assets/images/portadas/lucio.jpg" class="cover-image" />
+                              </div>
+                              
+                              <img style="width: 150px !important;" height="170px" src="assets/images/portadas/lucio.png" class="character" />
+                            </div>
+                            
+                            
+
+                            <div class="card-character" >
+                                <div class="cardwrapper" style="border: 7px solid #FFF; ">
+                                  <img width="120px" src="assets/images/portadas/ashe.jpg" class="cover-image" />
+                                </div>
+                                
+                                <img height="180px" src="assets/images/portadas/ashe.png" class="character" />
+                            </div>
+
+                            <div class="card-character" >
+                                <div class="cardwrapper" style="border: 7px solid #FFF; ">
+                                  <img width="120px" src="assets/images/portadas/bap.jpg" class="cover-image" />
+                                </div>
+                                
+                                <img style="width: 160px !important; margin-right: 30px !important;" height="200px" src="assets/images/portadas/bap.png" class="character" />
+                            </div>
+
+                            <div class="card-character" >
+                                <div class="cardwrapper" style="border: 7px solid #FFF; ">
+                                  <img width="120px" src="assets/images/portadas/bastion.jpg" class="cover-image" />
+                                </div>
+                                
+                                <img style="width: 200px !important; margin-right: 30px !important;" height="180px" src="assets/images/portadas/bastion.png" class="character" />
+                            </div>
+
+                            <div class="card-character" >
+                                <div class="cardwrapper" style="border: 7px solid #FFF; ">
+                                  <img width="120px" src="assets/images/portadas/brig.jpg" class="cover-image" />
+                                </div>
+                                <img width="120px" src="assets/images/portadas/luciospray.png" class="title" />
+                                <img style="width: 180px !important; margin-right: 30px !important;" height="210px" src="assets/images/portadas/brig.png" class="character" />
+                            </div>
+
+                            <div class="card-character" >
+                                <div class="cardwrapper" style="border: 7px solid #FFF; ">
+                                  <img width="120px" src="assets/images/portadas/cree.jpg" class="cover-image" />
+                                </div>
+                                <img width="120px" src="assets/images/portadas/luciospray.png" class="title" />
+                                <img style="width: 160px !important; margin-right: 30px !important;" height="190px" src="assets/images/portadas/cree.png" class="character" />
+                            </div>
+
+                            <div class="card-character" >
+                                <div class="cardwrapper" style="border: 7px solid #FFF; ">
+                                  <img width="120px" src="assets/images/portadas/dva.jpg" class="cover-image" />
+                                </div>
+                                <img width="120px" src="assets/images/portadas/luciospray.png" class="title" />
+                                <img style="width: 160px !important; margin-right: 30px !important;" height="190px" src="assets/images/portadas/dva.png" class="character" />
+                            </div>
+
+                            <div class="card-character" >
+                                <div class="cardwrapper" style="border: 7px solid #FFF; ">
+                                  <img width="120px" src="assets/images/portadas/doom.jpg" class="cover-image" />
+                                </div>
+                                <img width="120px" src="assets/images/portadas/luciospray.png" class="title" />
+                                <img style="width: 170px !important; margin-right: 30px !important;" height="190px" src="assets/images/portadas/doom.png" class="character" />
+                            </div>
+
+                            <div class="card-character" >
+                                <div class="cardwrapper" style="border: 7px solid #FFF; ">
+                                  <img width="120px" src="assets/images/portadas/echo.jpg" class="cover-image" />
+                                </div>
+                                <img width="120px" src="assets/images/portadas/luciospray.png" class="title" />
+                                <img style="width: 180px !important;" height="190px" src="assets/images/portadas/echo.png" class="character" />
+                            </div>
+
+                            <div class="card-character" >
+                                <div class="cardwrapper" style="border: 7px solid #FFF; ">
+                                  <img width="120px" src="assets/images/portadas/genji.jpg" class="cover-image" />
+                                </div>
+                                <img width="120px" src="assets/images/portadas/luciospray.png" class="title" />
+                                <img style="width: 175px !important;" height="180px" src="assets/images/portadas/genji.png" class="character" />
+                            </div>
+
+                            <div class="card-character" >
+                                <div class="cardwrapper" style="border: 7px solid #FFF; ">
+                                  <img width="120px" src="assets/images/portadas/hanzo.jpg" class="cover-image" />
+                                </div>
+                                <img width="120px" src="assets/images/portadas/luciospray.png" class="title" />
+                                <img style="width: 160px !important;" height="185px" src="assets/images/portadas/hanzo.png" class="character" />
+                            </div>
+
+                            <div class="card-character" >
+                                <div class="cardwrapper" style="border: 7px solid #FFF; ">
+                                  <img width="120px" src="assets/images/portadas/jq.jpg" class="cover-image" />
+                                </div>
+                                <img width="120px" src="assets/images/portadas/luciospray.png" class="title" />
+                                <img style="width: 150px !important;" height="200px" src="assets/images/portadas/jq.png" class="character" />
+                            </div>
+
+                            <div class="card-character" >
+                                <div class="cardwrapper" style="border: 7px solid #FFF; ">
+                                  <img width="120px" src="assets/images/portadas/junk.jpg" class="cover-image" />
+                                </div>
+                                <img width="120px" src="assets/images/portadas/luciospray.png" class="title" />
+                                <img style="width: 150px !important;" height="215px" src="assets/images/portadas/junk.png" class="character" />
+                            </div>
+
+                            
+
+                            <div class="card-character" >
+                                <div class="cardwrapper" style="border: 7px solid #FFF; ">
+                                  <img width="120px" src="assets/images/portadas/lw.jpg" class="cover-image" />
+                                </div>
+                                <img width="120px" src="assets/images/portadas/luciospray.png" class="title" />
+                                <img style="width: 165px !important;" height="198px" src="assets/images/portadas/lw.png" class="character" />
+                            </div>
+
+                            <div class="card-character" >
+                                <div class="cardwrapper" style="border: 7px solid #FFF; ">
+                                  <img width="120px" src="assets/images/portadas/mei.jpg" class="cover-image" />
+                                </div>
+                                <img width="120px" src="assets/images/portadas/luciospray.png" class="title" />
+                                <img style="width: 165px !important;" height="198px" src="assets/images/portadas/mei.png" class="character" />
+                            </div>
+
+                            <div class="card-character" >
+                                <div class="cardwrapper" style="border: 7px solid #FFF; ">
+                                  <img width="120px" src="assets/images/portadas/mercy.jpg" class="cover-image" />
+                                </div>
+                                <img width="120px" src="assets/images/portadas/luciospray.png" class="title" />
+                                <img style="width: 165px !important; margin-left: 30px !important;" height="198px" src="assets/images/portadas/mercy.png" class="character" />
+                            </div>
+
+                            <div class="card-character" >
+                              <div class="cardwrapper" style="border: 7px solid #FFF; ">
+                                <img width="120px" src="assets/images/portadas/moira.jpg" class="cover-image" />
+                              </div>
+                              <img width="120px" src="assets/images/portadas/luciospray.png" class="title" />
+                              <img style="width: 165px !important; margin-left: 30px !important;" height="198px" src="assets/images/portadas/moira.png" class="character" />
+                            </div>
+
+                            <div class="card-character" >
+                              <div class="cardwrapper" style="border: 7px solid #FFF; ">
+                                <img width="120px" src="assets/images/portadas/orisa.jpg" class="cover-image" />
+                              </div>
+                              <img width="120px" src="assets/images/portadas/luciospray.png" class="title" />
+                              <img style="width: 175px !important;" height="198px" src="assets/images/portadas/orisa.png" class="character" />
+                            </div>
+
+                            <div class="card-character" >
+                              <div class="cardwrapper" style="border: 7px solid #FFF; ">
+                                <img width="120px" src="assets/images/portadas/phara.jpg" class="cover-image" />
+                              </div>
+                              <img width="120px" src="assets/images/portadas/luciospray.png" class="title" />
+                              <img style="width: 170px !important; margin-right: 20px;" height="210px" src="assets/images/portadas/phara.png" class="character" />
+                            </div>
+
+                            <div class="card-character" >
+                              <div class="cardwrapper" style="border: 7px solid #FFF; ">
+                                <img width="120px" src="assets/images/portadas/ram.jpg" class="cover-image" />
+                              </div>
+                              <img width="120px" src="assets/images/portadas/luciospray.png" class="title" />
+                              <img style="width: 170px !important; margin-right: 20px;" height="205px" src="assets/images/portadas/ram.png" class="character" />
+                            </div>
+
+                            <div class="card-character" >
+                              <div class="cardwrapper" style="border: 7px solid #FFF; ">
+                                <img width="120px" src="assets/images/portadas/reaper.jpg" class="cover-image" />
+                              </div>
+                              <img width="120px" src="assets/images/portadas/luciospray.png" class="title" />
+                              <img style="width: 170px !important; margin-right: 20px;" height="205px" src="assets/images/portadas/reaper.png" class="character" />
+                            </div>
+
+                            <div class="card-character" >
+                              <div class="cardwrapper" style="border: 7px solid #FFF; ">
+                                <img width="120px" src="assets/images/portadas/reinhardt.jpg" class="cover-image" />
+                              </div>
+                              <img width="120px" src="assets/images/portadas/luciospray.png" class="title" />
+                              <img style="width: 180px !important; margin-right: 20px;" height="205px" src="assets/images/portadas/reinhardt.png" class="character" />
+                            </div>
+
+                            <div class="card-character" >
+                              <div class="cardwrapper" style="border: 7px solid #FFF; ">
+                                <img width="120px" src="assets/images/portadas/roadhog.jpg" class="cover-image" />
+                              </div>
+                              <img width="120px" src="assets/images/portadas/luciospray.png" class="title" />
+                              <img style="width: 190px !important;" height="205px" src="assets/images/portadas/roadhog.png" class="character" />
+                            </div>
+
+                            <div class="card-character" >
+                              <div class="cardwrapper" style="border: 7px solid #FFF; ">
+                                <img width="120px" src="assets/images/portadas/sigma.jpg" class="cover-image" />
+                              </div>
+                              <img width="120px" src="assets/images/portadas/luciospray.png" class="title" />
+                              <img style="width: 175px !important;" height="225px" src="assets/images/portadas/sigma.png" class="character" />
+                            </div>
+
+                            <div class="card-character" >
+                              <div class="cardwrapper" style="border: 7px solid #FFF; ">
+                                <img width="120px" src="assets/images/portadas/soujorn.jpg" class="cover-image" />
+                              </div>
+                              <img width="120px" src="assets/images/portadas/luciospray.png" class="title" />
+                              <img style="width: 175px !important; margin-top: 30px;" height="225px" src="assets/images/portadas/soujorn.png" class="character" />
+                            </div>
+
+                            <div class="card-character" >
+                              <div class="cardwrapper" style="border: 7px solid #FFF; ">
+                                <img width="120px" src="assets/images/portadas/soldier.jpg" class="cover-image" />
+                              </div>
+                              <img width="120px" src="assets/images/portadas/luciospray.png" class="title" />
+                              <img style="width: 225px !important; margin-top: 30px;" height="225px" src="assets/images/portadas/soldier.png" class="character" />
+                            </div>
+
+                            <div class="card-character" >
+                              <div class="cardwrapper" style="border: 7px solid #FFF; ">
+                                <img width="120px" src="assets/images/portadas/sombra.jpg" class="cover-image" />
+                              </div>
+                              <img width="120px" src="assets/images/portadas/luciospray.png" class="title" />
+                              <img style="width: 225px !important; margin-top: 30px;" height="210px" src="assets/images/portadas/sombra.png" class="character" />
+                            </div>
+
+                            <div class="card-character" >
+                              <div class="cardwrapper" style="border: 7px solid #FFF; ">
+                                <img width="120px" src="assets/images/portadas/symmetra.jpg" class="cover-image" />
+                              </div>
+                              <img width="120px" src="assets/images/portadas/luciospray.png" class="title" />
+                              <img style="width: 160px !important; margin-top: 30px;" height="180px" src="assets/images/portadas/symmetra.png" class="character" />
+                            </div>
+
+                            <div class="card-character" >
+                              <div class="cardwrapper" style="border: 7px solid #FFF; ">
+                                <img width="120px" src="assets/images/portadas/torbjorn.jpg" class="cover-image" />
+                              </div>
+                              <img width="120px" src="assets/images/portadas/luciospray.png" class="title" />
+                              <img style="width: 190px !important; margin-top: 30px;" height="180px" src="assets/images/portadas/torbjorn.png" class="character" />
+                            </div>
+
+                            <div class="card-character" >
+                              <div class="cardwrapper" style="border: 7px solid #FFF; ">
+                                <img width="120px" src="assets/images/portadas/tracer.jpg" class="cover-image" />
+                              </div>
+                              <img width="120px" src="assets/images/portadas/luciospray.png" class="title" />
+                              <img style="width: 190px !important; margin-top: 30px;" height="200px" src="assets/images/portadas/tracer.png" class="character" />
+                            </div>
+
+                            <div class="card-character" >
+                              <div class="cardwrapper" style="border: 7px solid #FFF; ">
+                                <img width="120px" src="assets/images/portadas/widowmaker.jpg" class="cover-image" />
+                              </div>
+                              <img width="120px" src="assets/images/portadas/luciospray.png" class="title" />
+                              <img style="width: 190px !important; margin-top: 30px;" height="200px" src="assets/images/portadas/widowmaker.png" class="character" />
+                            </div>
+
+                            <div class="card-character" >
+                              <div class="cardwrapper" style="border: 7px solid #FFF; ">
+                                <img width="120px" src="assets/images/portadas/winston.jpg" class="cover-image" />
+                              </div>
+                              <img width="120px" src="assets/images/portadas/luciospray.png" class="title" />
+                              <img style="width: 190px !important; margin-top: 30px;" height="200px" src="assets/images/portadas/winston.png" class="character" />
+                            </div>
+
+                            <div class="card-character" >
+                              <div class="cardwrapper" style="border: 7px solid #FFF; ">
+                                <img width="120px" src="assets/images/portadas/wreckingball.jpg" class="cover-image" />
+                              </div>
+                              <img width="120px" src="assets/images/portadas/luciospray.png" class="title" />
+                              <img style="width: 190px !important; margin-top: 30px;" height="200px" src="assets/images/portadas/wreckingball.png" class="character" />
+                            </div>
+
+                            <div class="card-character" >
+                              <div class="cardwrapper" style="border: 7px solid #FFF; ">
+                                <img width="120px" src="assets/images/portadas/zarya.jpg" class="cover-image" />
+                              </div>
+                              <img width="120px" src="assets/images/portadas/luciospray.png" class="title" />
+                              <img style="width: 200px !important; margin-top: 30px;" height="200px" src="assets/images/portadas/zarya.png" class="character" />
+                            </div>
+
+                            <div class="card-character" >
+                              <div class="cardwrapper" style="border: 7px solid #FFF; ">
+                                <img width="120px" src="assets/images/portadas/zenyatta.jpg" class="cover-image" />
+                              </div>
+                              <img width="120px" src="assets/images/portadas/luciospray.png" class="title" />
+                              <img style="width: 180px !important; margin-top: 30px;" height="180px" src="assets/images/portadas/zenyatta.png" class="character" />
+                            </div>
+
+                    </div>-->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+
+    function getDatosPerfil(){
+
+        showCargandoDialog();
+
+        let data = {
+            "function": "getDatosPerfil"
+        };
+
+        $.ajax({
+            url: 'models/funciones.php',
+            type: 'POST',
+            dataType: 'JSON',
+            data: data,
+        }).done(response => {
+            
+            console.log(response);
+            Swal.fire("Ok", "", "success");
+            Swal.close();
+            
+            if (response.status == 1) {
+
+                var twitter = "";
+                var twitch = "";
+
+                $('#tvBt').html(response.data[0].battlenet);
+                $('#tvUsuario').html(response.data[0].usuario.toUpperCase());
+
+
+                if(response.data[0].twitter != ""){
+                    twitter = `<button type="button" class="btn btn-outline-light m-1"><i class="fab fa-twitter"></i><a target="_blank" href="${response.data[0].twitter}"> Twitter</a></button>`;
+                }
+
+                if(response.data[0].twitch != ""){
+                    twitch = `<button type="button" class="btn btn-outline-light m-1"><i class="fab fa-twitch"></i><a target="_blank" href="${response.data[0].twitch}"> Twitch</a></button>`;
+                }
+
+                $('#divTwitter').html(twitter);
+                $('#divTwitch').html(twitch);
+
+                $('#imgPerfil').attr("src", response.data[0].perfil);
+
+                getPerfilOw(response.data[0].battlenet);
+                
+                
+
+            }else{
+                
+            }
+
+        }).fail((err, text, thr) => {
+            
+            Swal.fire("Error", 'Hubo un problema al conectar con el servidor', 'error');
+            console.log(err, text, thr);
+        });
+
+    }
+    getDatosPerfil();   
+
+    function getPerfilOw(battletag){
+
+        var bt = battletag.replace("#", "-");
+        
+        $.ajax({
+            url: `https://owapi.io/profile/pc/us/${bt}`,
+            type: 'GET',
+            dataType: 'JSON',
+        }).done(response => {
+
+            console.log(response);
+
+            if(response.private){
+              $('#divCargando').hide();
+              $('#divPerfilPrivado').show();
+              $('#divPerfilOw').hide();
+              $('#divPerfilOw2').hide();
+              return;
+            }
+
+            getPerfilOw2(battletag);
+
+            var html = `
+
+            <div class="row text-center d-flex justify-content-center">
+
+              <div class="cardRango" data-effect="zoom">
+                
+                <figure  class="card__image">
+                  <img src="/img/tankrole.jpg" alt="rivals">
+                </figure>
+                <div class="card__header">
+                  <figure class="card__profile">
+                    <img src="${response.competitive.tank.icon}" alt="rivals">
+                    
+                  </figure>
+                  <h3 style="font-family: 'Ow', sans-serif; font-size: 22px;" class="card__name">TANK</h3>
+                </div>
+                
+                <div class="card__body">
+                </div>
+              
+              </div>
+
+              <div class="cardRango" data-effect="zoom">
+                
+                <figure  class="card__image">
+                  <img src="/img/dpsrole.jpg" alt="rivals">
+                </figure>
+                <div class="card__header">
+                  <figure class="card__profile">
+                    <img src="${response.competitive.offense.icon}" alt="rivals">
+                    
+                  </figure>
+                  <h3 style="font-family: 'Ow', sans-serif; font-size: 22px;" class="card__name">DPS</h3>
+                </div>
+                
+                <div class="card__body">
+                </div>
+              
+              </div>
+
+              <div class="cardRango" data-effect="zoom">
+                
+                <figure  class="card__image">
+                  <img src="/img/supportrole.jpg" alt="rivals">
+                </figure>
+                <div class="card__header">
+                  <figure class="card__profile">
+                    <img src="${response.competitive.support.icon}" alt="rivals">
+                    
+                  </figure>
+                  <h3 style="font-family: 'Ow', sans-serif; font-size: 22px;" class="card__name">SUPPORT</h3>
+                </div>
+                
+                <div class="card__body">
+                </div>
+              
+              </div>
+
+            </div>
+
+            `;
+
+            $('#divPerfilOw').append(html);
+
+
+
+            
+        }).fail((err, text, thr) => {
+            console.log(err, text, thr);
+        });
+
+    }
+
+    function getPerfilOw2(battletag){
+
+        var bt = battletag.replace("#", "-");
+
+        $.ajax({
+            url: `https://owapi.io/stats/pc/us/${bt}`,
+            type: 'GET',
+            dataType: 'JSON',
+        }).done(response => {
+
+            console.log(response);
+
+            if(response.message == "Error: Profile not found"){
+                $('#divCargando').hide();
+                $('#divPerfilInvalido').show();
+                return;
+            }
+
+            $('#divCargando').hide();
+            $('#divPerfilOw').show();
+            $('#divPerfilOw2').show();
+
+            //lucio acento
+            //soldado :
+            //enano ¨
+            //dva . 
+
+            
+            var hero = "";
+            var hero2 = "";
+            var hero3 = "";
+            console.log("HEROE 1: "+response.stats.top_heroes.competitive.played[0].hero.toLowerCase());
+            switch(response.stats.top_heroes.competitive.played[0].hero.toLowerCase()){
+
+              case "illari":
+              hero = `
+                  <div class="card-character" >
+                    <div class="cardwrapper" style="border: 7px solid #FFF; ">
+                      <img width="120px" src="assets/images/portadas/illari.jpg" class="cover-image" />
+                    </div>
+                    
+                    <img style="width: 170px !important;  margin-left: -30px !important;" height="190px" src="assets/images/portadas/illari.png" class="character" />
+                  </div>
+                `;
+                break;
+              case "ana":
+                hero = `
+                  <div class="card-character" >
+                    <div class="cardwrapper" style="border: 7px solid #FFF; ">
+                      <img width="120px" src="assets/images/portadas/ana.jpg" class="cover-image" />
+                    </div>
+                    
+                    <img style="width: 160px !important;  margin-left: 30px !important;" height="170px" src="assets/images/portadas/ana.png" class="character" />
+                  </div>
+                `;
+                break;
+              case "ashe":
+              hero = `
+                  <div class="card-character" >
+                    <div class="cardwrapper" style="border: 7px solid #FFF; ">
+                      <img width="120px" src="assets/images/portadas/ashe.jpg" class="cover-image" />
+                    </div>
+                    
+                    <img style="width: 160px !important;  margin-left: 30px !important;" height="170px" src="assets/images/portadas/ashe.png" class="character" />
+                  </div>
+              `;
+                break;  
+              case "baptiste":
+              hero = `
+                  <div class="card-character" >
+                    <div class="cardwrapper" style="border: 7px solid #FFF; ">
+                      <img width="120px" src="assets/images/portadas/baptiste.jpg" class="cover-image" />
+                    </div>
+                    
+                    <img style="width: 160px !important;  margin-left: 30px !important;" height="170px" src="assets/images/portadas/bap.png" class="character" />
+                  </div>
+              `;
+                break;
+              case "bastion":
+              hero = `
+                  <div class="card-character" >
+                    <div class="cardwrapper" style="border: 7px solid #FFF; ">
+                      <img width="120px" src="assets/images/portadas/bastion.jpg" class="cover-image" />
+                    </div>
+                    
+                    <img style="width: 160px !important;  margin-left: 30px !important;" height="170px" src="assets/images/portadas/bastion.png" class="character" />
+                  </div>
+              `;
+                break;
+              case "brigitte":
+              hero = `
+                  <div class="card-character" >
+                    <div class="cardwrapper" style="border: 7px solid #FFF; ">
+                      <img width="120px" src="assets/images/portadas/brig.jpg" class="cover-image" />
+                    </div>
+                    
+                    <img style="width: 160px !important;  margin-left: 30px !important;" height="170px" src="assets/images/portadas/brig.png" class="character" />
+                  </div>
+              `;
+              break;
+              case "cassidy":
+              hero = `
+                  <div class="card-character" >
+                    <div class="cardwrapper" style="border: 7px solid #FFF; ">
+                      <img width="120px" src="assets/images/portadas/cassidy.jpg" class="cover-image" />
+                    </div>
+                    
+                    <img style="width: 160px !important;  margin-left: 30px !important;" height="170px" src="assets/images/portadas/cassidy.png" class="character" />
+                  </div>
+              `;
+              break;
+              case "dva":
+              hero = `
+                  <div class="card-character" >
+                    <div class="cardwrapper" style="border: 7px solid #FFF; ">
+                      <img width="120px" src="assets/images/portadas/dva.jpg" class="cover-image" />
+                    </div>
+                    
+                    <img style="width: 160px !important;  margin-left: 30px !important;" height="170px" src="assets/images/portadas/dva.png" class="character" />
+                  </div>
+              `;
+              break;
+              case "doomfist":
+              hero = `
+                  <div class="card-character" >
+                    <div class="cardwrapper" style="border: 7px solid #FFF; ">
+                      <img width="120px" src="assets/images/portadas/doom.jpg" class="cover-image" />
+                    </div>
+                    
+                    <img style="width: 160px !important;  margin-left: 30px !important;" height="170px" src="assets/images/portadas/doom.png" class="character" />
+                  </div>
+              `;
+              break;
+              case "echo":
+              hero = `
+                  <div class="card-character" >
+                    <div class="cardwrapper" style="border: 7px solid #FFF; ">
+                      <img width="120px" src="assets/images/portadas/echo.jpg" class="cover-image" />
+                    </div>
+                    
+                    <img style="width: 160px !important;  margin-left: 30px !important;" height="170px" src="assets/images/portadas/echo.png" class="character" />
+                  </div>
+              `;
+              break;
+              case "genji":
+              hero = `
+                  <div class="card-character" >
+                    <div class="cardwrapper" style="border: 7px solid #FFF; ">
+                      <img width="120px" src="assets/images/portadas/genji.jpg" class="cover-image" />
+                    </div>
+                    
+                    <img style="width: 160px !important;  margin-left: 30px !important;" height="170px" src="assets/images/portadas/genji.png" class="character" />
+                  </div>
+              `;
+              break;
+              case "hanzo":
+              hero = `
+                  <div class="card-character" >
+                    <div class="cardwrapper" style="border: 7px solid #FFF; ">
+                      <img width="120px" src="assets/images/portadas/hanzo.jpg" class="cover-image" />
+                    </div>
+                    
+                    <img style="width: 160px !important;  margin-left: 30px !important;" height="170px" src="assets/images/portadas/hanzo.png" class="character" />
+                  </div>
+              `;
+              break;
+              case "junkerqueen":
+              hero = `
+                  <div class="card-character" >
+                    <div class="cardwrapper" style="border: 7px solid #FFF; ">
+                      <img width="120px" src="assets/images/portadas/junkerqueen.jpg" class="cover-image" />
+                    </div>
+                    
+                    <img style="width: 160px !important;  margin-left: 30px !important;" height="170px" src="assets/images/portadas/junkerqueen.png" class="character" />
+                  </div>
+              `;
+              break;
+              case "junkrat":
+              hero = `
+                  <div class="card-character" >
+                    <div class="cardwrapper" style="border: 7px solid #FFF; ">
+                      <img width="120px" src="assets/images/portadas/junkrat.jpg" class="cover-image" />
+                    </div>
+                    
+                    <img style="width: 160px !important;  margin-left: 30px !important;" height="170px" src="assets/images/portadas/junkrat.png" class="character" />
+                  </div>
+              `;
+              break;
+              case "kiriko":
+              hero = `
+                <div class="card-character" >
+                    <div class="cardwrapper" style="border: 7px solid #FFF; ">
+                      <img width="120px" src="assets/images/portadas/kiriko.jpg" class="cover-image" />
+                    </div>
+                    
+                    <img style="width: 165px !important;" height="198px" src="assets/images/portadas/kiriko.png" class="character" />
+                </div>
+              `;
+              break;
+              case "lifewaver":
+              hero = `
+                  <div class="card-character" >
+                    <div class="cardwrapper" style="border: 7px solid #FFF; ">
+                      <img width="120px" src="assets/images/portadas/lifeweaver.jpg" class="cover-image" />
+                    </div>
+                    
+                    <img style="width: 160px !important;  margin-left: 30px !important;" height="170px" src="assets/images/portadas/lifeweaver.png" class="character" />
+                  </div>
+              `;
+              break;
+              case "lúcio":
+              hero = `
+                <div class="card-character" >
+                  <div class="cardwrapper" style="border: 7px solid #FFF; ">
+                    <img width="120px" src="assets/images/portadas/lucio.jpg" class="cover-image" />
+                  </div>
+                  
+                  <img style="width: 150px !important;" height="170px" src="assets/images/portadas/lucio.png" class="character" />
+                </div>
+              `;
+              break;
+              case "mei":
+              hero = `
+                  <div class="card-character" >
+                    <div class="cardwrapper" style="border: 7px solid #FFF; ">
+                      <img width="120px" src="assets/images/portadas/mei.jpg" class="cover-image" />
+                    </div>
+                    
+                    <img style="width: 160px !important;  margin-left: 30px !important;" height="170px" src="assets/images/portadas/mei.png" class="character" />
+                  </div>
+              `;
+              break;
+              case "mercy":
+              hero = `
+                  <div class="card-character" >
+                    <div class="cardwrapper" style="border: 7px solid #FFF; ">
+                      <img width="120px" src="assets/images/portadas/mercy.jpg" class="cover-image" />
+                    </div>
+                    
+                    <img style="width: 160px !important;  margin-left: 30px !important;" height="170px" src="assets/images/portadas/mercy.png" class="character" />
+                  </div>
+              `;
+              break;
+              case "moira":
+              hero = `
+                  <div class="card-character" >
+                    <div class="cardwrapper" style="border: 7px solid #FFF; ">
+                      <img width="120px" src="assets/images/portadas/moira.jpg" class="cover-image" />
+                    </div>
+                    
+                    <img style="width: 160px !important;  margin-left: 30px !important;" height="170px" src="assets/images/portadas/moira.png" class="character" />
+                  </div>
+              `;
+              break;
+              case "orisa":
+              hero = `
+                  <div class="card-character" >
+                    <div class="cardwrapper" style="border: 7px solid #FFF; ">
+                      <img width="120px" src="assets/images/portadas/orisa.jpg" class="cover-image" />
+                    </div>
+                    
+                    <img style="width: 160px !important;  margin-left: 30px !important;" height="170px" src="assets/images/portadas/orisa.png" class="character" />
+                  </div>
+              `;
+              break;
+              case "pharah":
+              hero = `
+                  <div class="card-character" >
+                    <div class="cardwrapper" style="border: 7px solid #FFF; ">
+                      <img width="120px" src="assets/images/portadas/pharah.jpg" class="cover-image" />
+                    </div>
+                    
+                    <img style="width: 160px !important;  margin-left: 30px !important;" height="170px" src="assets/images/portadas/pharah.png" class="character" />
+                  </div>
+              `;
+              break;
+              case "ramattra":
+              hero = `
+                  <div class="card-character" >
+                    <div class="cardwrapper" style="border: 7px solid #FFF; ">
+                      <img width="120px" src="assets/images/portadas/ram.jpg" class="cover-image" />
+                    </div>
+                    
+                    <img style="width: 160px !important;  margin-left: 30px !important;" height="170px" src="assets/images/portadas/ram.png" class="character" />
+                  </div>
+              `;
+              break;
+              case "reaper":
+              hero = `
+                  <div class="card-character" >
+                    <div class="cardwrapper" style="border: 7px solid #FFF; ">
+                      <img width="120px" src="assets/images/portadas/reaper.jpg" class="cover-image" />
+                    </div>
+                    
+                    <img style="width: 160px !important;  margin-left: 30px !important;" height="170px" src="assets/images/portadas/reaper.png" class="character" />
+                  </div>
+              `;
+              break;
+              case "reinhardt":
+              hero = `
+                  <div class="card-character" >
+                    <div class="cardwrapper" style="border: 7px solid #FFF; ">
+                      <img width="120px" src="assets/images/portadas/reinhardt.jpg" class="cover-image" />
+                    </div>
+                    
+                    <img style="width: 160px !important;  margin-left: 30px !important;" height="170px" src="assets/images/portadas/reinhardt.png" class="character" />
+                  </div>
+              `;
+              break;
+              case "roadhog":
+              hero = `
+                  <div class="card-character" >
+                    <div class="cardwrapper" style="border: 7px solid #FFF; ">
+                      <img width="120px" src="assets/images/portadas/roadhog.jpg" class="cover-image" />
+                    </div>
+                    
+                    <img style="width: 160px !important;  margin-left: 30px !important;" height="170px" src="assets/images/portadas/roadhog.png" class="character" />
+                  </div>
+              `;
+              break;
+              case "sigma":
+              hero = `
+                  <div class="card-character" >
+                    <div class="cardwrapper" style="border: 7px solid #FFF; ">
+                      <img width="120px" src="assets/images/portadas/sigma.jpg" class="cover-image" />
+                    </div>
+                    
+                    <img style="width: 160px !important;  margin-left: 30px !important;" height="170px" src="assets/images/portadas/sigma.png" class="character" />
+                  </div>
+              `;
+              break;
+              case "sojourn":
+              hero = `
+                  <div class="card-character" >
+                    <div class="cardwrapper" style="border: 7px solid #FFF; ">
+                      <img width="120px" src="assets/images/portadas/sojourn.jpg" class="cover-image" />
+                    </div>
+                    
+                    <img style="width: 160px !important;  margin-left: 30px !important;" height="170px" src="assets/images/portadas/sojourn.png" class="character" />
+                  </div>
+              `;
+              break;
+              case "soldier76":
+              hero = `
+                  <div class="card-character" >
+                    <div class="cardwrapper" style="border: 7px solid #FFF; ">
+                      <img width="120px" src="assets/images/portadas/soldier.jpg" class="cover-image" />
+                    </div>
+                    
+                    <img style="width: 160px !important;  margin-left: 30px !important;" height="170px" src="assets/images/portadas/soldier.png" class="character" />
+                  </div>
+              `;
+              break;
+              case "sombra":
+              hero = `
+                  <div class="card-character" >
+                    <div class="cardwrapper" style="border: 7px solid #FFF; ">
+                      <img width="120px" src="assets/images/portadas/sombra.jpg" class="cover-image" />
+                    </div>
+                    
+                    <img style="width: 160px !important;  margin-left: 30px !important;" height="170px" src="assets/images/portadas/sombra.png" class="character" />
+                  </div>
+              `;
+              break;
+              case "symettra":
+              hero = `
+                  <div class="card-character" >
+                    <div class="cardwrapper" style="border: 7px solid #FFF; ">
+                      <img width="120px" src="assets/images/portadas/symmetra.jpg" class="cover-image" />
+                    </div>
+                    
+                    <img style="width: 160px !important;  margin-left: 30px !important;" height="170px" src="assets/images/portadas/symettra.png" class="character" />
+                  </div>
+              `;
+              break;
+              case "torbjorn":
+              hero = `
+                  <div class="card-character" >
+                    <div class="cardwrapper" style="border: 7px solid #FFF; ">
+                      <img width="120px" src="assets/images/portadas/torbjorn.jpg" class="cover-image" />
+                    </div>
+                    
+                    <img style="width: 160px !important;  margin-left: 30px !important;" height="170px" src="assets/images/portadas/torbjorn.png" class="character" />
+                  </div>
+              `;
+              break;
+              case "tracer":
+              hero = `
+                  <div class="card-character" >
+                    <div class="cardwrapper" style="border: 7px solid #FFF; ">
+                      <img width="120px" src="assets/images/portadas/tracer.jpg" class="cover-image" />
+                    </div>
+                    
+                    <img style="width: 160px !important;  margin-left: 30px !important;" height="170px" src="assets/images/portadas/tracer.png" class="character" />
+                  </div>
+              `;
+              break;
+              case "widowmaker":
+              hero = `
+                  <div class="card-character" >
+                    <div class="cardwrapper" style="border: 7px solid #FFF; ">
+                      <img width="120px" src="assets/images/portadas/widowmaker.jpg" class="cover-image" />
+                    </div>
+                    
+                    <img style="width: 160px !important;  margin-left: 30px !important;" height="170px" src="assets/images/portadas/widowmaker.png" class="character" />
+                  </div>
+              `;
+              break;
+              case "winston":
+              hero = `
+                  <div class="card-character" >
+                    <div class="cardwrapper" style="border: 7px solid #FFF; ">
+                      <img width="120px" src="assets/images/portadas/winston.jpg" class="cover-image" />
+                    </div>
+                    
+                    <img style="width: 160px !important;  margin-left: 30px !important;" height="170px" src="assets/images/portadas/winston.png" class="character" />
+                  </div>
+              `;
+              break;
+              case "wreckingball":
+              hero = `
+                  <div class="card-character" >
+                    <div class="cardwrapper" style="border: 7px solid #FFF; ">
+                      <img width="120px" src="assets/images/portadas/wreckingball.jpg" class="cover-image" />
+                    </div>
+                    
+                    <img style="width: 160px !important;  margin-left: 30px !important;" height="170px" src="assets/images/portadas/wreckingball.png" class="character" />
+                  </div>
+              `;
+              break;
+              case "zarya":
+              hero = `
+                  <div class="card-character" >
+                    <div class="cardwrapper" style="border: 7px solid #FFF; ">
+                      <img width="120px" src="assets/images/portadas/zarya.jpg" class="cover-image" />
+                    </div>
+                    
+                    <img style="width: 160px !important;  margin-left: 30px !important;" height="170px" src="assets/images/portadas/zarya.png" class="character" />
+                  </div>
+              `;
+              break;
+              case "zenyatta":
+              hero = `
+                  <div class="card-character" >
+                    <div class="cardwrapper" style="border: 7px solid #FFF; ">
+                      <img width="120px" src="assets/images/portadas/zenyatta.jpg" class="cover-image" />
+                    </div>
+                    
+                    <img style="width: 160px !important;  margin-left: 30px !important;" height="170px" src="assets/images/portadas/zenyatta.png" class="character" />
+                  </div>
+              `;
+              break;
+
+
+            }
+
+            switch(response.stats.top_heroes.competitive.played[1].hero.toLowerCase()){
+              case "illari":
+              hero = `
+                  <div class="card-character" >
+                    <div class="cardwrapper" style="border: 7px solid #FFF; ">
+                      <img width="120px" src="assets/images/portadas/illari.jpg" class="cover-image" />
+                    </div>
+                    
+                    <img style="width: 170px !important;  margin-left: -30px !important;" height="190px" src="assets/images/portadas/illari.png" class="character" />
+                  </div>
+                `;
+                break;
+              case "ana":
+              hero2 = `
+                  <div class="card-character" >
+                    <div class="cardwrapper" style="border: 7px solid #FFF; ">
+                      <img width="120px" src="assets/images/portadas/ana.jpg" class="cover-image" />
+                    </div>
+                    
+                    <img style="width: 160px !important;  margin-left: 30px !important;" height="170px" src="assets/images/portadas/ana.png" class="character" />
+                  </div>
+                `;
+                break;
+              case "ashe":
+              hero2 = `
+                  <div class="card-character" >
+                    <div class="cardwrapper" style="border: 7px solid #FFF; ">
+                      <img width="120px" src="assets/images/portadas/ashe.jpg" class="cover-image" />
+                    </div>
+                    
+                    <img style="width: 160px !important;  margin-left: 30px !important;" height="170px" src="assets/images/portadas/ashe.png" class="character" />
+                  </div>
+              `;
+                break;  
+              case "baptiste":
+              hero2 = `
+                  <div class="card-character" >
+                    <div class="cardwrapper" style="border: 7px solid #FFF; ">
+                      <img width="120px" src="assets/images/portadas/baptiste.jpg" class="cover-image" />
+                    </div>
+                    
+                    <img style="width: 160px !important;  margin-left: 30px !important;" height="170px" src="assets/images/portadas/bap.png" class="character" />
+                  </div>
+              `;
+                break;
+              case "bastion":
+              hero2 = `
+                  <div class="card-character" >
+                    <div class="cardwrapper" style="border: 7px solid #FFF; ">
+                      <img width="120px" src="assets/images/portadas/bastion.jpg" class="cover-image" />
+                    </div>
+                    
+                    <img style="width: 160px !important;  margin-left: 30px !important;" height="170px" src="assets/images/portadas/bastion.png" class="character" />
+                  </div>
+              `;
+                break;
+              case "brigitte":
+              hero2 = `
+                  <div class="card-character" >
+                    <div class="cardwrapper" style="border: 7px solid #FFF; ">
+                      <img width="120px" src="assets/images/portadas/brig.jpg" class="cover-image" />
+                    </div>
+                    
+                    <img style="width: 160px !important;  margin-left: 30px !important;" height="170px" src="assets/images/portadas/brig.png" class="character" />
+                  </div>
+              `;
+              break;
+              case "cassidy":
+              hero2 = `
+                  <div class="card-character" >
+                    <div class="cardwrapper" style="border: 7px solid #FFF; ">
+                      <img width="120px" src="assets/images/portadas/cassidy.jpg" class="cover-image" />
+                    </div>
+                    
+                    <img style="width: 160px !important;  margin-left: 30px !important;" height="170px" src="assets/images/portadas/cassidy.png" class="character" />
+                  </div>
+              `;
+              break;
+              case "dva":
+              hero2 = `
+                  <div class="card-character" >
+                    <div class="cardwrapper" style="border: 7px solid #FFF; ">
+                      <img width="120px" src="assets/images/portadas/dva.jpg" class="cover-image" />
+                    </div>
+                    
+                    <img style="width: 160px !important;  margin-left: 30px !important;" height="170px" src="assets/images/portadas/dva.png" class="character" />
+                  </div>
+              `;
+              break;
+              case "doomfist":
+              hero2 = `
+                  <div class="card-character" >
+                    <div class="cardwrapper" style="border: 7px solid #FFF; ">
+                      <img width="120px" src="assets/images/portadas/doom.jpg" class="cover-image" />
+                    </div>
+                    
+                    <img style="width: 160px !important;  margin-left: 30px !important;" height="170px" src="assets/images/portadas/doom.png" class="character" />
+                  </div>
+              `;
+              break;
+              case "echo":
+              hero2 = `
+                  <div class="card-character" >
+                    <div class="cardwrapper" style="border: 7px solid #FFF; ">
+                      <img width="120px" src="assets/images/portadas/echo.jpg" class="cover-image" />
+                    </div>
+                    
+                    <img style="width: 160px !important;  margin-left: 30px !important;" height="170px" src="assets/images/portadas/echo.png" class="character" />
+                  </div>
+              `;
+              break;
+              case "genji":
+              hero2 = `
+                  <div class="card-character" >
+                    <div class="cardwrapper" style="border: 7px solid #FFF; ">
+                      <img width="120px" src="assets/images/portadas/genji.jpg" class="cover-image" />
+                    </div>
+                    
+                    <img style="width: 160px !important;  margin-left: 30px !important;" height="170px" src="assets/images/portadas/genji.png" class="character" />
+                  </div>
+              `;
+              break;
+              case "hanzo":
+              hero2 = `
+                  <div class="card-character" >
+                    <div class="cardwrapper" style="border: 7px solid #FFF; ">
+                      <img width="120px" src="assets/images/portadas/hanzo.jpg" class="cover-image" />
+                    </div>
+                    
+                    <img style="width: 160px !important;  margin-left: 30px !important;" height="170px" src="assets/images/portadas/hanzo.png" class="character" />
+                  </div>
+              `;
+              break;
+              case "junkerqueen":
+              hero2 = `
+                  <div class="card-character" >
+                    <div class="cardwrapper" style="border: 7px solid #FFF; ">
+                      <img width="120px" src="assets/images/portadas/junkerqueen.jpg" class="cover-image" />
+                    </div>
+                    
+                    <img style="width: 160px !important;  margin-left: 30px !important;" height="170px" src="assets/images/portadas/junkerqueen.png" class="character" />
+                  </div>
+              `;
+              break;
+              case "junkrat":
+              hero2 = `
+                  <div class="card-character" >
+                    <div class="cardwrapper" style="border: 7px solid #FFF; ">
+                      <img width="120px" src="assets/images/portadas/junkrat.jpg" class="cover-image" />
+                    </div>
+                    
+                    <img style="width: 160px !important;  margin-left: 30px !important;" height="170px" src="assets/images/portadas/junkrat.png" class="character" />
+                  </div>
+              `;
+              break;
+              case "kiriko":
+              hero2 = `
+                <div class="card-character" >
+                    <div class="cardwrapper" style="border: 7px solid #FFF; ">
+                      <img width="120px" src="assets/images/portadas/kiriko.jpg" class="cover-image" />
+                    </div>
+                    
+                    <img style="width: 165px !important;" height="198px" src="assets/images/portadas/kiriko.png" class="character" />
+                </div>
+              `;
+              break;
+              case "lifewaver":
+              hero2 = `
+                  <div class="card-character" >
+                    <div class="cardwrapper" style="border: 7px solid #FFF; ">
+                      <img width="120px" src="assets/images/portadas/lifeweaver.jpg" class="cover-image" />
+                    </div>
+                    
+                    <img style="width: 160px !important;  margin-left: 30px !important;" height="170px" src="assets/images/portadas/lifeweaver.png" class="character" />
+                  </div>
+              `;
+              break;
+              case "lúcio":
+              hero2 = `
+                <div class="card-character" >
+                  <div class="cardwrapper" style="border: 7px solid #FFF; ">
+                    <img width="120px" src="assets/images/portadas/lucio.jpg" class="cover-image" />
+                  </div>
+                  
+                  <img style="width: 150px !important;" height="170px" src="assets/images/portadas/lucio.png" class="character" />
+                </div>
+              `;
+              break;
+              case "mei":
+              hero2 = `
+                  <div class="card-character" >
+                    <div class="cardwrapper" style="border: 7px solid #FFF; ">
+                      <img width="120px" src="assets/images/portadas/mei.jpg" class="cover-image" />
+                    </div>
+                    
+                    <img style="width: 160px !important;  margin-left: 30px !important;" height="170px" src="assets/images/portadas/mei.png" class="character" />
+                  </div>
+              `;
+              break;
+              case "mercy":
+              hero2 = `
+                  <div class="card-character" >
+                    <div class="cardwrapper" style="border: 7px solid #FFF; ">
+                      <img width="120px" src="assets/images/portadas/mercy.jpg" class="cover-image" />
+                    </div>
+                    
+                    <img style="width: 160px !important;  margin-left: 30px !important;" height="170px" src="assets/images/portadas/mercy.png" class="character" />
+                  </div>
+              `;
+              break;
+              case "moira":
+              hero2 = `
+                  <div class="card-character" >
+                    <div class="cardwrapper" style="border: 7px solid #FFF; ">
+                      <img width="120px" src="assets/images/portadas/moira.jpg" class="cover-image" />
+                    </div>
+                    
+                    <img style="width: 160px !important;  margin-left: 30px !important;" height="170px" src="assets/images/portadas/moira.png" class="character" />
+                  </div>
+              `;
+              break;
+              case "orisa":
+              hero2 = `
+                  <div class="card-character" >
+                    <div class="cardwrapper" style="border: 7px solid #FFF; ">
+                      <img width="120px" src="assets/images/portadas/orisa.jpg" class="cover-image" />
+                    </div>
+                    
+                    <img style="width: 160px !important;  margin-left: 30px !important;" height="170px" src="assets/images/portadas/orisa.png" class="character" />
+                  </div>
+              `;
+              break;
+              case "pharah":
+              hero2 = `
+                  <div class="card-character" >
+                    <div class="cardwrapper" style="border: 7px solid #FFF; ">
+                      <img width="120px" src="assets/images/portadas/pharah.jpg" class="cover-image" />
+                    </div>
+                    
+                    <img style="width: 160px !important;  margin-left: 30px !important;" height="170px" src="assets/images/portadas/pharah.png" class="character" />
+                  </div>
+              `;
+              break;
+              case "ramattra":
+              hero2 = `
+                  <div class="card-character" >
+                    <div class="cardwrapper" style="border: 7px solid #FFF; ">
+                      <img width="120px" src="assets/images/portadas/ram.jpg" class="cover-image" />
+                    </div>
+                    
+                    <img style="width: 160px !important;  margin-left: 30px !important;" height="170px" src="assets/images/portadas/ram.png" class="character" />
+                  </div>
+              `;
+              break;
+              case "reaper":
+              hero2 = `
+                  <div class="card-character" >
+                    <div class="cardwrapper" style="border: 7px solid #FFF; ">
+                      <img width="120px" src="assets/images/portadas/reaper.jpg" class="cover-image" />
+                    </div>
+                    
+                    <img style="width: 160px !important;  margin-left: 30px !important;" height="170px" src="assets/images/portadas/reaper.png" class="character" />
+                  </div>
+              `;
+              break;
+              case "reinhardt":
+              hero2 = `
+                  <div class="card-character" >
+                    <div class="cardwrapper" style="border: 7px solid #FFF; ">
+                      <img width="120px" src="assets/images/portadas/reinhardt.jpg" class="cover-image" />
+                    </div>
+                    
+                    <img style="width: 160px !important;  margin-left: 30px !important;" height="170px" src="assets/images/portadas/reinhardt.png" class="character" />
+                  </div>
+              `;
+              break;
+              case "roadhog":
+              hero2 = `
+                  <div class="card-character" >
+                    <div class="cardwrapper" style="border: 7px solid #FFF; ">
+                      <img width="120px" src="assets/images/portadas/roadhog.jpg" class="cover-image" />
+                    </div>
+                    
+                    <img style="width: 160px !important;  margin-left: 30px !important;" height="170px" src="assets/images/portadas/roadhog.png" class="character" />
+                  </div>
+              `;
+              break;
+              case "sigma":
+              hero2 = `
+                  <div class="card-character" >
+                    <div class="cardwrapper" style="border: 7px solid #FFF; ">
+                      <img width="120px" src="assets/images/portadas/sigma.jpg" class="cover-image" />
+                    </div>
+                    
+                    <img style="width: 160px !important;  margin-left: 30px !important;" height="170px" src="assets/images/portadas/sigma.png" class="character" />
+                  </div>
+              `;
+              break;
+              case "sojourn":
+              hero2 = `
+                  <div class="card-character" >
+                    <div class="cardwrapper" style="border: 7px solid #FFF; ">
+                      <img width="120px" src="assets/images/portadas/sojourn.jpg" class="cover-image" />
+                    </div>
+                    
+                    <img style="width: 160px !important;  margin-left: 30px !important;" height="170px" src="assets/images/portadas/sojourn.png" class="character" />
+                  </div>
+              `;
+              break;
+              case "soldier76":
+              hero2 = `
+                  <div class="card-character" >
+                    <div class="cardwrapper" style="border: 7px solid #FFF; ">
+                      <img width="120px" src="assets/images/portadas/soldier.jpg" class="cover-image" />
+                    </div>
+                    
+                    <img style="width: 160px !important;  margin-left: 30px !important;" height="170px" src="assets/images/portadas/soldier.png" class="character" />
+                  </div>
+              `;
+              break;
+              case "sombra":
+              hero2 = `
+                  <div class="card-character" >
+                    <div class="cardwrapper" style="border: 7px solid #FFF; ">
+                      <img width="120px" src="assets/images/portadas/sombra.jpg" class="cover-image" />
+                    </div>
+                    
+                    <img style="width: 160px !important;  margin-left: 30px !important;" height="170px" src="assets/images/portadas/sombra.png" class="character" />
+                  </div>
+              `;
+              break;
+              case "symettra":
+              hero2 = `
+                  <div class="card-character" >
+                    <div class="cardwrapper" style="border: 7px solid #FFF; ">
+                      <img width="120px" src="assets/images/portadas/symmetra.jpg" class="cover-image" />
+                    </div>
+                    
+                    <img style="width: 160px !important;  margin-left: 30px !important;" height="170px" src="assets/images/portadas/symettra.png" class="character" />
+                  </div>
+              `;
+              break;
+              case "torbjorn":
+              hero2 = `
+                  <div class="card-character" >
+                    <div class="cardwrapper" style="border: 7px solid #FFF; ">
+                      <img width="120px" src="assets/images/portadas/torbjorn.jpg" class="cover-image" />
+                    </div>
+                    
+                    <img style="width: 160px !important;  margin-left: 30px !important;" height="170px" src="assets/images/portadas/torbjorn.png" class="character" />
+                  </div>
+              `;
+              break;
+              case "tracer":
+              hero2 = `
+                  <div class="card-character" >
+                    <div class="cardwrapper" style="border: 7px solid #FFF; ">
+                      <img width="120px" src="assets/images/portadas/tracer.jpg" class="cover-image" />
+                    </div>
+                    
+                    <img style="width: 160px !important;  margin-left: 30px !important;" height="170px" src="assets/images/portadas/tracer.png" class="character" />
+                  </div>
+              `;
+              break;
+              case "widowmaker":
+              hero2 = `
+                  <div class="card-character" >
+                    <div class="cardwrapper" style="border: 7px solid #FFF; ">
+                      <img width="120px" src="assets/images/portadas/widowmaker.jpg" class="cover-image" />
+                    </div>
+                    
+                    <img style="width: 160px !important;  margin-left: 30px !important;" height="170px" src="assets/images/portadas/widowmaker.png" class="character" />
+                  </div>
+              `;
+              break;
+              case "winston":
+              hero2 = `
+                  <div class="card-character" >
+                    <div class="cardwrapper" style="border: 7px solid #FFF; ">
+                      <img width="120px" src="assets/images/portadas/winston.jpg" class="cover-image" />
+                    </div>
+                    
+                    <img style="width: 160px !important;  margin-left: 30px !important;" height="170px" src="assets/images/portadas/winston.png" class="character" />
+                  </div>
+              `;
+              break;
+              case "wreckingball":
+              hero2 = `
+                  <div class="card-character" >
+                    <div class="cardwrapper" style="border: 7px solid #FFF; ">
+                      <img width="120px" src="assets/images/portadas/wreckingball.jpg" class="cover-image" />
+                    </div>
+                    
+                    <img style="width: 160px !important;  margin-left: 30px !important;" height="170px" src="assets/images/portadas/wreckingball.png" class="character" />
+                  </div>
+              `;
+              break;
+              case "zarya":
+              hero2 = `
+                  <div class="card-character" >
+                    <div class="cardwrapper" style="border: 7px solid #FFF; ">
+                      <img width="120px" src="assets/images/portadas/zarya.jpg" class="cover-image" />
+                    </div>
+                    
+                    <img style="width: 160px !important;  margin-left: 30px !important;" height="170px" src="assets/images/portadas/zarya.png" class="character" />
+                  </div>
+              `;
+              break;
+              case "zenyatta":
+              hero2 = `
+                  <div class="card-character" >
+                    <div class="cardwrapper" style="border: 7px solid #FFF; ">
+                      <img width="120px" src="assets/images/portadas/zenyatta.jpg" class="cover-image" />
+                    </div>
+                    
+                    <img style="width: 160px !important;  margin-left: 30px !important;" height="170px" src="assets/images/portadas/zenyatta.png" class="character" />
+                  </div>
+              `;
+              break;
+
+
+            }
+
+            switch(response.stats.top_heroes.competitive.played[2].hero.toLowerCase()){
+              case "illari":
+              hero = `
+                  <div class="card-character" >
+                    <div class="cardwrapper" style="border: 7px solid #FFF; ">
+                      <img width="120px" src="assets/images/portadas/illari.jpg" class="cover-image" />
+                    </div>
+                    
+                    <img style="width: 170px !important;  margin-left: -30px !important;" height="190px" src="assets/images/portadas/illari.png" class="character" />
+                  </div>
+                `;
+                break;
+              case "ana":
+              hero3 = `
+                  <div class="card-character" >
+                    <div class="cardwrapper" style="border: 7px solid #FFF; ">
+                      <img width="120px" src="assets/images/portadas/ana.jpg" class="cover-image" />
+                    </div>
+                    
+                    <img style="width: 160px !important;  margin-left: 30px !important;" height="170px" src="assets/images/portadas/ana.png" class="character" />
+                  </div>
+                `;
+                break;
+              case "ashe":
+              hero3 = `
+                  <div class="card-character" >
+                    <div class="cardwrapper" style="border: 7px solid #FFF; ">
+                      <img width="120px" src="assets/images/portadas/ashe.jpg" class="cover-image" />
+                    </div>
+                    
+                    <img style="width: 160px !important;  margin-left: 30px !important;" height="170px" src="assets/images/portadas/ashe.png" class="character" />
+                  </div>
+              `;
+                break;  
+              case "baptiste":
+              hero3 = `
+                  <div class="card-character" >
+                    <div class="cardwrapper" style="border: 7px solid #FFF; ">
+                      <img width="120px" src="assets/images/portadas/baptiste.jpg" class="cover-image" />
+                    </div>
+                    
+                    <img style="width: 160px !important;  margin-left: 30px !important;" height="170px" src="assets/images/portadas/bap.png" class="character" />
+                  </div>
+              `;
+                break;
+              case "bastion":
+              hero3 = `
+                  <div class="card-character" >
+                    <div class="cardwrapper" style="border: 7px solid #FFF; ">
+                      <img width="120px" src="assets/images/portadas/bastion.jpg" class="cover-image" />
+                    </div>
+                    
+                    <img style="width: 160px !important;  margin-left: 30px !important;" height="170px" src="assets/images/portadas/bastion.png" class="character" />
+                  </div>
+              `;
+                break;
+              case "brigitte":
+              hero3 = `
+                  <div class="card-character" >
+                    <div class="cardwrapper" style="border: 7px solid #FFF; ">
+                      <img width="120px" src="assets/images/portadas/brig.jpg" class="cover-image" />
+                    </div>
+                    
+                    <img style="width: 160px !important;  margin-left: 30px !important;" height="170px" src="assets/images/portadas/brig.png" class="character" />
+                  </div>
+              `;
+              break;
+              case "cassidy":
+              hero3 = `
+                  <div class="card-character" >
+                    <div class="cardwrapper" style="border: 7px solid #FFF; ">
+                      <img width="120px" src="assets/images/portadas/cassidy.jpg" class="cover-image" />
+                    </div>
+                    
+                    <img style="width: 160px !important;  margin-left: 30px !important;" height="170px" src="assets/images/portadas/cassidy.png" class="character" />
+                  </div>
+              `;
+              break;
+              case "dva":
+              hero3 = `
+                  <div class="card-character" >
+                    <div class="cardwrapper" style="border: 7px solid #FFF; ">
+                      <img width="120px" src="assets/images/portadas/dva.jpg" class="cover-image" />
+                    </div>
+                    
+                    <img style="width: 160px !important;  margin-left: 30px !important;" height="170px" src="assets/images/portadas/dva.png" class="character" />
+                  </div>
+              `;
+              break;
+              case "doomfist":
+              hero3 = `
+                  <div class="card-character" >
+                    <div class="cardwrapper" style="border: 7px solid #FFF; ">
+                      <img width="120px" src="assets/images/portadas/doom.jpg" class="cover-image" />
+                    </div>
+                    
+                    <img style="width: 160px !important;  margin-left: 30px !important;" height="170px" src="assets/images/portadas/doom.png" class="character" />
+                  </div>
+              `;
+              break;
+              case "echo":
+              hero3 = `
+                  <div class="card-character" >
+                    <div class="cardwrapper" style="border: 7px solid #FFF; ">
+                      <img width="120px" src="assets/images/portadas/echo.jpg" class="cover-image" />
+                    </div>
+                    
+                    <img style="width: 160px !important;  margin-left: 30px !important;" height="170px" src="assets/images/portadas/echo.png" class="character" />
+                  </div>
+              `;
+              break;
+              case "genji":
+              hero3 = `
+                  <div class="card-character" >
+                    <div class="cardwrapper" style="border: 7px solid #FFF; ">
+                      <img width="120px" src="assets/images/portadas/genji.jpg" class="cover-image" />
+                    </div>
+                    
+                    <img style="width: 160px !important;  margin-left: 30px !important;" height="170px" src="assets/images/portadas/genji.png" class="character" />
+                  </div>
+              `;
+              break;
+              case "hanzo":
+              hero3 = `
+                  <div class="card-character" >
+                    <div class="cardwrapper" style="border: 7px solid #FFF; ">
+                      <img width="120px" src="assets/images/portadas/hanzo.jpg" class="cover-image" />
+                    </div>
+                    
+                    <img style="width: 160px !important;  margin-left: 30px !important;" height="170px" src="assets/images/portadas/hanzo.png" class="character" />
+                  </div>
+              `;
+              break;
+              case "junkerqueen":
+              hero3 = `
+                  <div class="card-character" >
+                    <div class="cardwrapper" style="border: 7px solid #FFF; ">
+                      <img width="120px" src="assets/images/portadas/junkerqueen.jpg" class="cover-image" />
+                    </div>
+                    
+                    <img style="width: 160px !important;  margin-left: 30px !important;" height="170px" src="assets/images/portadas/junkerqueen.png" class="character" />
+                  </div>
+              `;
+              break;
+              case "junkrat":
+              hero3 = `
+                  <div class="card-character" >
+                    <div class="cardwrapper" style="border: 7px solid #FFF; ">
+                      <img width="120px" src="assets/images/portadas/junkrat.jpg" class="cover-image" />
+                    </div>
+                    
+                    <img style="width: 160px !important;  margin-left: 30px !important;" height="170px" src="assets/images/portadas/junkrat.png" class="character" />
+                  </div>
+              `;
+              break;
+              case "kiriko":
+              hero3 = `
+                <div class="card-character" >
+                    <div class="cardwrapper" style="border: 7px solid #FFF; ">
+                      <img width="120px" src="assets/images/portadas/kiriko.jpg" class="cover-image" />
+                    </div>
+                    
+                    <img style="width: 165px !important;" height="198px" src="assets/images/portadas/kiriko.png" class="character" />
+                </div>
+              `;
+              break;
+              case "lifewaver":
+              hero3 = `
+                  <div class="card-character" >
+                    <div class="cardwrapper" style="border: 7px solid #FFF; ">
+                      <img width="120px" src="assets/images/portadas/lifeweaver.jpg" class="cover-image" />
+                    </div>
+                    
+                    <img style="width: 160px !important;  margin-left: 30px !important;" height="170px" src="assets/images/portadas/lifeweaver.png" class="character" />
+                  </div>
+              `;
+              break;
+              case "lúcio":
+              hero3 = `
+                <div class="card-character" >
+                  <div class="cardwrapper" style="border: 7px solid #FFF; ">
+                    <img width="120px" src="assets/images/portadas/lucio.jpg" class="cover-image" />
+                  </div>
+                  
+                  <img style="width: 150px !important;" height="170px" src="assets/images/portadas/lucio.png" class="character" />
+                </div>
+              `;
+              break;
+              case "mei":
+              hero3 = `
+                  <div class="card-character" >
+                    <div class="cardwrapper" style="border: 7px solid #FFF; ">
+                      <img width="120px" src="assets/images/portadas/mei.jpg" class="cover-image" />
+                    </div>
+                    
+                    <img style="width: 160px !important;  margin-left: 30px !important;" height="170px" src="assets/images/portadas/mei.png" class="character" />
+                  </div>
+              `;
+              break;
+              case "mercy":
+              hero3 = `
+                  <div class="card-character" >
+                    <div class="cardwrapper" style="border: 7px solid #FFF; ">
+                      <img width="120px" src="assets/images/portadas/mercy.jpg" class="cover-image" />
+                    </div>
+                    
+                    <img style="width: 160px !important;  margin-left: 30px !important;" height="170px" src="assets/images/portadas/mercy.png" class="character" />
+                  </div>
+              `;
+              break;
+              case "moira":
+              hero3 = `
+                  <div class="card-character" >
+                    <div class="cardwrapper" style="border: 7px solid #FFF; ">
+                      <img width="120px" src="assets/images/portadas/moira.jpg" class="cover-image" />
+                    </div>
+                    
+                    <img style="width: 160px !important;  margin-left: 30px !important;" height="170px" src="assets/images/portadas/moira.png" class="character" />
+                  </div>
+              `;
+              break;
+              case "orisa":
+              hero3 = `
+                  <div class="card-character" >
+                    <div class="cardwrapper" style="border: 7px solid #FFF; ">
+                      <img width="120px" src="assets/images/portadas/orisa.jpg" class="cover-image" />
+                    </div>
+                    
+                    <img style="width: 160px !important;  margin-left: 30px !important;" height="170px" src="assets/images/portadas/orisa.png" class="character" />
+                  </div>
+              `;
+              break;
+              case "pharah":
+              hero3 = `
+                  <div class="card-character" >
+                    <div class="cardwrapper" style="border: 7px solid #FFF; ">
+                      <img width="120px" src="assets/images/portadas/pharah.jpg" class="cover-image" />
+                    </div>
+                    
+                    <img style="width: 160px !important;  margin-left: 30px !important;" height="170px" src="assets/images/portadas/pharah.png" class="character" />
+                  </div>
+              `;
+              break;
+              case "ramattra":
+              hero3 = `
+                  <div class="card-character" >
+                    <div class="cardwrapper" style="border: 7px solid #FFF; ">
+                      <img width="120px" src="assets/images/portadas/ram.jpg" class="cover-image" />
+                    </div>
+                    
+                    <img style="width: 160px !important;  margin-left: 30px !important;" height="170px" src="assets/images/portadas/ram.png" class="character" />
+                  </div>
+              `;
+              break;
+              case "reaper":
+              hero3 = `
+                  <div class="card-character" >
+                    <div class="cardwrapper" style="border: 7px solid #FFF; ">
+                      <img width="120px" src="assets/images/portadas/reaper.jpg" class="cover-image" />
+                    </div>
+                    
+                    <img style="width: 160px !important;  margin-left: 30px !important;" height="170px" src="assets/images/portadas/reaper.png" class="character" />
+                  </div>
+              `;
+              break;
+              case "reinhardt":
+              hero3 = `
+                  <div class="card-character" >
+                    <div class="cardwrapper" style="border: 7px solid #FFF; ">
+                      <img width="120px" src="assets/images/portadas/reinhardt.jpg" class="cover-image" />
+                    </div>
+                    
+                    <img style="width: 160px !important;  margin-left: 30px !important;" height="170px" src="assets/images/portadas/reinhardt.png" class="character" />
+                  </div>
+              `;
+              break;
+              case "roadhog":
+              hero3 = `
+                  <div class="card-character" >
+                    <div class="cardwrapper" style="border: 7px solid #FFF; ">
+                      <img width="120px" src="assets/images/portadas/roadhog.jpg" class="cover-image" />
+                    </div>
+                    
+                    <img style="width: 160px !important;  margin-left: 30px !important;" height="170px" src="assets/images/portadas/roadhog.png" class="character" />
+                  </div>
+              `;
+              break;
+              case "sigma":
+              hero3 = `
+                  <div class="card-character" >
+                    <div class="cardwrapper" style="border: 7px solid #FFF; ">
+                      <img width="120px" src="assets/images/portadas/sigma.jpg" class="cover-image" />
+                    </div>
+                    
+                    <img style="width: 160px !important;  margin-left: 30px !important;" height="170px" src="assets/images/portadas/sigma.png" class="character" />
+                  </div>
+              `;
+              break;
+              case "sojourn":
+              hero3 = `
+                  <div class="card-character" >
+                    <div class="cardwrapper" style="border: 7px solid #FFF; ">
+                      <img width="120px" src="assets/images/portadas/sojourn.jpg" class="cover-image" />
+                    </div>
+                    
+                    <img style="width: 160px !important;  margin-left: 30px !important;" height="170px" src="assets/images/portadas/sojourn.png" class="character" />
+                  </div>
+              `;
+              break;
+              case "soldier76":
+              hero3 = `
+                  <div class="card-character" >
+                    <div class="cardwrapper" style="border: 7px solid #FFF; ">
+                      <img width="120px" src="assets/images/portadas/soldier.jpg" class="cover-image" />
+                    </div>
+                    
+                    <img style="width: 160px !important;  margin-left: 30px !important;" height="170px" src="assets/images/portadas/soldier.png" class="character" />
+                  </div>
+              `;
+              break;
+              case "sombra":
+              hero3 = `
+                  <div class="card-character" >
+                    <div class="cardwrapper" style="border: 7px solid #FFF; ">
+                      <img width="120px" src="assets/images/portadas/sombra.jpg" class="cover-image" />
+                    </div>
+                    
+                    <img style="width: 160px !important;  margin-left: 30px !important;" height="170px" src="assets/images/portadas/sombra.png" class="character" />
+                  </div>
+              `;
+              break;
+              case "symettra":
+              hero3 = `
+                  <div class="card-character" >
+                    <div class="cardwrapper" style="border: 7px solid #FFF; ">
+                      <img width="120px" src="assets/images/portadas/symmetra.jpg" class="cover-image" />
+                    </div>
+                    
+                    <img style="width: 160px !important;  margin-left: 30px !important;" height="170px" src="assets/images/portadas/symettra.png" class="character" />
+                  </div>
+              `;
+              break;
+              case "torbjorn":
+              hero3 = `
+                  <div class="card-character" >
+                    <div class="cardwrapper" style="border: 7px solid #FFF; ">
+                      <img width="120px" src="assets/images/portadas/torbjorn.jpg" class="cover-image" />
+                    </div>
+                    
+                    <img style="width: 160px !important;  margin-left: 30px !important;" height="170px" src="assets/images/portadas/torbjorn.png" class="character" />
+                  </div>
+              `;
+              break;
+              case "tracer":
+              hero3 = `
+                  <div class="card-character" >
+                    <div class="cardwrapper" style="border: 7px solid #FFF; ">
+                      <img width="120px" src="assets/images/portadas/tracer.jpg" class="cover-image" />
+                    </div>
+                    
+                    <img style="width: 160px !important;  margin-left: 30px !important;" height="170px" src="assets/images/portadas/tracer.png" class="character" />
+                  </div>
+              `;
+              break;
+              case "widowmaker":
+              hero3 = `
+                  <div class="card-character" >
+                    <div class="cardwrapper" style="border: 7px solid #FFF; ">
+                      <img width="120px" src="assets/images/portadas/widowmaker.jpg" class="cover-image" />
+                    </div>
+                    
+                    <img style="width: 160px !important;  margin-left: 30px !important;" height="170px" src="assets/images/portadas/widowmaker.png" class="character" />
+                  </div>
+              `;
+              break;
+              case "winston":
+              hero3 = `
+                  <div class="card-character" >
+                    <div class="cardwrapper" style="border: 7px solid #FFF; ">
+                      <img width="120px" src="assets/images/portadas/winston.jpg" class="cover-image" />
+                    </div>
+                    
+                    <img style="width: 160px !important;  margin-left: 30px !important;" height="170px" src="assets/images/portadas/winston.png" class="character" />
+                  </div>
+              `;
+              break;
+              case "wreckingball":
+              hero3 = `
+                  <div class="card-character" >
+                    <div class="cardwrapper" style="border: 7px solid #FFF; ">
+                      <img width="120px" src="assets/images/portadas/wreckingball.jpg" class="cover-image" />
+                    </div>
+                    
+                    <img style="width: 160px !important;  margin-left: 30px !important;" height="170px" src="assets/images/portadas/wreckingball.png" class="character" />
+                  </div>
+              `;
+              break;
+              case "zarya":
+              hero3 = `
+                  <div class="card-character" >
+                    <div class="cardwrapper" style="border: 7px solid #FFF; ">
+                      <img width="120px" src="assets/images/portadas/zarya.jpg" class="cover-image" />
+                    </div>
+                    
+                    <img style="width: 160px !important;  margin-left: 30px !important;" height="170px" src="assets/images/portadas/zarya.png" class="character" />
+                  </div>
+              `;
+              break;
+              case "zenyatta":
+              hero3 = `
+                  <div class="card-character" >
+                    <div class="cardwrapper" style="border: 7px solid #FFF; ">
+                      <img width="120px" src="assets/images/portadas/zenyatta.jpg" class="cover-image" />
+                    </div>
+                    
+                    <img style="width: 160px !important;  margin-left: 30px !important;" height="170px" src="assets/images/portadas/zenyatta.png" class="character" />
+                  </div>
+              `;
+              break;
+
+
+            }
+
+            
+
+
+            var html = `
+            
+            <div class="row text-center d-flex justify-content-center">
+
+                ${hero}
+
+                ${hero2}
+
+                ${hero3}
+
+            </div>
+
+            `;
+
+            let titulo = `
+              <div style="padding: 20px; background-color: rgba(255, 88, 0, 0.85);">
+                <h5 style="font-family: 'Ow', sans-serif; font-size: 45px;">Heroes mas usados</h5>
+              </div>
+            `;
+
+            $('#divPerfilOw2').html(titulo+html);
+
+
+
+            
+        }).fail((err, text, thr) => {
+            console.log(err, text, thr);
+        });
+
+    }
+
+    function establecerPortada(){
+        
+        const images = [
+            "blizzard.jpg",
+            "busan.jpg",
+            "circuito.jpg",
+            "coliseo.jpg",
+            "dorado.jpg",
+            "eichenwalde.jpg",
+            "esperanza.jpg",
+            "gibraltar.jpg",
+            "habana.jpg",
+            "hollywood.jpg",
+            "ilios.jpg",
+            "junkertown.jpg",
+            "kings.jpg",
+            "lijiang.jpg",
+            "midtown.jpg",
+            "nepal.jpg",
+            "newqueen.jpg",
+            "numbani.jpg",
+            "oasis.jpg",
+            "paraiso.jpg",
+            "paris.jpg",
+            "rialto.jpg",
+            "ruta.jpg"
+        ];
+
+        // Función para obtener un índice aleatorio
+        function getRandomIndex(max) {
+            return Math.floor(Math.random() * max);
+        }
+
+        // Obtener un índice aleatorio para seleccionar una imagen
+        const randomIndex = getRandomIndex(images.length);
+
+        // Obtener el nombre de la imagen seleccionada
+        const selectedImage = images[randomIndex];
+
+        // Establecer el fondo del div
+        const miDiv = document.getElementById('divPortada');
+        miDiv.style.backgroundImage = `url(assets/images/portadas/${selectedImage})`;
+        miDiv.style.backgroundSize = 'cover';
+        miDiv.style.backgroundPosition = 'center center';
+        miDiv.style.backgroundRepeat = 'no-repeat';
+    }
+    establecerPortada();
+
+    function getInvitaciones(){
+
+      let data = {
+            "function": "getInvitaciones"
+        };
+
+        $.ajax({
+            url: 'models/funciones.php',
+            type: 'POST',
+            dataType: 'JSON',
+            data: data,
+        }).done(resp => {
+
+            if (resp.status == 1) {
+
+              var html = "";
+              for(var i = 0; i < resp.data.length; i++){
+
+                let equipo = resp.data[i];
+
+                html += `
+                  <div class="col-md-4">
+                    <div class = card>
+                      <div class = "image">
+                        <a data-equipo="${equipo.equipo}" class="imgEquipoInv"><img style="height: 150px; width: 160px;" src="/rivals//${equipo.logo}"/></a> 
+                      </div>
+                      <div class = content>
+                        <p style="font-family: 'Ow', sans-serif; font-size: 22px;">${equipo.nombre}</p>
+                        <div class="row text-center">
+                          <div class="col-md-6">
+                            <button data-inv="${equipo.id}" data-tipo="0" style="width: 80px; margin: 5px 0;" type="button" class="btn btn-danger btn-sm btnInvitacion">Rechazar</button>
+                          </div>
+                          <div class="col-md-6">
+                            <button data-inv="${equipo.id}" data-tipo="1" style="width: 80px; margin: 5px 0;" type="button" class="btn btn-primary btn-sm btnInvitacion">Aceptar</button>
+                          </div>
+                        </div>
+                      
+                      </div>
+                    </div>
+                  </div>
+                `;
+              }
+
+             
+                $('#divInvitaciones').show();
+                $('.containerInvs').html(html);
+
+            }
+
+        }).fail((err, text, thr) => {
+            
+            Swal.fire("Error", 'Hubo un problema al conectar con el servidor', 'error');
+            console.log(err, text, thr);
+        });
+
+    }
+
+    getInvitaciones();
+
+    function showCargandoDialog(){
+        Swal.fire({
+            title: "Cargando",
+            html: `
+            <div class="container text-center">
+                <div class="row">
+                    <div class="col">
+                        <img src="../img/cargando.gif" class="img-responsive" width="250" height="250" >
+                    </div>
+                </div>
+                </div>
+
+            `,
+            showConfirmButton: false,
+            allowOutsideClick: false
+        });
+    }
+
+
+    $('body').off('click', '.btnInvitacion').on('click', '.btnInvitacion', function(){
+
+      let invitacion = $(this).data("inv");
+      let tipo = $(this).data("tipo");
+      
+      let data = {
+          "tipo": tipo,
+          "invitacion": invitacion,
+          "function": "updtInvitacion"
+        };
+
+        $.ajax({
+            url: 'models/funciones.php',
+            type: 'POST',
+            dataType: 'JSON',
+            data: data,
+        }).done(resp => {
+
+            if (resp.status == 1) {
+
+              if(tipo == "1")
+                showMessage("Invitación a equipo aceptada correctamente");
+              else
+                showMessage("Invitación a equipo rechazada correctamente");
+
+
+              //$(this).parent().parent().parent().parent().parent().remove();
+
+              setInterval(function () {
+                location.reload();
+              }, 2500);
+
+            }else{
+
+              showMessage(resp.msg);
+            }
+
+        }).fail((err, text, thr) => {
+            
+            Swal.fire("Error", 'Hubo un problema al conectar con el servidor', 'error');
+            console.log(err, text, thr);
+        });
+
+    });
+
+    $('body').on('click', '.imgEquipoInv', function(){
+
+        let equipo = $(this).data("equipo");
+        
+
+        localStorage.setItem("idEquipo", equipo);
+
+        $(".imgEquipoInv").addClass("nuevoLink");
+        $(".imgEquipoInv").attr("href", "views/equipo.html");
+    });
+
+
+    function showMessage(msg){
+        Swal.fire({
+            html:`
+                <img width="120" height="120" src="../img/logo-rivals.png"></img>
+                <h1 style="margin-top: 20px; text-shadow: .1em .1em 0 hsl(200 50% 30%); color: hsl(200 50% 90%); font-size: 24px; font-weight: 900; line-height: 1.1;  font-family: 'Ow', cursive;">${msg}</h1>
+
+                <button id="btnCloseMsg" style="font-size: 20px;" width="100" type="button" class="btn btn-outline-light mt-5">Aceptar</button>
+                
+            `,
+            showCloseButton: false,
+            showCancelButton: false,
+            showConfirmButton: false,
+            focusConfirm: false
+           
+        });
+    }
+
+    $('body').on('click', '#btnCloseMsg', function(){
+        Swal.close();
+    });
+   
+
+    
+</script>
+
+

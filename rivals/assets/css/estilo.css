@@ -1,0 +1,28 @@
+@font-face {
+    font-family: 'Ow'; /*a name to be used later*/
+    src: url('../fonts/ow_italic.ttf'); /*URL to font*/
+}
+
+@font-face {
+    font-family: 'Blora'; /*a name to be used later*/
+    src: url('../fonts/blora.ttf'); /*URL to font*/
+}
+
+html, body {
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
+#select_temporada:hover{
+	cursor: pointer;
+	transform: scale(1.1);
+}
+
+.img_red_social:hover{
+	transform: scale(1.1);
+	cursor: pointer;
+}
+
+.swal2-modal{
+    max-width:1200px !important;
+}
