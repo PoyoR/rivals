@@ -3,7 +3,7 @@
 require_once 'conexion.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Obtén los datos del formulario (cambiar 'nombre_del_formulario' por el nombre adecuado)
+    
     
     $username = $_POST['username'];    
     $rawPassword = $_POST['password'];
@@ -14,21 +14,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $twitch = "";
     $twitter = "";
 
-    // Encripta la contraseña usando password_hash() con el algoritmo BCRYPT
+    
     $hashedPassword = password_hash($rawPassword, PASSWORD_BCRYPT);
 
     try {
-        // Crea un objeto de DatabaseConnection
+        
         $db = new DatabaseConnection();
 
-        // Obtiene la conexión
+        
         $connection = $db->getConnection();
 
-        // Prepara la consulta para insertar el usuario en la base de datos
+        
         $query = "INSERT INTO jugador (usuario, pass, equipo, perfil, battlenet, twitch, twitter) VALUES (:username, :pass, :equipo, :perfil, :battlenet, :twitch, :twitter)";
         $statement = $connection->prepare($query);
 
-        // Asigna los valores a los parámetros de la consulta
+        
         $statement->bindParam(':username', $username);
         $statement->bindParam(':pass', $hashedPassword);
         $statement->bindParam(':equipo', $team);
@@ -37,7 +37,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $statement->bindParam(':twitch', $twitch);
         $statement->bindParam(':twitter', $twitter);
 
-        // Ejecuta la consulta
+        
         $statement->execute();
 
         echo "Usuario creado exitosamente.";
